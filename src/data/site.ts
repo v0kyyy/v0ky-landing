@@ -17,7 +17,7 @@ export const site = {
     // [TODO: PDF-резюме — положить файл в /public и обновить путь]
     resume: "/resume.pdf",
   },
-  nav: ["about", "experience", "contact"] as const,
+    nav: ["about", "experience", "cases", "contact"] as const,
 } as const;
 
 export type NavId = (typeof site.nav)[number];

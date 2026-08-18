@@ -210,13 +210,13 @@ export default function Specializations() {
   return (
     <section
       ref={sectionRef}
-      id="specialization"
+      id="cases"
       className="relative mx-auto max-w-6xl px-6 py-28 md:py-40 lg:px-8"
     >
       <SectionHeading
         key={locale}
         index="03"
-        label="services --list --detailed"
+        label="cases --list"
         title={t.specs.title}
       />
 

@@ -3,14 +3,13 @@
 import { ArrowUp } from "lucide-react";
 import { scrollToTop } from "@/lib/scroll";
 import Magnetic from "@/components/ui/Magnetic";
-import SocialLinks from "@/components/ui/SocialLinks";
 import { useI18n } from "@/components/providers/LocaleProvider";
 
 export default function Footer() {
   const { t } = useI18n();
   return (
-    <footer className="border-t border-line">
-      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-14 md:flex-row md:items-end md:justify-between lg:px-8">
+    <footer className="relative z-10 border-t border-line bg-bg">
+      <div className="mx-auto flex max-w-6xl items-end justify-between gap-6 px-6 py-14 lg:px-8">
         <div>
           <p className="font-mono text-sm text-fg">
             v<span className="text-accent">0</span>ky.dev &copy; {new Date().getFullYear()}
@@ -23,21 +22,15 @@ export default function Footer() {
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          <SocialLinks
-            iconSize={15}
-            buttonClassName="flex h-10 w-10 items-center justify-center rounded-full border border-line text-muted transition-colors duration-300 hover:border-accent hover:text-accent"
-          />
-          <Magnetic strength={0.45}>
-            <button
-              onClick={scrollToTop}
-              aria-label={t.footer.backToTop}
-              className="ml-2 flex h-10 w-10 items-center justify-center rounded-full border border-accent/50 text-accent transition-colors duration-300 hover:bg-accent hover:text-bg"
-            >
-              <ArrowUp size={15} />
-            </button>
-          </Magnetic>
-        </div>
+        <Magnetic strength={0.45}>
+          <button
+            onClick={scrollToTop}
+            aria-label={t.footer.backToTop}
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-accent/50 text-accent transition-colors duration-300 hover:bg-accent hover:text-bg"
+          >
+            <ArrowUp size={15} />
+          </button>
+        </Magnetic>
       </div>
     </footer>
   );

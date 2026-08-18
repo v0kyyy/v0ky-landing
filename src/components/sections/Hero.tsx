@@ -11,26 +11,58 @@ import Magnetic from "@/components/ui/Magnetic";
 import SocialLinks from "@/components/ui/SocialLinks";
 import { useI18n } from "@/components/providers/LocaleProvider";
 
-/** Статичный фолбэк сцены: градиентная чёрно-бордовая подложка (мобильные, reduced motion, загрузка). */
-function HeroBackdrop() {
-  return (
-    <div
-      className="absolute inset-0"
-      style={{
-        background:
-          "radial-gradient(55% 45% at 72% 38%, rgba(74,14,14,0.6), transparent 72%)," +
-          "radial-gradient(35% 30% at 68% 42%, rgba(232,51,42,0.14), transparent 70%)," +
-          "radial-gradient(45% 40% at 25% 75%, rgba(42,8,8,0.5), transparent 75%)",
-      }}
-    />
-  );
-}
+/** React Bits GradientWaves — WebGL, только клиент. */
+const GradientWaves = dynamic(() => import("@/components/ui/GradientWaves"), {
+  ssr: false,
+});
 
 // Сфера иконок — TagCanvas + guid() ломают SSR, грузим только на клиенте
 const IconCloud = dynamic(() => import("./IconCloud"), {
   ssr: false,
   loading: () => <div className="aspect-square w-full" aria-hidden />,
 });
+
+function HeroBackdrop({ reducedMotion }: { reducedMotion: boolean }) {
+  return reducedMotion ? (
+    <div className="hero-backdrop absolute inset-0">
+      <div className="hero-backdrop__grid" />
+    </div>
+  ) : (
+    <div className="pointer-events-none absolute inset-0">
+      <GradientWaves
+        horizonColor="#ea1121"
+        waveColor="#b4455c"
+        crestColor="#7a3540"
+        speed={0.4}
+        amplitude={2.5}
+        waveScale={0.6}
+        waveRatio={0.9}
+        swell={35}
+        turbulence={18.5}
+        tilt={1.03}
+        zoom={1.4}
+        height={4.2}
+        fogDepth={24}
+        detail="medium"
+        brightness={0.82}
+        opacity={1}
+        grain
+        grainIntensity={0.05}
+        mouseInteraction={false}
+        parallaxStrength={0.5}
+      />
+    </div>
+  );
+}
+
+function HeroScrim() {
+  return (
+    <>
+      <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(8,8,10,0.55)_0%,rgba(8,8,10,0.18)_46%,transparent_72%)]" />
+      <div className="absolute inset-x-0 bottom-0 h-[58%] bg-gradient-to-t from-bg via-bg/75 to-transparent" />
+    </>
+  );
+}
 
 export default function Hero() {
   const { locale, t } = useI18n();
@@ -89,44 +121,15 @@ export default function Hero() {
     { dependencies: [done], scope: sectionRef }
   );
 
-  // Пиннинг hero: секция не уезжает, а трансформируется — контент уходит вглубь.
-  // Только desktop + no-reduced-motion.
-  useGSAP(
-    () => {
-      const mm = gsap.matchMedia();
-      mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
-        const tl = gsap.timeline({
-          defaults: { ease: "none" },
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top top",
-            end: "+=80%",
-            pin: true,
-            scrub: 0.6,
-          },
-        });
-        tl.to(innerRef.current, { yPercent: -14, scale: 0.93, autoAlpha: 0.3 }, 0).to(
-          [hintRef.current, watermarkRef.current],
-          { autoAlpha: 0 },
-          0
-        );
-      });
-      return () => mm.revert();
-    },
-    { scope: sectionRef }
-  );
-
   return (
     <section
       ref={sectionRef}
       id="hero"
-      className="relative flex min-h-screen items-center overflow-hidden"
+      className="sticky top-0 z-0 flex min-h-screen items-center overflow-hidden"
     >
-      <div className="absolute inset-0" aria-hidden>
-        <HeroBackdrop />
-        {/* виньетка + плавный переход в следующую секцию */}
-        <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_40%,transparent_55%,rgba(8,8,10,0.85)_100%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-bg" />
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <HeroBackdrop reducedMotion={reducedMotion} />
+        <HeroScrim />
       </div>
 
       <div
@@ -184,17 +187,19 @@ export default function Hero() {
           {enable3d && (
             <div
               ref={cloudRef}
-              className="relative aspect-square w-full"
+              className="relative ml-auto aspect-square w-full max-w-[30rem] lg:max-w-[32rem]"
             >
               <div
-                className="pointer-events-none absolute inset-[14%] rounded-full bg-[radial-gradient(circle_at_center,rgba(232,51,42,0.26),rgba(74,14,14,0.16)_42%,transparent_72%)] blur-3xl"
+                className="pointer-events-none absolute inset-[8%] rounded-full bg-[radial-gradient(circle_at_center,rgba(232,51,42,0.26),rgba(74,14,14,0.16)_42%,transparent_72%)] blur-3xl"
                 aria-hidden
               />
-              <IconCloud />
+              <div className="hero-icon-cloud-mask">
+                <IconCloud />
+              </div>
             </div>
           )}
           {isDesktop && !enable3d && (
-            <div className="relative w-64 overflow-hidden rounded-2xl border border-line bg-surface lg:w-80">
+            <div className="relative w-80 overflow-hidden rounded-2xl border border-line bg-surface lg:w-[22rem]">
               <Image
                 src="/me.jpg"
                 alt={t.hero.photoAlt}

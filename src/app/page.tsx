@@ -2,8 +2,8 @@ import Header from "@/components/sections/Header";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import HelpSection from "@/components/sections/HelpSection";
-import Testimonials from "@/components/sections/Testimonials";
 import Contact from "@/components/sections/Contact";
+import WavyEdge from "@/components/ui/WavyEdge";
 import Footer from "@/components/sections/Footer";
 
 export default function Home() {
@@ -12,12 +12,16 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <About />
-        <HelpSection />
-        <Testimonials />
-        <Contact />
+        <div className="relative z-10">
+          <WavyEdge />
+          <div className="-mt-px bg-bg">
+            <About />
+            <HelpSection />
+            <Contact />
+            <Footer />
+          </div>
+        </div>
       </main>
-      <Footer />
     </>
   );
 }

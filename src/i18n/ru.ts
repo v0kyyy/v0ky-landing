@@ -12,6 +12,7 @@ export const ru: Dictionary = {
   nav: {
     about: "Обо мне",
     experience: "Опыт",
+    cases: "Кейсы",
     contact: "Контакты",
   },
   header: {
@@ -64,6 +65,13 @@ export const ru: Dictionary = {
     kworkCardAlt: "Профиль Владимира на Kwork",
     kworkLightboxClose: "Закрыть",
     kworkGrowing: "И это число продолжает расти.",
+    kworkSince: "На Kwork с 21 июля 2018",
+    kworkOrders: "заказов выполнено",
+    kworkReviews: "отзыва получено",
+    kworkSuccess: "заказов сдано успешно",
+    kworkOnTime: "сдано вовремя",
+    kworkRepeat: "повторных заказов",
+    kworkOpen: "Открыть профиль Kwork",
     projects: "проектов",
     reviews: "отзывов",
     skills: "навыков",
@@ -74,13 +82,14 @@ export const ru: Dictionary = {
     resumeCta: "Скачать резюме",
   },
   specs: {
-    title: "Специализация",
+    title: "Кейсы",
     more: "Подробнее",
     collapse: "Свернуть",
     openCursor: "Открыть",
   },
   testimonials: {
     title: "Отзывы",
+    fromKwork: "Отзывы с Kwork",
     ratingAria: "Оценка 5 из 5",
     dragHint: "← листай →",
     dragCursor: "Тяни",

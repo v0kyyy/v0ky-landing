@@ -10,6 +10,7 @@ export const en = {
   nav: {
     about: "About",
     experience: "Experience",
+    cases: "Cases",
     contact: "Contact",
   },
   header: {
@@ -63,6 +64,13 @@ export const en = {
     kworkCardAlt: "Kwork profile of Vladimir Chireev",
     kworkLightboxClose: "Close",
     kworkGrowing: "And the number is still growing.",
+    kworkSince: "On Kwork since July 21, 2018",
+    kworkOrders: "orders completed",
+    kworkReviews: "reviews received",
+    kworkSuccess: "of orders completed successfully",
+    kworkOnTime: "delivered on time",
+    kworkRepeat: "repeat orders",
+    kworkOpen: "Open Kwork profile",
     projects: "projects",
     reviews: "reviews",
     skills: "skills",
@@ -73,13 +81,14 @@ export const en = {
     resumeCta: "Download CV",
   },
   specs: {
-    title: "What I do",
+    title: "Cases",
     more: "Read more",
     collapse: "Collapse",
     openCursor: "Open",
   },
   testimonials: {
     title: "Testimonials",
+    fromKwork: "Reviews from Kwork",
     ratingAria: "5 out of 5",
     dragHint: "← drag →",
     dragCursor: "Drag",

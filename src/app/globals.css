@@ -105,6 +105,34 @@ body::after {
   }
 }
 
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-track,
+.marquee-track-reverse {
+  --gap: 1rem;
+  --duration: 140s;
+}
+
+.marquee-track {
+  animation: marquee var(--duration) linear infinite;
+}
+
+.marquee-track-reverse {
+  animation: marquee var(--duration) linear infinite reverse;
+}
+
+.group:hover .marquee-track,
+.group:hover .marquee-track-reverse {
+  animation-play-state: paused;
+}
+
 @keyframes scroll-hint {
   0% {
     transform: translateY(-100%);
@@ -121,10 +149,51 @@ body::after {
   animation: blink 1.1s step-end infinite;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .marquee-track-reverse {
+    animation: none;
+  }
+}
+
 .cursor-caret::after {
   content: "_";
   color: var(--color-accent);
   animation: blink 1.1s step-end infinite;
+}
+
+/* Hero fallback (reduced motion): wash + сетка без WebGL. */
+.hero-backdrop {
+  background:
+    linear-gradient(180deg, rgba(232, 51, 42, 0.09) 0%, transparent 34%),
+    linear-gradient(90deg, #08080a 8%, rgba(74, 14, 14, 0.38) 100%),
+    linear-gradient(248deg, #1e0c0c 0%, #120808 32%, #08080a 70%);
+}
+.hero-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 90% 80% at 50% 48%,
+    transparent 48%,
+    rgba(8, 8, 10, 0.78) 100%
+  );
+}
+.hero-backdrop__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(232, 51, 42, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 51, 42, 0.14) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 72% 62% at 50% 42%, black 8%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 72% 62% at 50% 42%, black 8%, transparent 70%);
+  opacity: 0.45;
+}
+
+[data-parallax-layer] {
+  will-change: transform;
 }
 
 /* Сфера иконок в hero: TagCanvas иначе ограничивает canvas 70vh */
@@ -132,6 +201,10 @@ body::after {
   width: 100% !important;
   max-width: none !important;
   height: auto;
+}
+.hero-icon-cloud-mask {
+  mask-image: radial-gradient(circle at center, #000 68%, transparent 92%);
+  -webkit-mask-image: radial-gradient(circle at center, #000 68%, transparent 92%);
 }
 
 /* Бегущая линия индикатора скролла в hero */
