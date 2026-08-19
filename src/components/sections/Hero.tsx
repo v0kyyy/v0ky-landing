@@ -5,9 +5,12 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import { gsap, SplitText } from "@/lib/gsap";
+import { Download } from "lucide-react";
 import { prefersReducedMotion, useMediaQuery } from "@/lib/scroll";
 import { usePreloader } from "@/components/providers/PreloaderProvider";
+import Magnetic from "@/components/ui/Magnetic";
 import SocialLinks from "@/components/ui/SocialLinks";
+import { site } from "@/data/site";
 import { useI18n } from "@/components/providers/LocaleProvider";
 
 /** React Bits GradientWaves — WebGL, только клиент. */
@@ -164,8 +167,22 @@ export default function Hero() {
             </p>
           </div>
 
-          <div ref={ctaRef} className="mt-10 flex flex-wrap items-center gap-5">
-            <SocialLinks iconSize={17} />
+          <div ref={ctaRef} className="mt-10 flex flex-wrap items-center gap-3">
+            <div className="flex items-center gap-3">
+              <SocialLinks iconSize={17} />
+            </div>
+            <span className="hidden h-5 w-px bg-line-strong sm:block" aria-hidden />
+            <Magnetic strength={0.35}>
+              <a
+                href={site.links.resume}
+                download
+                aria-label={t.contact.downloadCv}
+                className="btn-fill flex h-11 items-center gap-2 rounded-full border border-accent/45 bg-accent/10 px-4 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-accent"
+              >
+                <Download size={14} strokeWidth={1.75} />
+                CV
+              </a>
+            </Magnetic>
           </div>
         </div>
 
