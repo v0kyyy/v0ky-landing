@@ -8,7 +8,6 @@ type SectionHeadingProps = {
   title: string;
   className?: string;
   action?: ReactNode;
-  icon?: LucideIcon;
 };
 
 /** Единый заголовок секции: красный номер, mono-лейбл в терминальном стиле, display-заголовок с reveal. */
@@ -18,10 +17,9 @@ export default function SectionHeading({
   title,
   className = "",
   action,
-  icon: Icon,
 }: SectionHeadingProps) {
   return (
-    <div className={`mb-14 md:mb-20 ${className}`}>
+    <div className={`relative z-10 mb-14 md:mb-20 ${className}`}>
       <div className="mb-6 flex items-center gap-4">
         <span className="font-mono text-sm text-accent">{index}</span>
         <span className="h-px w-12 bg-accent/40" aria-hidden />
@@ -37,15 +35,25 @@ export default function SectionHeading({
         >
           {title}
         </SplitReveal>
-        {Icon ? (
-          <Icon
-            aria-hidden
-            strokeWidth={1.2}
-            className="mb-0.5 size-[clamp(2.25rem,4.8vw,3.6rem)] shrink-0 text-white"
-          />
-        ) : null}
         {action ? <div className="mb-0.5 shrink-0">{action}</div> : null}
       </div>
     </div>
+  );
+}
+
+/** Крупный полупрозрачный знак секции — фон справа, под контентом. */
+export function SectionWatermark({
+  icon: Icon,
+  className = "",
+}: {
+  icon: LucideIcon;
+  className?: string;
+}) {
+  return (
+    <Icon
+      aria-hidden
+      strokeWidth={0.7}
+      className={`pointer-events-none absolute -right-16 top-8 z-0 size-[clamp(16rem,44vw,30rem)] -rotate-[16deg] text-white/[0.07] md:-right-10 md:top-16 ${className}`}
+    />
   );
 }

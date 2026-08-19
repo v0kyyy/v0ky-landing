@@ -233,7 +233,7 @@ export default function Experience() {
   return (
     <section
       ref={sectionRef}
-      className="relative mx-auto max-w-6xl px-6 pb-8 pt-2 lg:px-8"
+      className="relative z-10 mx-auto max-w-6xl px-6 pb-8 pt-2 lg:px-8"
     >
       <div
         ref={wrapRef}

@@ -1,7 +1,7 @@
 "use client";
 
-import { Briefcase } from "lucide-react";
-import SectionHeading from "@/components/ui/SectionHeading";
+import { Wrench } from "lucide-react";
+import SectionHeading, { SectionWatermark } from "@/components/ui/SectionHeading";
 import Experience from "@/components/sections/Experience";
 import Specializations from "@/components/sections/Specializations";
 import { useI18n } from "@/components/providers/LocaleProvider";
@@ -12,13 +12,13 @@ export default function HelpSection() {
   return (
     <>
       <section id="experience" className="relative">
-        <div className="mx-auto max-w-6xl px-6 pt-28 md:pt-40 lg:px-8">
+        <div className="relative mx-auto max-w-6xl px-6 pt-28 md:pt-40 lg:px-8">
+          <SectionWatermark icon={Wrench} />
           <SectionHeading
             key={locale}
             index="02"
             label="career --log"
             title={t.experience.title}
-            icon={Briefcase}
             className="mb-6 md:mb-10"
           />
         </div>

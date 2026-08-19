@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/scroll";
 import { Fingerprint } from "lucide-react";
-import SectionHeading from "@/components/ui/SectionHeading";
+import SectionHeading, { SectionWatermark } from "@/components/ui/SectionHeading";
 import { stackCategories } from "@/data/stack";
 import { useI18n } from "@/components/providers/LocaleProvider";
 
@@ -47,12 +47,12 @@ export default function About() {
 
   return (
     <section ref={sectionRef} id="about" className="relative mx-auto max-w-6xl px-6 py-20 md:py-28 lg:px-8">
+      <SectionWatermark icon={Fingerprint} />
       <SectionHeading
         key={locale}
         index="01"
         label="whoami --verbose"
         title={t.about.title}
-        icon={Fingerprint}
       />
 
       <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
@@ -66,7 +66,7 @@ export default function About() {
           ))}
         </div>
 
-        <div ref={stackRef} className="space-y-5">
+        <div ref={stackRef} className="relative z-10 space-y-5">
           {stackCategories.map(({ id, icon: Icon, items }) => (
             <div key={id} data-stack-group>
               <div className="mb-2 flex items-center gap-2">

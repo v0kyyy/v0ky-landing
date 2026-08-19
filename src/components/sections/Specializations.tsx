@@ -7,7 +7,7 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/scroll";
 import { useTilt } from "@/lib/useTilt";
-import SectionHeading from "@/components/ui/SectionHeading";
+import SectionHeading, { SectionWatermark } from "@/components/ui/SectionHeading";
 import { specializations, type Specialization } from "@/data/specializations";
 import { useI18n } from "@/components/providers/LocaleProvider";
 
@@ -219,15 +219,15 @@ export default function Specializations() {
       id="cases"
       className="relative mx-auto max-w-6xl px-6 py-28 md:py-40 lg:px-8"
     >
+      <SectionWatermark icon={Layers} />
       <SectionHeading
         key={locale}
         index="03"
         label="cases --list"
         title={t.specs.title}
-        icon={Layers}
       />
 
-      <div ref={gridRef} className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <div ref={gridRef} className="relative z-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {specializations.map((spec) => (
           /* обёртка — цель GSAP-анимации входа: без CSS-transition и без framer,
              чтобы не конфликтовать ни с transition на opacity, ни с layout-проекцией */
