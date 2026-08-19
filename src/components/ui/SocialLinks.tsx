@@ -18,9 +18,9 @@ export default function SocialLinks({
   const { locale } = useI18n();
 
   const items = [
-    { icon: GithubIcon, href: site.links.github, label: "GitHub" },
     { icon: Send, href: site.links.telegram, label: "Telegram" },
     { icon: Mail, href: site.links.email, label: "Email" },
+    { icon: GithubIcon, href: site.links.github, label: "GitHub" },
     { icon: KworkIcon, href: site.links.kwork[locale], label: "Kwork" },
   ];
 
