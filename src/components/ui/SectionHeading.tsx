@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type { LucideIcon } from "lucide-react";
 import SplitReveal from "./SplitReveal";
 
 type SectionHeadingProps = {
@@ -7,6 +8,7 @@ type SectionHeadingProps = {
   title: string;
   className?: string;
   action?: ReactNode;
+  icon?: LucideIcon;
 };
 
 /** Единый заголовок секции: красный номер, mono-лейбл в терминальном стиле, display-заголовок с reveal. */
@@ -16,6 +18,7 @@ export default function SectionHeading({
   title,
   className = "",
   action,
+  icon: Icon,
 }: SectionHeadingProps) {
   return (
     <div className={`mb-14 md:mb-20 ${className}`}>
@@ -26,7 +29,7 @@ export default function SectionHeading({
           $ {label}
         </span>
       </div>
-      <div className="flex flex-nowrap items-end justify-between gap-3 sm:gap-8">
+      <div className="flex flex-nowrap items-end justify-between gap-4 sm:gap-8">
         <SplitReveal
           as="h2"
           mode="words"
@@ -34,6 +37,13 @@ export default function SectionHeading({
         >
           {title}
         </SplitReveal>
+        {Icon ? (
+          <Icon
+            aria-hidden
+            strokeWidth={1.2}
+            className="mb-0.5 size-[clamp(2.25rem,4.8vw,3.6rem)] shrink-0 text-white"
+          />
+        ) : null}
         {action ? <div className="mb-0.5 shrink-0">{action}</div> : null}
       </div>
     </div>

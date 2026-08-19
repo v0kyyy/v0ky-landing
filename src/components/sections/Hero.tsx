@@ -5,9 +5,8 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import { gsap, SplitText } from "@/lib/gsap";
-import { prefersReducedMotion, scrollToSection, useMediaQuery } from "@/lib/scroll";
+import { prefersReducedMotion, useMediaQuery } from "@/lib/scroll";
 import { usePreloader } from "@/components/providers/PreloaderProvider";
-import Magnetic from "@/components/ui/Magnetic";
 import SocialLinks from "@/components/ui/SocialLinks";
 import { useI18n } from "@/components/providers/LocaleProvider";
 
@@ -165,19 +164,8 @@ export default function Hero() {
             </p>
           </div>
 
-          {/* CTA + соцсети */}
           <div ref={ctaRef} className="mt-10 flex flex-wrap items-center gap-5">
-            <Magnetic strength={0.3}>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="btn-fill rounded-full border border-line-strong px-8 py-3.5 font-mono text-sm font-medium uppercase tracking-wider text-fg"
-              >
-                {t.hero.cta}
-              </button>
-            </Magnetic>
-            <div className="flex items-center gap-3">
-              <SocialLinks iconSize={17} />
-            </div>
+            <SocialLinks iconSize={17} />
           </div>
         </div>
 

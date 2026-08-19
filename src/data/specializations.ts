@@ -1,3 +1,12 @@
+import {
+  Bot,
+  ScanSearch,
+  Unplug,
+  Cog,
+  LayoutDashboard,
+  Table2,
+  type LucideIcon,
+} from "lucide-react";
 import type { Localized } from "@/i18n";
 
 export type SpecProject = {
@@ -11,6 +20,7 @@ export type SpecProject = {
 export type Specialization = {
   id: string;
   num: string;
+  icon: LucideIcon;
   title: Localized;
   short: Localized;
   long: Localized;
@@ -21,6 +31,7 @@ export const specializations: Specialization[] = [
   {
     id: "bots",
     num: "01",
+    icon: Bot,
     title: {
       en: "Telegram / Discord bots",
       ru: "Telegram / Discord-боты",
@@ -75,6 +86,7 @@ export const specializations: Specialization[] = [
   {
     id: "scraping",
     num: "02",
+    icon: ScanSearch,
     title: {
       en: "Web scraping & data extraction",
       ru: "Веб-скрапинг и парсинг данных",
@@ -129,6 +141,7 @@ export const specializations: Specialization[] = [
   {
     id: "integrations",
     num: "03",
+    icon: Unplug,
     title: {
       en: "Service integrations",
       ru: "Интеграции между сервисами",
@@ -183,6 +196,7 @@ export const specializations: Specialization[] = [
   {
     id: "rpa",
     num: "04",
+    icon: Cog,
     title: {
       en: "RPA & business process automation",
       ru: "RPA и автоматизация бизнес-процессов",
@@ -237,6 +251,7 @@ export const specializations: Specialization[] = [
   {
     id: "dashboards",
     num: "05",
+    icon: LayoutDashboard,
     title: {
       en: "Real-time dashboards & analytics",
       ru: "Дашборды и аналитика в реальном времени",
@@ -291,6 +306,7 @@ export const specializations: Specialization[] = [
   {
     id: "workspace",
     num: "06",
+    icon: Table2,
     title: {
       en: "Google Workspace automation",
       ru: "Google Workspace автоматизация",

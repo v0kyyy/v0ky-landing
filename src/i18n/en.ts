@@ -36,9 +36,8 @@ export const en = {
   about: {
     title: "About",
     paragraphs: [
-      "I'm a fullstack developer focused on automation. For more than five years I've been building systems that take over the busywork: bots, scrapers, integrations, and dashboards that run 24/7 without a nudge.",
-      "Clients don't pay me for lines of code — they pay for the hours of manual work that disappear, and for data that finally adds up. Every project starts with “what is this costing the business today?” and ends with a result you can measure.",
-      "If a process is done by hand more than twice a week, it's a candidate for automation. I build it so it doesn't fall apart a month later: monitoring, retries, and logging come as standard.",
+      "I'm a fullstack developer focused on automation. For more than five years I've been building bots, scrapers, integrations, and dashboards that take over repetitive work — with monitoring, retries, and logging as standard. Clients pay for the hours that disappear, not for lines of code.",
+      "If a process is done by hand more than twice a week, it's a candidate for automation. Every project starts with “what is this costing the business today?” and ends with a result you can measure.",
     ],
     stack: {
       languages: "Languages",

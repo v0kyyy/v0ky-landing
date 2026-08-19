@@ -3,11 +3,10 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Marquee } from "@/components/ui/marquee";
 import { kworkReviews } from "@/data/kwork-reviews";
+import { splitReviewRows } from "@/lib/spreadReviews";
 import { useI18n } from "@/components/providers/LocaleProvider";
 
-const mid = Math.ceil(kworkReviews.length / 2);
-const firstRow = kworkReviews.slice(0, mid);
-const secondRow = kworkReviews.slice(mid);
+const [firstRow, secondRow] = splitReviewRows(kworkReviews);
 
 function ReviewCard({
   avatar,

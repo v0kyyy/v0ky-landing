@@ -1,5 +1,6 @@
 "use client";
 
+import { Briefcase } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Experience from "@/components/sections/Experience";
 import Specializations from "@/components/sections/Specializations";
@@ -17,6 +18,7 @@ export default function HelpSection() {
             index="02"
             label="career --log"
             title={t.experience.title}
+            icon={Briefcase}
             className="mb-6 md:mb-10"
           />
         </div>

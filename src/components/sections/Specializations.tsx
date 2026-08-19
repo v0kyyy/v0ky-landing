@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Plus, X } from "lucide-react";
+import { Layers, Plus, X } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/scroll";
@@ -89,7 +89,10 @@ function SpecCard({
             data-cursor-text={t.specs.openCursor}
           >
             <div ref={tiltRef} className="flex h-full flex-col p-7 will-change-transform">
-              <span className="font-mono text-sm text-accent">{spec.num}</span>
+              <div className="flex items-center justify-between gap-3">
+                <span className="font-mono text-sm text-accent">{spec.num}</span>
+                <spec.icon size={18} strokeWidth={1.75} className="text-accent" aria-hidden />
+              </div>
               <h3 className="mt-5 font-display text-lg font-semibold leading-snug text-fg">
                 {spec.title[locale]}
               </h3>
@@ -110,7 +113,10 @@ function SpecCard({
           >
             <div className="flex items-start justify-between gap-6">
               <div>
-                <span className="font-mono text-sm text-accent">{spec.num}</span>
+                <div className="flex items-center gap-3">
+                  <spec.icon size={18} strokeWidth={1.75} className="text-accent" aria-hidden />
+                  <span className="font-mono text-sm text-accent">{spec.num}</span>
+                </div>
                 <h3 className="mt-3 font-display text-xl font-semibold text-fg md:text-2xl">
                   {spec.title[locale]}
                 </h3>
@@ -218,6 +224,7 @@ export default function Specializations() {
         index="03"
         label="cases --list"
         title={t.specs.title}
+        icon={Layers}
       />
 
       <div ref={gridRef} className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
