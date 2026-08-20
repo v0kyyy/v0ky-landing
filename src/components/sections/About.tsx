@@ -6,6 +6,7 @@ import { gsap } from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/scroll";
 import { Fingerprint } from "lucide-react";
 import SectionHeading, { SectionWatermark } from "@/components/ui/SectionHeading";
+import ChaosToOrder from "@/components/ui/ChaosToOrder";
 import { stackCategories } from "@/data/stack";
 import { useI18n } from "@/components/providers/LocaleProvider";
 
@@ -28,6 +29,17 @@ export default function About() {
           stagger: 0.08,
           ease: "power3.out",
           scrollTrigger: { trigger: textRef.current, start: "top 82%", once: true },
+        });
+      }
+
+      const flow = sectionRef.current?.querySelector("[data-chaos-flow]");
+      if (flow) {
+        gsap.from(flow, {
+          y: 18,
+          autoAlpha: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          scrollTrigger: { trigger: flow, start: "top 88%", once: true },
         });
       }
 
@@ -56,14 +68,17 @@ export default function About() {
       />
 
       <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
-        <div
-          ref={textRef}
-          lang={locale}
-          className="space-y-4 text-justify hyphens-auto text-[15px] leading-relaxed text-fg/85 md:text-base"
-        >
-          {t.about.paragraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
+        <div>
+          <div
+            ref={textRef}
+            lang={locale}
+            className="space-y-4 text-justify hyphens-auto text-[15px] leading-relaxed text-fg/85 md:text-base"
+          >
+            {t.about.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+          <ChaosToOrder />
         </div>
 
         <div ref={stackRef} className="relative z-10 space-y-5">

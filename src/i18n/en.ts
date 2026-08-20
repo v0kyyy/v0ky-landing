@@ -37,7 +37,6 @@ export const en = {
     title: "About",
     paragraphs: [
       "I'm a fullstack developer focused on automation. For more than five years I've been building bots, scrapers, integrations, and dashboards that take over repetitive work — with monitoring, retries, and logging as standard. Clients pay for the hours that disappear, not for lines of code.",
-      "If a process is done by hand more than twice a week, it's a candidate for automation. Every project starts with “what is this costing the business today?” and ends with a result you can measure.",
     ],
     stack: {
       languages: "Languages",
@@ -45,6 +44,10 @@ export const en = {
       backend: "Backend",
       data: "Data",
       dashboards: "Dashboards",
+    },
+    flow: {
+      input: "// input: chaos",
+      output: "// output: order",
     },
   },
   experience: {
