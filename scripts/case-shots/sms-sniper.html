@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>NumberSniper — live feed</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./shared.css" />
+    <style>
+      .main {
+        grid-template-rows: auto 1fr 190px;
+      }
+      .work {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 14px;
+        min-height: 0;
+      }
+
+      .market {
+        height: 100%;
+        background: #f6f7f9;
+        color: #1c2430;
+        display: flex;
+        flex-direction: column;
+      }
+      .m-head {
+        background: #0f3d38;
+        color: #fff;
+        padding: 11px 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .m-mark {
+        width: 28px; height: 28px; border-radius: 8px;
+        background: #19c37d; color: #08332c; font-weight: 800; font-size: 13px;
+        display: grid; place-items: center;
+      }
+      .m-head h1 { font-size: 15px; font-weight: 700; }
+      .m-head p { font-size: 11px; opacity: 0.7; }
+      .m-bal { margin-left: auto; text-align: right; font-size: 12px; }
+      .m-bal b { font-size: 15px; }
+
+      .filters {
+        display: flex; gap: 8px; padding: 10px 14px; background: #fff; border-bottom: 1px solid #e4e8ee;
+        font-size: 12px;
+      }
+      .chip {
+        border: 1px solid #d7dee6; background: #fff; border-radius: 6px; padding: 5px 10px; color: #526070;
+      }
+      .chip.on { border-color: #19c37d; background: #e9f9f1; color: #0f3d38; font-weight: 600; }
+
+      .mtable { width: 100%; border-collapse: collapse; font-size: 12.5px; background: #fff; }
+      .mtable th {
+        text-align: left; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase;
+        color: #7a8696; padding: 8px 12px; border-bottom: 1px solid #e4e8ee; background: #fafbfc;
+      }
+      .mtable td { padding: 7px 12px; border-bottom: 1px solid #eef1f5; font-variant-numeric: tabular-nums; }
+      .mtable tr.hot td { background: #e9f9f1; }
+      .buy {
+        background: #19c37d; color: #08332c; border: 0; border-radius: 5px;
+        font-size: 11px; font-weight: 700; padding: 4px 10px;
+      }
+      .buy.gone { background: #e6eaef; color: #90a0b0; }
+      .flag { font-size: 14px; }
+
+      .snatch {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .snatch h3 { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); }
+      .phone { font-size: 28px; font-weight: 700; letter-spacing: -0.04em; }
+      .okpill {
+        align-self: flex-start;
+        background: var(--green-dim); color: var(--green);
+        font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+        padding: 4px 10px; border-radius: 999px;
+      }
+      .bars { display: flex; align-items: flex-end; gap: 4px; height: 56px; margin-top: 4px; }
+      .bars span {
+        flex: 1; background: #2a3142; border-radius: 2px 2px 0 0;
+      }
+      .bars span.hit { background: var(--green); }
+      .spark-l { font-size: 11px; color: var(--muted); display: flex; justify-content: space-between; }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <aside class="rail">
+        <div class="logo" style="background:#19c37d;color:#08332c">NS</div>
+        <div class="rail-btn active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h10M4 17h13"/><circle cx="18" cy="17" r="3"/></svg>
+        </div>
+        <div class="rail-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5l12 7-12 7z"/></svg>
+        </div>
+        <div class="rail-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 20h8"/></svg>
+        </div>
+        <div class="rail-spacer"></div>
+      </aside>
+
+      <header class="top">
+        <div class="crumb">NumberSniper <span>/ ruleset PL-Play-cheap</span></div>
+        <span class="pill live dot">armed</span>
+        <div class="top-meta">
+          <span>queue <b>3 workers</b></span>
+          <span>avg react <b>64ms</b></span>
+          <span class="mono">14:07:22.087</span>
+        </div>
+      </header>
+
+      <nav class="side">
+        <h4>Rulesets</h4>
+        <div class="nav-item active">PL · Play · ≤ $0.50 <span class="badge">ON</span></div>
+        <div class="nav-item">NL · any · ≤ $0.80</div>
+        <div class="nav-item">UK · EE · ≤ $0.60</div>
+        <div class="nav-item">US · T-Mo · ≤ $1.20</div>
+        <h4 style="margin-top:16px">Today</h4>
+        <div class="nav-item">Attempts <span class="badge" style="color:var(--text)">38</span></div>
+        <div class="nav-item">Snatched <span class="badge">16</span></div>
+        <div class="nav-item">Missed <span class="badge" style="color:#f0b429">22</span></div>
+        <div class="side-card">
+          <div class="k">Last snatch</div>
+          <div class="v">87ms</div>
+          <div class="s">Play PL · $0.42</div>
+        </div>
+      </nav>
+
+      <main class="main">
+        <div class="kpi-row">
+          <div class="kpi"><div class="l">Hit rate · 24h</div><div class="n"><em>41%</em></div></div>
+          <div class="kpi"><div class="l">Avg reaction</div><div class="n">64<span style="font-size:13px;color:var(--muted)">ms</span></div></div>
+          <div class="kpi"><div class="l">Numbers in feed</div><div class="n">128<span style="font-size:13px;color:var(--muted)">/min</span></div></div>
+          <div class="kpi"><div class="l">Spend today</div><div class="n">$6.40</div></div>
+        </div>
+
+        <div class="work">
+          <section class="browser">
+            <div class="browser-bar">
+              <div class="traffic"><i class="r"></i><i class="y"></i><i class="g"></i></div>
+              <div class="url mono">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+                numrent.io/activation/numbers?country=pl&amp;operator=play
+              </div>
+            </div>
+            <div class="browser-body">
+              <div class="market">
+                <div class="m-head">
+                  <div class="m-mark">N</div>
+                  <div>
+                    <h1>NumRent · Number marketplace</h1>
+                    <p>Activation numbers · live stock</p>
+                  </div>
+                  <div class="m-bal">Balance<br /><b>$24.80</b></div>
+                </div>
+                <div class="filters">
+                  <div class="chip on">Poland</div>
+                  <div class="chip on">Play</div>
+                  <div class="chip">Orange</div>
+                  <div class="chip">Plus</div>
+                  <div class="chip on">Price ≤ $0.50</div>
+                  <div class="chip">SMS only</div>
+                </div>
+                <table class="mtable">
+                  <thead>
+                    <tr><th></th><th>Number</th><th>Operator</th><th>Price</th><th>Age</th><th></th></tr>
+                  </thead>
+                  <tbody class="mono">
+                    <tr><td class="flag">🇺🇸</td><td>+1 415 882 1902</td><td>AT&amp;T</td><td>$0.91</td><td>0.4s</td><td><button class="buy gone">taken</button></td></tr>
+                    <tr><td class="flag">🇬🇧</td><td>+44 7700 900281</td><td>EE</td><td>$0.55</td><td>0.3s</td><td><button class="buy gone">taken</button></td></tr>
+                    <tr class="hot"><td class="flag">🇵🇱</td><td>+48 501 228 140</td><td>Play</td><td>$0.42</td><td>0.1s</td><td><button class="buy">bought</button></td></tr>
+                    <tr><td class="flag">🇳🇱</td><td>+31 6 1234 9981</td><td>KPN</td><td>$0.67</td><td>0.8s</td><td><button class="buy gone">taken</button></td></tr>
+                    <tr><td class="flag">🇵🇱</td><td>+48 512 009 331</td><td>Orange</td><td>$0.48</td><td>1.1s</td><td><button class="buy">buy</button></td></tr>
+                    <tr><td class="flag">🇩🇪</td><td>+49 151 2345890</td><td>O2</td><td>$0.72</td><td>1.4s</td><td><button class="buy gone">taken</button></td></tr>
+                    <tr><td class="flag">🇵🇱</td><td>+48 600 118 204</td><td>Play</td><td>$0.39</td><td>1.6s</td><td><button class="buy">buy</button></td></tr>
+                    <tr><td class="flag">🇫🇷</td><td>+33 6 12 44 90 11</td><td>Orange</td><td>$0.61</td><td>1.8s</td><td><button class="buy gone">taken</button></td></tr>
+                    <tr><td class="flag">🇵🇱</td><td>+48 530 771 002</td><td>Play</td><td>$0.44</td><td>2.0s</td><td><button class="buy">buy</button></td></tr>
+                    <tr><td class="flag">🇪🇸</td><td>+34 612 009 441</td><td>Movistar</td><td>$0.58</td><td>2.2s</td><td><button class="buy gone">taken</button></td></tr>
+                    <tr><td class="flag">🇵🇱</td><td>+48 505 118 990</td><td>Plus</td><td>$0.47</td><td>2.4s</td><td><button class="buy">buy</button></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <aside class="snatch">
+            <h3>Last match</h3>
+            <div class="okpill">SNATCHED · 87ms</div>
+            <div class="phone mono">+48 501 228 140</div>
+            <div class="kv">
+              <div><div class="l">Operator</div><div class="v">Play · Poland</div></div>
+              <div><div class="l">Price</div><div class="v">$0.42</div></div>
+              <div><div class="l">Seen → buy</div><div class="v mono">87ms</div></div>
+              <div><div class="l">Order</div><div class="v mono">NR-44190</div></div>
+            </div>
+            <div>
+              <div class="spark-l"><span>Reaction, last 20 hits</span><span>target &lt; 120ms</span></div>
+              <div class="bars">
+                <span style="height:40%"></span><span style="height:55%"></span><span class="hit" style="height:70%"></span>
+                <span style="height:48%"></span><span class="hit" style="height:92%"></span><span style="height:36%"></span>
+                <span class="hit" style="height:78%"></span><span style="height:44%"></span><span class="hit" style="height:88%"></span>
+                <span style="height:30%"></span><span class="hit" style="height:64%"></span><span style="height:50%"></span>
+                <span class="hit" style="height:96%"></span><span style="height:42%"></span><span class="hit" style="height:72%"></span>
+                <span style="height:38%"></span><span class="hit" style="height:80%"></span><span style="height:46%"></span>
+                <span class="hit" style="height:90%"></span><span class="hit" style="height:100%"></span>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <section class="log">
+          <table>
+            <thead>
+              <tr><th>Time</th><th>Number</th><th>Rule</th><th>Result</th><th>ms</th></tr>
+            </thead>
+            <tbody class="mono">
+              <tr><td>14:07:18.441</td><td>+1 415 882 1902</td><td>US · T-Mo · ≤ $1.20</td><td><span class="tag miss">MISS</span></td><td>94</td></tr>
+              <tr><td>14:07:19.102</td><td>+44 7700 900281</td><td>UK · EE · ≤ $0.60</td><td><span class="tag miss">MISS</span></td><td>71</td></tr>
+              <tr class="ok"><td>14:07:22.087</td><td>+48 501 228 140</td><td>PL · Play · ≤ $0.50</td><td><span class="tag buy">BUY</span></td><td>87</td></tr>
+              <tr><td>14:07:22.901</td><td>+31 6 1234 9981</td><td>NL · any · ≤ $0.80</td><td><span class="tag miss">MISS</span></td><td>112</td></tr>
+              <tr><td>14:07:24.330</td><td>+48 512 009 331</td><td>PL · Play · ≤ $0.50</td><td><span class="tag empty">SKIP</span></td><td>—</td></tr>
+              <tr><td>14:07:25.018</td><td>+33 6 12 44 90 11</td><td>NL · any · ≤ $0.80</td><td><span class="tag miss">MISS</span></td><td>88</td></tr>
+              <tr class="ok"><td>14:07:25.441</td><td>+48 530 771 002</td><td>PL · Play · ≤ $0.50</td><td><span class="tag buy">BUY</span></td><td>61</td></tr>
+              <tr><td>14:07:26.102</td><td>+34 612 009 441</td><td>UK · EE · ≤ $0.60</td><td><span class="tag miss">MISS</span></td><td>103</td></tr>
+            </tbody>
+          </table>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>North Signal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./base.css" />
+<style>
+body { background: #0d1b2a; color: #e0e6ed; font-family: Inter, sans-serif; }
+.wrap { height: 900px; display: grid; grid-template-columns: 1fr 340px; }
+.left { padding: 14px 18px; display: flex; flex-direction: column; }
+svg { width: 100%; height: 280px; }
+.sig { background: #132337; border-radius: 8px; padding: 9px 12px; margin-top: 6px; display: flex; justify-content: space-between; font-size: 13px; }
+.buy { color: #3ddc97; font-weight: 700; }
+.sell { color: #ff6b6b; font-weight: 700; }
+.phone { background: #08101a; padding: 16px; }
+.screen { background: #17212b; height: 100%; border-radius: 20px; padding: 14px; display: flex; flex-direction: column; }
+.m { background: #1e2c3a; border-radius: 10px; padding: 10px; margin-bottom: 8px; font-size: 12.5px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <main class="left">
+    <div style="display:flex;justify-content:space-between;align-items:end">
+      <div><div style="color:#8ea0b5;font-size:11px">NORTH SIGNAL</div><b style="font-size:20px">ETHUSDT · 4h screener</b></div>
+      <div class="buy" style="font-size:16px">WAIT / WATCH</div>
+    </div>
+    <svg viewBox="0 0 640 160" preserveAspectRatio="none">
+      <polyline fill="none" stroke="#5b8cff" stroke-width="2.5" points="0,110 40,104 80,118 120,88 160,94 200,72 240,78 280,56 320,64 360,48 400,58 440,40 480,52 520,36 560,42 600,30 640,36"/>
+      <polyline fill="none" stroke="#f0b429" stroke-width="1.5" stroke-dasharray="4 4" points="0,80 640,80"/>
+    </svg>
+    <div class="sig"><span>BTC · squeeze</span><span class="buy">LONG SETUP</span><span class="mono">0.64</span></div>
+    <div class="sig"><span>SOL · overext</span><span class="sell">NO TRADE</span><span class="mono">0.21</span></div>
+    <div class="sig"><span>ETH · level</span><span class="buy">WATCH 2420</span><span class="mono">0.58</span></div>
+    <div class="sig"><span>TON · news</span><span class="sell">SKIP</span><span class="mono">0.12</span></div>
+    <div class="sig"><span>BNB · range</span><span class="buy">WATCH</span><span class="mono">0.44</span></div>
+    <div class="sig"><span>XRP · break</span><span class="sell">NO TRADE</span><span class="mono">0.19</span></div>
+    <div class="sig"><span>DOGE · noise</span><span class="sell">SKIP</span><span class="mono">0.08</span></div>
+    <div class="sig"><span>AVAX · HTF</span><span class="buy">LONG SETUP</span><span class="mono">0.61</span></div>
+  </main>
+  <aside class="phone">
+    <div class="screen">
+      <div style="text-align:center;color:#8ea0b5;font-size:12px;margin-bottom:10px">Telegram · North Signal</div>
+      <div class="m"><b class="buy">LONG SETUP · BTC</b><br/>Squeeze-break, wait 15m close. Size 0.5%. Confirm to execute.</div>
+      <div class="m"><b>ETH · WATCH 2 420</b><br/>Level from AI + HTF. No auto-send until Confirm.</div>
+      <div class="m"><b class="buy">LONG SETUP · AVAX</b><br/>HTF trend, invalidation 28.4.</div>
+      <div class="m" style="opacity:.65">SOL · skipped · low confidence</div>
+      <div class="m" style="opacity:.65">TON · skipped · news spike</div>
+      <div class="m" style="opacity:.65">XRP · no trade · chop</div>
+      <div class="m"><b>BNB · WATCH</b><br/>Range, wait close above 592.</div>
+      <div class="m" style="opacity:.65">DOGE · skipped · noise</div>
+    </div>
+  </aside>
+</div>
+</body>
+</html>

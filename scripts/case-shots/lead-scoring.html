@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Heatline — AI scoring</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./base.css" />
+<style>
+body { background: #eef1f6; font-family: Inter, sans-serif; color: #1e293b; }
+.wrap { height: 900px; display: flex; flex-direction: column; }
+.top { height: 52px; background: #fff; display: flex; align-items: center; padding: 0 18px; flex-shrink: 0; }
+.app { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 12px; flex: 1; min-height: 0; }
+.col { background: #fff; border-radius: 12px; padding: 10px; overflow: hidden; display: flex; flex-direction: column; }
+.h { font-size: 11px; font-weight: 700; letter-spacing: .08em; margin-bottom: 8px; flex-shrink: 0; }
+.card { border: 1px solid #e2e8f0; border-radius: 10px; padding: 9px 10px; margin-bottom: 8px; flex: 1 1 0; min-height: 0; }
+.score { font-size: 18px; font-weight: 700; }
+.hot { color: #dc2626; }
+.warm { color: #d97706; }
+.cold { color: #64748b; }
+.draft { margin-top: 6px; background: #f8fafc; border-radius: 6px; padding: 6px 8px; font-size: 11.5px; color: #475569; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><b>Heatline</b><span style="margin-left:12px;color:#64748b">AI scoring · drafts for first reply · 38 inbound today</span></div>
+<div class="app">
+  <section class="col"><div class="h" style="color:#dc2626">HOT · 6</div>
+    <div class="card"><div class="score hot">92</div><b>Нужен бот «вчера»</b><div class="draft">Созвон сегодня 16:00, контур и оценка.</div></div>
+    <div class="card"><div class="score hot">88</div><b>Оплата на этой неделе</b><div class="draft">Счёт и слоты уже в письме.</div></div>
+    <div class="card"><div class="score hot">85</div><b>Повтор · клиника</b><div class="draft">«Как в прошлый раз, только 2 филиала».</div></div>
+    <div class="card"><div class="score hot">81</div><b>Тендер до пятницы</b><div class="draft">КП + 1 кейс, без воды.</div></div>
+    <div class="card"><div class="score hot">79</div><b>WhatsApp · «берём, если успеете»</b></div>
+    <div class="card"><div class="score hot">77</div><b>Повтор · склад WB</b><div class="draft">Тот же стек, +остатки.</div></div>
+  </section>
+  <section class="col"><div class="h" style="color:#d97706">WARM · 9</div>
+    <div class="card"><div class="score warm">61</div><b>Сравнивают 3 подрядчиков</b><div class="draft">Короткое КП, 1 кейс.</div></div>
+    <div class="card"><div class="score warm">54</div><b>Уточняют стек</b><div class="draft">Python + amo, примеры.</div></div>
+    <div class="card"><div class="score warm">49</div><b>Просят кейс по складу</b></div>
+    <div class="card"><div class="score warm">47</div><b>Интеграция Bitrix</b><div class="draft">Спросить объём сделок/день.</div></div>
+    <div class="card"><div class="score warm">44</div><b>Агентство, «на будущее»</b></div>
+    <div class="card"><div class="score warm">42</div><b>Спрашивают кейс SMM</b></div>
+    <div class="card"><div class="score warm">40</div><b>Хотят только оценку</b><div class="draft">Диапазон, без созвона.</div></div>
+    <div class="card"><div class="score warm">38</div><b>Партнёрка, не заказ</b></div>
+  </section>
+  <section class="col"><div class="h" style="color:#64748b">COLD · 14</div>
+    <div class="card"><div class="score cold">22</div><b>«Сколько стоит бот?»</b><div class="draft">FAQ-ссылка, без звонка.</div></div>
+    <div class="card"><div class="score cold">18</div><b>Студент, учебный проект</b></div>
+    <div class="card"><div class="score cold">16</div><b>Вакансия, не заказ</b></div>
+    <div class="card"><div class="score cold">14</div><b>Спам / рассылка</b></div>
+    <div class="card"><div class="score cold">11</div><b>Чужой язык, не целевой</b></div>
+    <div class="card"><div class="score cold">9</div><b>«Сделайте бесплатно»</b></div>
+    <div class="card"><div class="score cold">8</div><b>Конкурент смотрит цены</b></div>
+    <div class="card"><div class="score cold">6</div><b>Пустая форма</b></div>
+    <div class="card"><div class="score cold">5</div><b>Дубль вчерашнего</b></div>
+  </section>
+  <section class="col"><div class="h">NEW · queue</div>
+    <div class="card">IG · 2 мин<div style="color:#64748b;font-size:12px;margin-top:4px">в очереди LLM…</div></div>
+    <div class="card">WhatsApp · 5 мин<div style="color:#64748b;font-size:12px;margin-top:4px">в очереди LLM…</div></div>
+    <div class="card">TG · 8 мин<div style="color:#64748b;font-size:12px;margin-top:4px">в очереди LLM…</div></div>
+    <div class="card">форма сайта · 11 мин</div>
+    <div class="card">IG Direct · 14 мин</div>
+    <div class="card">email · 16 мин</div>
+    <div class="card">WA · 19 мин<div style="color:#64748b;font-size:12px;margin-top:4px">в очереди LLM…</div></div>
+    <div class="card">форма · 22 мин</div>
+  </section>
+</div>
+</div>
+</body>
+</html>

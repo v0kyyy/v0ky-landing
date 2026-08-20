@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Bus — CRM × warehouse × pay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./base.css" />
+<style>
+body { background: #0f0c1a; color: #ece8ff; font-family: Inter, sans-serif; }
+.wrap { height: 900px; display: flex; flex-direction: column; }
+.top { height: 48px; display: flex; align-items: center; padding: 0 18px; border-bottom: 1px solid #2a2150; flex-shrink: 0; }
+.kpis { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; padding: 12px 18px 0; flex-shrink: 0; }
+.kpi { background: #1a1430; border: 1px solid #3d2f6e; border-radius: 10px; padding: 10px 12px; }
+.kpi .l { font-size: 11px; color: #8b83b0; }
+.kpi .v { font-size: 20px; font-weight: 700; margin-top: 4px; }
+.flow { display: flex; align-items: stretch; justify-content: center; gap: 12px; padding: 14px 18px; flex-shrink: 0; }
+.node { flex: 1; background: #1a1430; border: 1px solid #6d5ae6; border-radius: 12px; padding: 12px; }
+.node h3 { font-size: 11px; color: #8b83b0; letter-spacing: .12em; }
+.arr { color: #c4b5fd; font-size: 22px; align-self: center; }
+.ok { color: #86efac; }
+.mid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 12px; padding: 0 18px 12px; flex: 1; min-height: 0; }
+.log, .tbl { background: #1a1430; border-radius: 12px; padding: 12px 14px; overflow: hidden; }
+.log { font-family: "JetBrains Mono", monospace; font-size: 12px; line-height: 1.65; color: #c4b5fd; }
+table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+th { text-align: left; color: #8b83b0; font-size: 11px; padding: 6px 8px; }
+td { padding: 7px 8px; border-top: 1px solid #2a2150; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><b style="color:#c4b5fd">EVENT BUS</b><span style="margin-left:12px;color:#8b83b0">order · payment · reserve · ship</span><span style="margin-left:auto;font-size:12px;color:#86efac">12 events / min · 0 DLQ</span></div>
+<div class="kpis">
+  <div class="kpi"><div class="l">Processed today</div><div class="v">1 842</div></div>
+  <div class="kpi"><div class="l">Avg hop</div><div class="v">86ms</div></div>
+  <div class="kpi"><div class="l">Mismatches</div><div class="v">3</div></div>
+  <div class="kpi"><div class="l">Happy path</div><div class="v ok">99.1%</div></div>
+</div>
+<div class="flow">
+  <div class="node"><h3>ACQUIRING</h3><b>оплата ₽ 14 200</b><div class="ok" style="margin-top:6px;font-size:13px">captured · Stripe</div></div>
+  <div class="arr">→</div>
+  <div class="node"><h3>CRM</h3><b>сделка #10482</b><div class="ok" style="margin-top:6px;font-size:13px">оплачено</div></div>
+  <div class="arr">→</div>
+  <div class="node"><h3>WAREHOUSE</h3><b>резерв NV-2 ×1</b><div class="ok" style="margin-top:6px;font-size:13px">hold 14:07:03</div></div>
+  <div class="arr">→</div>
+  <div class="node"><h3>WMS</h3><b>packing #902</b><div class="ok" style="margin-top:6px;font-size:13px">queued</div></div>
+</div>
+<div class="mid">
+  <div class="log">
+    14:07:01.102  webhook  stripe.payment_intent.succeeded<br/>
+    14:07:01.140  crm      PATCH /leads/10482 status=paid <span class="ok">200</span><br/>
+    14:07:01.188  stock    reserve SKU NV-2-BLK qty=1 <span class="ok">ok</span><br/>
+    14:07:03.004  notify   packing task → WMS<br/>
+    14:07:03.220  log      no mismatch · happy path<br/>
+    14:07:04.011  webhook  stripe.payment_intent.succeeded #10490<br/>
+    14:07:04.055  crm      PATCH /leads/10490 status=paid <span class="ok">200</span><br/>
+    14:07:04.102  stock    reserve SKU SOCK-3 qty=2 <span class="ok">ok</span><br/>
+    14:07:06.440  retry    AIR-20 conflict · ozon sold during packet<br/>
+    14:07:06.880  stock    reconcile AIR-20 qty 12→11 <span class="ok">ok</span><br/>
+    14:07:08.012  wms      pick-list 10482 printed<br/>
+    14:07:09.330  crm      note “оплата ок, склад зарезервирован”
+  </div>
+  <div class="tbl">
+    <div style="font-size:11px;color:#8b83b0;letter-spacing:.12em;margin-bottom:8px">LIVE ORDERS</div>
+    <table>
+      <tr><th>ID</th><th>Pay</th><th>CRM</th><th>Stock</th></tr>
+      <tr><td>10482</td><td class="ok">cap</td><td class="ok">paid</td><td class="ok">hold</td></tr>
+      <tr><td>10490</td><td class="ok">cap</td><td class="ok">paid</td><td class="ok">hold</td></tr>
+      <tr><td>10477</td><td class="ok">cap</td><td class="ok">paid</td><td class="ok">ship</td></tr>
+      <tr><td>10488</td><td style="color:#fbbf24">wait</td><td>new</td><td>—</td></tr>
+      <tr><td>10491</td><td class="ok">cap</td><td class="ok">paid</td><td>pick</td></tr>
+      <tr><td>10492</td><td class="ok">cap</td><td class="ok">paid</td><td class="ok">hold</td></tr>
+      <tr><td>10493</td><td class="ok">cap</td><td class="ok">paid</td><td class="ok">hold</td></tr>
+      <tr><td>10494</td><td>fail</td><td>open</td><td>—</td></tr>
+      <tr><td>10495</td><td class="ok">cap</td><td class="ok">paid</td><td class="ok">ship</td></tr>
+      <tr><td>10496</td><td class="ok">cap</td><td class="ok">paid</td><td>pick</td></tr>
+      <tr><td>10497</td><td class="ok">cap</td><td class="ok">paid</td><td class="ok">hold</td></tr>
+      <tr><td>10498</td><td style="color:#fbbf24">wait</td><td>new</td><td>—</td></tr>
+    </table>
+  </div>
+</div>
+</div>
+</body>
+</html>

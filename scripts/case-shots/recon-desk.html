@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<title>Сверка платежей</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./base.css" />
+<style>
+body { background: #e8eef2; font-family: Inter, sans-serif; color: #1f2a30; }
+.wrap { height: 900px; display: flex; flex-direction: column; }
+.top { height: 48px; background: #1f4e5f; color: #fff; display: flex; align-items: center; padding: 0 16px; flex-shrink: 0; }
+.app { display: grid; grid-template-columns: 1.15fr .85fr; flex: 1; min-height: 0; }
+h3 { font-size: 12px; padding: 10px 14px; background: #d5e2e8; }
+table { width: 100%; border-collapse: collapse; font-size: 12.5px; background: #fff; }
+td, th { padding: 6px 10px; border-bottom: 1px solid #e4ecef; text-align: left; }
+.match { background: #e7f6ec; }
+.diff { background: #fff4d6; }
+.miss { background: #fde8e8; }
+.note { padding: 10px 14px; font-size: 12.5px; background: #fff; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><b>Сверка</b><span style="margin-left:12px;opacity:.85">банк / эквайринг ↔ CRM / 1С · 20 авг</span><span style="margin-left:auto;font-size:12px">18 поступлений · 3 исключения</span></div>
+<div class="app">
+  <section>
+    <h3>Выписка · 18 поступлений</h3>
+    <table>
+      <tr class="match"><td>09:14</td><td>₽ 14 200</td><td>…4419</td><td>заказ 10482</td></tr>
+      <tr class="match"><td>09:22</td><td>₽ 6 490</td><td>…8821</td><td>заказ 10477</td></tr>
+      <tr class="diff"><td>10:03</td><td>₽ 8 900</td><td>…1102</td><td>сумма ≠ счёту 8 400</td></tr>
+      <tr class="match"><td>11:40</td><td>₽ 2 190</td><td>…7730</td><td>заказ 10490</td></tr>
+      <tr class="miss"><td>12:05</td><td>₽ 500</td><td>…0091</td><td>нет заказа</td></tr>
+      <tr class="match"><td>13:18</td><td>₽ 41 000</td><td>…5528</td><td>счёт 1С-441</td></tr>
+      <tr class="match"><td>13:44</td><td>₽ 3 200</td><td>…6610</td><td>заказ 10495</td></tr>
+      <tr class="match"><td>14:02</td><td>₽ 9 800</td><td>…2204</td><td>заказ 10496</td></tr>
+      <tr class="match"><td>14:19</td><td>₽ 1 190</td><td>…3381</td><td>заказ 10497</td></tr>
+      <tr class="match"><td>15:01</td><td>₽ 18 400</td><td>…4490</td><td>заказ 10498</td></tr>
+      <tr class="match"><td>15:33</td><td>₽ 4 200</td><td>…5501</td><td>заказ 10500</td></tr>
+      <tr class="match"><td>16:10</td><td>₽ 7 650</td><td>…6612</td><td>заказ 10501</td></tr>
+      <tr class="match"><td>16:48</td><td>₽ 22 000</td><td>…7703</td><td>счёт 1С-442</td></tr>
+      <tr class="match"><td>17:12</td><td>₽ 890</td><td>…8814</td><td>заказ 10503</td></tr>
+      <tr class="match"><td>17:28</td><td>₽ 5 400</td><td>…9920</td><td>заказ 10506</td></tr>
+      <tr class="match"><td>17:41</td><td>₽ 12 800</td><td>…1033</td><td>заказ 10507</td></tr>
+      <tr class="diff"><td>17:55</td><td>₽ 3 010</td><td>…1144</td><td>комиссия банка +10</td></tr>
+      <tr class="match"><td>18:02</td><td>₽ 27 600</td><td>…2255</td><td>счёт 1С-443</td></tr>
+    </table>
+  </section>
+  <section style="display:flex;flex-direction:column">
+    <h3>Заказы без оплаты · исключения</h3>
+    <table>
+      <tr class="diff"><td>10488</td><td>Клиника Север</td><td>₽ 8 400</td><td>ручной разбор</td></tr>
+      <tr class="miss"><td>—</td><td>поступление ₽ 500</td><td>возврат?</td><td>бухгалтеру</td></tr>
+      <tr><td>10491</td><td>Agency Pixel</td><td>₽ 80 000</td><td>ещё не в выписке</td></tr>
+      <tr class="diff"><td>10502</td><td>Фитнес Box</td><td>₽ 12 200</td><td>частичная оплата</td></tr>
+      <tr><td>10504</td><td>Studio Mute</td><td>₽ 36 000</td><td>счёт вчера</td></tr>
+      <tr class="miss"><td>10505</td><td>Кафе Угол</td><td>₽ 9 100</td><td>дубль в CRM</td></tr>
+    </table>
+    <div class="note" style="flex:1">Совпадения закрыты автоматически. Жёлтое и красное — 12 минут вместо дня сверки.<br/><br/>Правила: сумма ±1 ₽, ИНН, назначение платежа, номер счёта 1С. Незакрытое уходит бухгалтеру в 18:00 дайджестом.</div>
+  </section>
+</div>
+</div>
+</body>
+</html>

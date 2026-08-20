@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<title>Docforge — договоры из CRM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./base.css" />
+<style>
+body { background: #e7ecf2; font-family: Inter, sans-serif; color: #1b2430; }
+.app { display: grid; grid-template-columns: 280px 1fr 260px; height: 900px; }
+.crm { background: #1b2430; color: #d5dce6; padding: 16px 18px; font-size: 13px; line-height: 1.45; }
+.crm { display: flex; flex-direction: column; }
+.kv { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #2a3544; }
+.kv span { color: #8a96a8; }
+.paper { margin: 12px auto; width: 640px; height: 876px; background: #fff; box-shadow: 0 12px 40px rgba(20,40,70,.15); padding: 24px 32px; font-family: "Source Serif 4", Georgia, serif; overflow: hidden; }
+.paper h1 { font-size: 17px; text-align: center; margin-bottom: 12px; }
+.paper p { font-size: 13px; line-height: 1.48; margin-bottom: 7px; }
+.side { background: #fff; padding: 16px; border-left: 1px solid #d5dde6; font-size: 13px; line-height: 1.45; display: flex; flex-direction: column; }
+.box { flex: 1; }
+.ok { color: #0f7a4a; font-weight: 600; }
+.box { background: #f4f7fb; border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="crm">
+    <div style="font-size:11px;letter-spacing:.12em;color:#8a96a8">CRM TRIGGER</div>
+    <h2 style="margin:8px 0 14px;color:#fff;font-size:18px">Сделка успешно</h2>
+    <div class="kv"><span>Компания</span><b>Клиника «Север»</b></div>
+    <div class="kv"><span>ИНН</span><b>7704••••91</b></div>
+    <div class="kv"><span>КПП</span><b>770401001</b></div>
+    <div class="kv"><span>Сумма</span><b>₽ 180 000</b></div>
+    <div class="kv"><span>Сделка</span><b>#10482</b></div>
+    <div class="kv"><span>Статус</span><b>договор</b></div>
+    <div class="kv"><span>Менеджер</span><b>Антон</b></div>
+    <div class="kv"><span>Юрист</span><b>—</b></div>
+    <p style="margin-top:16px;font-size:12px;color:#8a96a8">Событие: lead.status = won</p>
+    <p style="font-size:12px;color:#8a96a8">Шаблон: contract_v4.docx</p>
+    <p style="font-size:12px;color:#8a96a8">Счёт: invoice_441.pdf</p>
+    <p style="font-size:12px;color:#8a96a8">Акт: ждёт close</p>
+    <p style="font-size:12px;color:#8a96a8">NDA: app_01.docx</p>
+    <p style="margin-top:16px;font-size:12px;color:#8a96a8">Очередь сегодня<br/>#10490 акт<br/>#10477 счёт<br/>#10488 договор wait ИНН</p>
+  </aside>
+  <main>
+    <div class="paper">
+      <h1>ДОГОВОР № 2026-10482<br/>на разработку и внедрение</h1>
+      <p>г. Москва &nbsp;&nbsp;&nbsp; 20 августа 2026 г.</p>
+      <p>ООО «Север», именуемое «Заказчик», в лице Иванова А.П., и исполнитель заключили настоящий договор о нижеследующем.</p>
+      <p>1. Предмет. Автоматизация записи пациентов, интеграция с МИС, Telegram-бот, напоминания WhatsApp.</p>
+      <p>2. Стоимость. 180 000 (сто восемьдесят тысяч) рублей, НДС не облагается.</p>
+      <p>3. Срок. 10 рабочих дней с момента оплаты счёта № 441.</p>
+      <p>4. Порядок сдачи. Акт формируется автоматически при статусе «внедрено» в CRM и уходит на подпись.</p>
+      <p>5. Реквизиты сторон подставляются из карточки компании. Ошибки в ИНН/КПП блокируют выпуск PDF.</p>
+      <p>6. Конфиденциальность. NDA — приложение №1, тот же триггер.</p>
+      <p>7. Приложения: техническое задание, график платежей, счёт № 441.</p>
+      <p>8. Приёмка. Замечания в течение 3 рабочих дней, иначе работы считаются принятыми.</p>
+      <p>9. Реквизиты Заказчика: р/с ••••4419, банк «Север», к/с ••••0001, БИК 044525•••.</p>
+      <p style="margin-top:12px">Подписи:</p>
+      <p>Заказчик ________________ / Иванов А.П. /</p>
+      <p>Исполнитель ________________ / v0ky /</p>
+      <p style="margin-top:10px">Реквизиты из CRM. Подпись — Контур.Док. Ссылка отправлена на email сделки.</p>
+    </div>
+  </main>
+  <aside class="side">
+    <div class="box"><div>Счёт PDF</div><div class="ok">сформирован · 441</div></div>
+    <div class="box"><div>Акт</div><div>черновик, ждёт close</div></div>
+    <div class="box"><div>Подпись</div><div class="ok">ссылка отправлена</div></div>
+    <div class="box"><div>NDA</div><div class="ok">в пакете</div></div>
+    <div class="box"><div>Email</div><div>ivanov@sever.clinic</div></div>
+    <div class="box"><div>Тайминг</div><div>2 мин вместо 40</div></div>
+    <p style="color:#66758a;font-size:12px">без ручного Word. Поля из карточки. Если ИНН пустой — стоп, менеджеру в TG.</p>
+  </aside>
+</div>
+</body>
+</html>

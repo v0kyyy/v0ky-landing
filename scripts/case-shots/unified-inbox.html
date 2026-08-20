@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Deskflow — unified inbox</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./base.css" />
+<style>
+body { background: #f5f7f7; font-family: Inter, sans-serif; color: #163c3f; }
+.wrap { height: 900px; display: flex; flex-direction: column; }
+.top { height: 48px; background: #17494d; color: #fff; display: flex; align-items: center; padding: 0 18px; flex-shrink: 0; }
+.app { display: grid; grid-template-columns: 360px 1fr; flex: 1; min-height: 0; }
+.list { background: #fff; border-right: 1px solid #dce5e5; overflow: hidden; }
+.t { display: flex; gap: 10px; padding: 9px 14px; border-bottom: 1px solid #eef3f3; }
+.t.on { background: #eaf3f3; }
+.ch { font-size: 10px; font-weight: 700; letter-spacing: .08em; color: #17494d; background: #d5eceb; padding: 2px 6px; border-radius: 4px; }
+.detail { padding: 16px 22px; display: flex; flex-direction: column; overflow: hidden; }
+.h { font-size: 20px; margin: 6px 0 8px; }
+.meta { font-size: 13px; color: #5b7779; }
+.body { margin-top: 10px; background: #fff; padding: 12px 14px; border-radius: 8px; line-height: 1.45; font-size: 13.5px; flex: 1; }
+.comp { margin-top: auto; background: #fff; border-radius: 8px; padding: 12px 14px; color: #8aa0a2; font-size: 13px; border: 1px solid #dce5e5; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><b>Deskflow</b><span style="margin-left:14px;opacity:.8">mail · IG · WhatsApp · VK — одна очередь</span><span style="margin-left:auto;font-size:12px;opacity:.75">open 41 · SLA 12 мин</span></div>
+<div class="app">
+  <aside class="list">
+    <div class="t on"><div><span class="ch">MAIL</span><div style="font-weight:600;margin-top:3px">Не пришла накладная</div><div class="meta">urgent · shipping · 4 мин</div></div></div>
+    <div class="t"><div><span class="ch">IG</span><div style="font-weight:600;margin-top:3px">Размер на пуховик</div><div class="meta">normal · catalog · 11 мин</div></div></div>
+    <div class="t"><div><span class="ch">WA</span><div style="font-weight:600;margin-top:3px">Где трек?</div><div class="meta">high · orders · 14 мин</div></div></div>
+    <div class="t"><div><span class="ch">VK</span><div style="font-weight:600;margin-top:3px">Возврат брака</div><div class="meta">high · returns · 22 мин</div></div></div>
+    <div class="t"><div><span class="ch">MAIL</span><div style="font-weight:600;margin-top:3px">Счёт на юрлицо</div><div class="meta">low · billing · 31 мин</div></div></div>
+    <div class="t"><div><span class="ch">WA</span><div style="font-weight:600;margin-top:3px">Смена ПВЗ</div><div class="meta">normal · orders · 40 мин</div></div></div>
+    <div class="t"><div><span class="ch">IG</span><div style="font-weight:600;margin-top:3px">Когда дроп?</div><div class="meta">low · catalog · 1ч</div></div></div>
+    <div class="t"><div><span class="ch">MAIL</span><div style="font-weight:600;margin-top:3px">Акт сверки Q2</div><div class="meta">normal · billing · 1ч</div></div></div>
+    <div class="t"><div><span class="ch">VK</span><div style="font-weight:600;margin-top:3px">Не пришёл промокод</div><div class="meta">normal · promo · 2ч</div></div></div>
+    <div class="t"><div><span class="ch">WA</span><div style="font-weight:600;margin-top:3px">Частичный возврат</div><div class="meta">high · returns · 2ч</div></div></div>
+    <div class="t"><div><span class="ch">MAIL</span><div style="font-weight:600;margin-top:3px">ЭДО не проходит</div><div class="meta">urgent · billing · 3ч</div></div></div>
+    <div class="t"><div><span class="ch">IG</span><div style="font-weight:600;margin-top:3px">Состав ткани</div><div class="meta">low · catalog · 4ч</div></div></div>
+  </aside>
+  <main class="detail">
+    <span class="ch">MAIL · URGENT · SHIPPING</span>
+    <div class="h">Не пришла накладная по заказу 9021</div>
+    <div class="meta">от maria@client.ru · 4 мин · автотег: доставка / счёт · Максим</div>
+    <div class="body">Добрый день, отправили оплату вчера, закрывающих нет. Нужен скан сегодня, бухгалтерия закрывает месяц.</div>
+    <div class="body">Связанный тикет WA #441 — тот же заказ. Клиент уже писал в WhatsApp 11:02. Трек СДЭК 1234…991, статус «на ПВЗ».</div>
+    <div class="body" style="background:#eaf3f3">Черновик ответа: «Мария, скан УПД по 9021 во вложении, оригинал уедет с ближайшей отгрузкой. Если нужен ЭДО — пришлите ящик.»</div>
+    <div class="body" style="color:#5b7779">Максим · 1 мин: беру, отправлю УПД.</div>
+    <div class="body">История: 18 авг — заказ создан · 19 авг — оплата Stripe · 20 авг — отгрузка. В CRM сделка #10482, статус «отгружено».</div>
+    <div class="body">Макросы: «УПД во вложении», «ЭДО ящик», «срок закрытия месяца». Теги авто: доставка, счёт, юрлицо. Связанные: WA #441, VK #118.</div>
+    <div class="body" style="background:#eaf3f3">Вложения: UPD_9021.pdf · акт черновик · скрин оплаты Stripe. SLA 12 мин, осталось 8.</div>
+    <div class="comp">Ответ клиенту · вложение УПД.pdf…</div>
+  </main>
+</div>
+</div>
+</body>
+</html>

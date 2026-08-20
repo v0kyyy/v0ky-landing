@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Pulse — NPS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./base.css" />
+<style>
+body { background: #faf7ff; font-family: Inter, sans-serif; color: #3b0764; }
+.wrap { height: 900px; display: flex; flex-direction: column; padding: 16px 22px 18px; }
+.grid { display: grid; grid-template-columns: 240px 1fr 300px; gap: 12px; flex-shrink: 0; }
+.card { background: #fff; border-radius: 16px; padding: 14px 16px; box-shadow: 0 8px 24px rgba(88,28,135,.06); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; background: #fff; border-radius: 16px; overflow: hidden; flex: 1; }
+.nps { font-size: 56px; font-weight: 700; letter-spacing: -0.04em; }
+.bar { display: flex; height: 12px; border-radius: 99px; overflow: hidden; margin-top: 10px; }
+.d { background: #f43f5e; width: 12%; }
+.p { background: #fbbf24; width: 22%; }
+.pr { background: #34d399; width: 66%; }
+.alert { background: #fff1f2; border-radius: 10px; padding: 8px 10px; margin-bottom: 6px; font-size: 12.5px; }
+th { text-align: left; padding: 8px 12px; color: #7e22ce; font-size: 11px; letter-spacing: .08em; background: #f3e8ff; }
+td { padding: 8px 12px; border-top: 1px solid #f3e8ff; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div style="font-size:12px;color:#7e22ce">PULSE · CSAT / NPS</div>
+<h1 style="font-size:24px;margin:2px 0 12px">После закрытия заказа</h1>
+<div class="grid">
+  <div class="card"><div style="font-size:11px;color:#7e22ce">NPS 30 дней</div><div class="nps">72</div><div class="bar"><i class="d"></i><i class="p"></i><i class="pr"></i></div><div style="font-size:12px;margin-top:8px;color:#6b21a8">промоутеры 66% · детракторы 12% · ответы 1 204</div></div>
+  <div class="card">
+    <div style="font-size:11px;color:#7e22ce;margin-bottom:6px">ТРЕНД</div>
+    <svg viewBox="0 0 520 110" width="100%" height="110">
+      <polyline fill="none" stroke="#7c3aed" stroke-width="3" points="10,90 70,80 130,84 190,68 250,60 310,48 370,52 430,36 500,30"/>
+    </svg>
+    <div style="font-size:12px;color:#6b21a8">опрос уходит сам, через 2 часа после close</div>
+  </div>
+  <div class="card">
+    <div style="font-size:11px;color:#be123c;margin-bottom:8px">НЕГАТИВ · АЛЕРТ</div>
+    <div class="alert"><b>2/10</b> · 9021 · накладная · TG 40с</div>
+    <div class="alert"><b>3/10</b> · 8994 · опоздание курьера</div>
+    <div class="alert"><b>1/10</b> · 9102 · «молчат в чате»</div>
+    <div class="alert" style="background:#f0fdf4;color:#166534"><b>9/10</b> · быстро ответили</div>
+    <div class="alert" style="background:#f0fdf4;color:#166534"><b>10/10</b> · «всё ок»</div>
+  </div>
+</div>
+<table>
+  <thead><tr><th>Заказ</th><th>Канал</th><th>Оценка</th><th>Комментарий</th><th>Реакция</th></tr></thead>
+  <tbody>
+    <tr><td>9021</td><td>WhatsApp</td><td style="color:#be123c">2</td><td>нет закрывающих</td><td>Антон · 40с</td></tr>
+    <tr><td>8994</td><td>TG</td><td style="color:#be123c">3</td><td>курьер опоздал</td><td>Марина · 2м</td></tr>
+    <tr><td>9102</td><td>WA</td><td style="color:#be123c">1</td><td>долго ждал ответ</td><td>эскалация</td></tr>
+    <tr><td>8980</td><td>email</td><td>7</td><td>—</td><td>—</td></tr>
+    <tr><td>8971</td><td>TG</td><td style="color:#15803d">9</td><td>быстро ответили</td><td>—</td></tr>
+    <tr><td>8966</td><td>WA</td><td style="color:#15803d">10</td><td>всё ок</td><td>—</td></tr>
+    <tr><td>8950</td><td>IG</td><td>8</td><td>удобный бот</td><td>—</td></tr>
+    <tr><td>8944</td><td>WA</td><td>6</td><td>долго искали слот</td><td>заметка в CRM</td></tr>
+    <tr><td>8931</td><td>TG</td><td style="color:#15803d">9</td><td>—</td><td>—</td></tr>
+    <tr><td>8920</td><td>email</td><td>5</td><td>повторный счёт</td><td>бухгалтерия</td></tr>
+    <tr><td>8912</td><td>WA</td><td style="color:#15803d">10</td><td>—</td><td>—</td></tr>
+    <tr><td>8901</td><td>TG</td><td>8</td><td>—</td><td>—</td></tr>
+    <tr><td>8890</td><td>WA</td><td style="color:#15803d">9</td><td>быстрая доставка</td><td>—</td></tr>
+    <tr><td>8877</td><td>IG</td><td>4</td><td>не тот размер</td><td>возврат</td></tr>
+    <tr><td>8861</td><td>email</td><td style="color:#15803d">10</td><td>—</td><td>—</td></tr>
+    <tr><td>8844</td><td>WA</td><td>7</td><td>—</td><td>—</td></tr>
+    <tr><td>8830</td><td>TG</td><td style="color:#be123c">2</td><td>потеряли посылку</td><td>эскалация</td></tr>
+    <tr><td>8812</td><td>WA</td><td>8</td><td>—</td><td>—</td></tr>
+  </tbody>
+</table>
+</div>
+</body>
+</html>

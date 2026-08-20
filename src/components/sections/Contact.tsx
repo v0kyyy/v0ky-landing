@@ -1,21 +1,58 @@
 "use client";
 
 import { useRef } from "react";
-import { Download } from "lucide-react";
+import { ArrowUpRight, Download, Mail, Send } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/scroll";
 import Magnetic from "@/components/ui/Magnetic";
-import SocialLinks from "@/components/ui/SocialLinks";
-import TestimonialMarquee from "@/components/ui/marquee-01";
+import { GithubIcon, KworkIcon } from "@/components/ui/BrandIcons";
+import ContactChat from "@/components/sections/ContactChat";
 import { site } from "@/data/site";
 import { useI18n } from "@/components/providers/LocaleProvider";
+
+function displayHost(url: string) {
+  return url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+}
 
 export default function Contact() {
   const { locale, t } = useI18n();
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const revealedRef = useRef(false);
+
+  const email = site.links.email.replace(/^mailto:/, "");
+  const kworkHref = site.links.kwork[locale];
+  const contacts = [
+    {
+      icon: Send,
+      label: "Telegram",
+      value: "@v0ky",
+      href: site.links.telegram,
+      external: true,
+    },
+    {
+      icon: Mail,
+      label: "Email",
+      value: email,
+      href: site.links.email,
+      external: false,
+    },
+    {
+      icon: GithubIcon,
+      label: "GitHub",
+      value: displayHost(site.links.github),
+      href: site.links.github,
+      external: true,
+    },
+    {
+      icon: KworkIcon,
+      label: "Kwork",
+      value: displayHost(kworkHref),
+      href: kworkHref,
+      external: true,
+    },
+  ];
 
   useGSAP(
     () => {
@@ -75,27 +112,56 @@ export default function Contact() {
         ))}
       </h2>
 
-      <p className="mt-10 text-right font-mono text-[11px] uppercase tracking-[0.22em] text-dim md:mt-14">
-        {t.testimonials.fromKwork}
-      </p>
-      <div className="mt-3">
-        <TestimonialMarquee />
-      </div>
-
-      <div className="mt-10 flex items-center justify-between gap-4 md:mt-12">
-        <div className="flex items-center gap-3">
-          <SocialLinks iconSize={16} />
+      <div className="mt-12 grid items-start gap-12 md:mt-16 md:grid-cols-[minmax(0,300px)_minmax(0,1fr)] md:gap-16 lg:gap-20">
+        <div>
+          <p className="sr-only">{t.contact.chatAria}</p>
+          <ContactChat />
         </div>
-        <Magnetic strength={0.3}>
-          <a
-            href={site.links.resume}
-            download
-            className="btn-fill flex items-center gap-2.5 rounded-full border border-line-strong px-6 py-3 font-mono text-xs uppercase tracking-wider text-fg"
-          >
-            <Download size={14} />
-            {t.contact.downloadCv}
-          </a>
-        </Magnetic>
+
+        <div>
+          <p className="max-w-xl text-base leading-relaxed text-muted">{t.contact.intro}</p>
+          <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.22em] text-dim">
+            {t.contact.replyHint}
+          </p>
+
+          <ul className="mt-8 space-y-3">
+            {contacts.map(({ icon: Icon, label, value, href, external }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="group flex items-center gap-4 rounded-2xl border border-line bg-surface px-4 py-3.5 transition-colors duration-300 hover:border-accent/40 hover:bg-surface-deep"
+                >
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-full border border-line text-muted transition-colors duration-300 group-hover:border-accent group-hover:text-accent">
+                    <Icon size={16} strokeWidth={1.75} />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block font-mono text-[10px] uppercase tracking-[0.18em] text-dim">
+                      {label}
+                    </span>
+                    <span className="mt-0.5 block truncate text-[15px] text-fg">{value}</span>
+                  </span>
+                  <ArrowUpRight
+                    size={16}
+                    className="ml-auto shrink-0 text-dim transition-colors duration-300 group-hover:text-accent"
+                    aria-hidden
+                  />
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <Magnetic strength={0.3}>
+            <a
+              href={site.links.resume}
+              download
+              className="btn-fill mt-6 inline-flex items-center gap-2.5 rounded-full border border-line-strong px-6 py-3 font-mono text-xs uppercase tracking-wider text-fg"
+            >
+              <Download size={14} />
+              {t.contact.downloadCv}
+            </a>
+          </Magnetic>
+        </div>
       </div>
     </section>
   );

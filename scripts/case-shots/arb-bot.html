@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Spreadline — arb</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./base.css" />
+<style>
+body { background: #111; color: #f3f1ea; font-family: "IBM Plex Sans", sans-serif; }
+.mono { font-family: "IBM Plex Mono", monospace; }
+.wrap { height: 900px; display: flex; flex-direction: column; }
+.top { height: 48px; background: #c45c00; color: #111; display: flex; align-items: center; padding: 0 18px; font-weight: 700; letter-spacing: 0.04em; flex-shrink: 0; }
+.app { display: grid; grid-template-columns: 1fr 200px 1fr; flex: 1; min-height: 0; }
+.ex { padding: 14px 18px; display: flex; flex-direction: column; }
+h2 { font-size: 12px; letter-spacing: 0.16em; color: #c45c00; }
+.px { font-size: 34px; font-weight: 700; margin: 4px 0 8px; }
+table { width: 100%; font-size: 12.5px; }
+td { padding: 5px 0; border-bottom: 1px solid #2a2a2a; }
+.mid { background: #1a1a1a; display: flex; flex-direction: column; align-items: center; padding: 16px 10px; }
+.spread { font-size: 32px; color: #7dff9a; font-weight: 700; }
+.fills { flex: 1; border-top: 1px solid #2a2a2a; padding: 10px 18px 12px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+.fills table { font-size: 12px; }
+.fills th { text-align: left; color: #888; font-size: 11px; padding: 4px 6px; }
+.fills td { padding: 5px 6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top">SPREADLINE · USDT ARB · FEES IN</div>
+<div class="app">
+  <section class="ex">
+    <h2>EXCHANGE A · BINANCE</h2>
+    <div class="px mono">1.0014</div>
+    <table class="mono">
+      <tr><td>ask</td><td>1.0019 × 40k</td></tr>
+      <tr><td>ask</td><td>1.0016 × 90k</td></tr>
+      <tr><td>ask</td><td>1.0014 × 180k</td></tr>
+      <tr><td>ask</td><td>1.0013 × 60k</td></tr>
+      <tr><td>bid</td><td>1.0012 × 240k</td></tr>
+      <tr><td>bid</td><td>1.0010 × 310k</td></tr>
+      <tr><td>bid</td><td>1.0008 × 200k</td></tr>
+      <tr><td>bid</td><td>1.0006 × 150k</td></tr>
+      <tr><td>fee / lat</td><td>0.04% · 38ms</td></tr>
+    </table>
+  </section>
+  <div class="mid">
+    <div style="font-size:10px;letter-spacing:.18em;color:#888">NET SPREAD</div>
+    <div class="spread mono">+0.18%</div>
+    <div style="font-size:12px;color:#7dff9a;text-align:center">edge after fees</div>
+    <div style="margin:16px 0;background:#7dff9a;color:#111;padding:8px 12px;font-weight:700;font-size:11px">EXECUTING</div>
+    <div class="mono" style="font-size:11px;color:#888;line-height:1.6;text-align:center">size 95k<br/>buy A / sell B<br/>pnl +$171</div>
+  </div>
+  <section class="ex">
+    <h2>DESK B · OTC</h2>
+    <div class="px mono">1.0033</div>
+    <table class="mono">
+      <tr><td>ask</td><td>1.0038 × 20k</td></tr>
+      <tr><td>ask</td><td>1.0036 × 70k</td></tr>
+      <tr><td>ask</td><td>1.0035 × 40k</td></tr>
+      <tr><td>bid</td><td>1.0033 × 95k</td></tr>
+      <tr><td>bid</td><td>1.0031 × 120k</td></tr>
+      <tr><td>bid</td><td>1.0029 × 80k</td></tr>
+      <tr><td>bid</td><td>1.0027 × 55k</td></tr>
+      <tr><td>fee / lat</td><td>0.08% · 51ms</td></tr>
+    </table>
+  </section>
+</div>
+<div class="fills">
+  <div>
+    <div style="font-size:11px;color:#888;letter-spacing:.14em;margin-bottom:6px">FILLS TODAY</div>
+    <table class="mono">
+      <tr><th>time</th><th>pair</th><th>net</th><th>pnl</th></tr>
+      <tr><td>14:07:22</td><td>USDT</td><td>+0.18%</td><td style="color:#7dff9a">+$171</td></tr>
+      <tr><td>13:51:08</td><td>USDT</td><td>+0.11%</td><td style="color:#7dff9a">+$94</td></tr>
+      <tr><td>13:22:40</td><td>USDT</td><td>+0.09%</td><td style="color:#7dff9a">+$61</td></tr>
+      <tr><td>12:04:11</td><td>USDT</td><td>+0.07%</td><td style="color:#7dff9a">+$48</td></tr>
+      <tr><td>11:18:02</td><td>USDT</td><td>skip</td><td>fee &gt; edge</td></tr>
+      <tr><td>10:44:55</td><td>USDT</td><td>+0.14%</td><td style="color:#7dff9a">+$120</td></tr>
+      <tr><td>09:12:33</td><td>USDT</td><td>+0.10%</td><td style="color:#7dff9a">+$77</td></tr>
+    </table>
+  </div>
+  <div>
+    <div style="font-size:11px;color:#888;letter-spacing:.14em;margin-bottom:6px">SPREAD 60m</div>
+    <svg viewBox="0 0 400 140" width="100%" height="140">
+      <polyline fill="none" stroke="#7dff9a" stroke-width="2" points="0,90 40,80 80,100 120,70 160,75 200,40 240,55 280,30 320,48 360,22 400,28"/>
+      <line x1="0" y1="60" x2="400" y2="60" stroke="#c45c00" stroke-dasharray="4 4"/>
+    </svg>
+    <div class="mono" style="font-size:11px;color:#888">threshold 0.08% after fees · 14 fills · 1 skip</div>
+  </div>
+</div>
+</div>
+</body>
+</html>

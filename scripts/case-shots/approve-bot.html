@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<title>Agreebot — согласования</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./base.css" />
+<style>
+body { background: #dbe4ee; font-family: Inter, sans-serif; color: #1b2430; }
+.wrap { height: 900px; display: grid; grid-template-columns: 400px 1fr; }
+.left { padding: 16px 14px; display: flex; flex-direction: column; gap: 10px; }
+.phone { background: #fff; border-radius: 24px; overflow: hidden; flex: 1; display: flex; flex-direction: column; }
+.head { background: #2aabee; color: #fff; padding: 12px; text-align: center; font-weight: 600; }
+.msgs { padding: 8px 0; flex: 1; }
+.m { margin: 6px 10px; padding: 8px 10px; border-radius: 10px; font-size: 13px; line-height: 1.35; }
+.in { background: #f1f3f5; }
+.out { background: #eeffde; }
+.btns { display: flex; gap: 8px; margin: 6px 10px; }
+.btns span { flex: 1; text-align: center; padding: 7px; border-radius: 8px; font-size: 13px; font-weight: 600; }
+.yes { background: #4fae4e; color: #fff; }
+.no { background: #eee; }
+.right { padding: 18px 22px; display: flex; flex-direction: column; gap: 12px; }
+.card { background: #fff; border-radius: 12px; padding: 14px 16px; }
+.st { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 14px; }
+.dot { width: 12px; height: 12px; border-radius: 50%; background: #4fae4e; flex-shrink: 0; }
+.dot.wait { background: #f0b429; }
+.dot.off { background: #c5d0da; }
+table { width: 100%; font-size: 13px; border-collapse: collapse; }
+td { padding: 7px 0; border-bottom: 1px solid #e8eef4; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="left">
+    <div class="phone">
+      <div class="head">Agreebot · закупки</div>
+      <div class="msgs">
+        <div class="m in">Заявка #218<br/>Ноутбуки ×2 · ₽ 184 000<br/>инициатор: Мария, маркетинг</div>
+        <div class="m out">Лимит отдела 50 000 ₽ — нужно согласование CFO.</div>
+        <div class="m in">Маршрутизирую → Анна (CFO)</div>
+        <div class="btns"><span class="yes">Согласовать</span><span class="no">Отклонить</span></div>
+        <div class="m out">Анна: ок, в рамках квартала.</div>
+        <div class="m in">Закупка получила задачу в календарь · четверг 11:00</div>
+        <div class="m out">Мария, заявка #218 согласована. Статус: в закупке.</div>
+      </div>
+    </div>
+  </div>
+  <aside class="right">
+    <div class="card">
+      <h2 style="margin-bottom:14px;font-size:18px">Маршрут заявки #218</h2>
+      <div class="st"><i class="dot"></i> Мария подала в Telegram</div>
+      <div class="st"><i class="dot"></i> Лимит &gt; 50к → CFO, не РОП</div>
+      <div class="st"><i class="dot"></i> Анна согласовала</div>
+      <div class="st"><i class="dot wait"></i> Закупка ставит в календарь</div>
+      <div class="st"><i class="dot off"></i> Уведомление инициатору — очередь</div>
+    </div>
+    <div class="card" style="flex:1">
+      <div style="font-size:11px;letter-spacing:.12em;color:#7a8b9c;margin-bottom:8px">ОЧЕРЕДЬ СЕГОДНЯ</div>
+      <table>
+        <tr><td>#218 ноутбуки</td><td>184к</td><td>CFO</td><td style="color:#4fae4e">ok</td></tr>
+        <tr><td>#219 такси</td><td>4.2к</td><td>РОП</td><td style="color:#4fae4e">ok</td></tr>
+        <tr><td>#220 реклама VK</td><td>62к</td><td>CFO</td><td style="color:#f0b429">wait</td></tr>
+        <tr><td>#221 отпуск Марии</td><td>—</td><td>HR</td><td style="color:#4fae4e">ok</td></tr>
+        <tr><td>#222 мониторы ×4</td><td>96к</td><td>CFO</td><td>new</td></tr>
+        <tr><td>#223 кофе для офиса</td><td>8к</td><td>офис</td><td style="color:#4fae4e">ok</td></tr>
+        <tr><td>#224 лицензии n8n</td><td>21к</td><td>IT</td><td style="color:#f0b429">wait</td></tr>
+        <tr><td>#225 командировка</td><td>45к</td><td>CFO</td><td>new</td></tr>
+        <tr><td>#226 стулья ×6</td><td>18к</td><td>офис</td><td style="color:#4fae4e">ok</td></tr>
+        <tr><td>#227 AWS invoice</td><td>74к</td><td>CFO</td><td style="color:#f0b429">wait</td></tr>
+        <tr><td>#228 домен + SSL</td><td>6к</td><td>IT</td><td style="color:#4fae4e">ok</td></tr>
+        <tr><td>#229 мерч для стенда</td><td>33к</td><td>маркетинг</td><td>new</td></tr>
+      </table>
+    </div>
+  </aside>
+</div>
+</body>
+</html>

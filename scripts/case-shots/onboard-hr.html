@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Onboard — HR checklist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./base.css" />
+<style>
+body { background: #f7f4ef; font-family: Inter, sans-serif; color: #2a241c; }
+.wrap { height: 900px; display: flex; flex-direction: column; padding: 18px 28px 20px; }
+.app { display: grid; grid-template-columns: 1fr 300px; gap: 14px; flex: 1; min-height: 0; }
+.list { background: #fff; border-radius: 14px; overflow: hidden; }
+.row { display: flex; gap: 10px; align-items: flex-start; padding: 10px 16px; border-bottom: 1px solid #f0ebe3; }
+.box { width: 16px; height: 16px; border-radius: 4px; border: 2px solid #c4b8a6; margin-top: 2px; flex-shrink: 0; }
+.box.on { background: #3d6b3a; border-color: #3d6b3a; }
+.late { color: #a33b2a; font-size: 12px; }
+.card { background: #fff; border-radius: 14px; padding: 14px 16px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div style="font-size:12px;color:#8a7d70">ONBOARD · HR</div>
+<h1 style="font-size:24px;margin:2px 0 4px">Мария Козлова · аналитик</h1>
+<div style="color:#8a7d70;margin-bottom:12px">первый день 21 авг · чек-лист из таблицы</div>
+<div class="app">
+  <div class="list">
+    <div class="row"><i class="box on"></i><div><b>Аккаунт Google Workspace</b><div style="font-size:12.5px;color:#8a7d70">IT · автоматически</div></div></div>
+    <div class="row"><i class="box on"></i><div><b>Доступы: CRM, склад, дашборд</b><div style="font-size:12.5px;color:#8a7d70">роль «аналитик»</div></div></div>
+    <div class="row"><i class="box"></i><div><b>Трудовой и NDA</b><div class="late">ждём HR · пинг в 10:00</div></div></div>
+    <div class="row"><i class="box"></i><div><b>Вводная с руководителем</b><div style="font-size:12.5px;color:#8a7d70">календарь · завтра 11:00</div></div></div>
+    <div class="row"><i class="box on"></i><div><b>Ноутбук и пропуск</b><div style="font-size:12.5px;color:#8a7d70">office manager</div></div></div>
+    <div class="row"><i class="box"></i><div><b>Доступ в Git / n8n</b><div class="late">IT не отметил · напоминание ушло</div></div></div>
+    <div class="row"><i class="box on"></i><div><b>Почта и подпись</b><div style="font-size:12.5px;color:#8a7d70">шаблон компании</div></div></div>
+    <div class="row"><i class="box"></i><div><b>1С: права только чтение</b><div style="font-size:12.5px;color:#8a7d70">финансы · слот пятница</div></div></div>
+    <div class="row"><i class="box"></i><div><b>Welcome в Telegram-чат команды</b><div style="font-size:12.5px;color:#8a7d70">бот пришлёт в 12:00</div></div></div>
+    <div class="row"><i class="box"></i><div><b>Охрана труда / инструктаж</b><div class="late">HR слот не закрыт</div></div></div>
+    <div class="row"><i class="box on"></i><div><b>VPN и 2FA</b></div></div>
+    <div class="row"><i class="box"></i><div><b>Бейдж и парковка</b><div style="font-size:12.5px;color:#8a7d70">office · слот 16:00</div></div></div>
+    <div class="row"><i class="box"></i><div><b>Доступ в Looker / Sheets</b><div class="late">аналитика · ждём владельца дашборда</div></div></div>
+    <div class="row"><i class="box on"></i><div><b>Политика ДМС</b><div style="font-size:12.5px;color:#8a7d70">письмо отправлено</div></div></div>
+  </div>
+  <aside style="display:flex;flex-direction:column;gap:12px">
+    <div class="card">
+      <div style="font-size:11px;color:#8a7d70">ПРОГРЕСС</div>
+      <div style="font-size:36px;font-weight:700;margin:4px 0">45%</div>
+      <div style="height:8px;background:#efe8dc;border-radius:99px;overflow:hidden"><div style="width:45%;height:100%;background:#3d6b3a"></div></div>
+      <p style="margin-top:12px;font-size:13px;line-height:1.45;color:#5c5348">Пинги только на красные шаги. HR не гоняет людей вручную.</p>
+    </div>
+    <div class="card" style="flex:1">
+      <div style="font-size:11px;color:#8a7d70;margin-bottom:8px">СЕГОДНЯ</div>
+      <div style="font-size:13px;line-height:1.7">10:00 пинг HR — NDA<br/>11:00 вводная (календарь)<br/>12:00 welcome в чат<br/>15:00 IT: Git / n8n<br/>17:00 дайджест руководителю</div>
+    </div>
+  </aside>
+</div>
+</div>
+</body>
+</html>

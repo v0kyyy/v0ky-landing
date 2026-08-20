@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<title>1С ↔ маркетплейсы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Tahoma&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./base.css" />
+<style>
+body { background: #d4d0c8; font-family: Tahoma, Inter, sans-serif; color: #000; font-size: 13px; }
+.win { margin: 16px; background: #fff; border: 2px solid #808080; height: 868px; display: flex; flex-direction: column; }
+.title { background: linear-gradient(90deg,#0a246a,#a6caf0); color: #fff; padding: 6px 10px; font-weight: 700; }
+.tb { background: #ece9d8; border-bottom: 1px solid #808080; padding: 4px 8px; }
+.tb button { font-family: inherit; font-size: 12px; padding: 3px 8px; margin-right: 4px; }
+.app { display: grid; grid-template-columns: 1fr 320px; flex: 1; }
+table { width: 100%; border-collapse: collapse; }
+th { background: #ece9d8; border: 1px solid #acacac; padding: 5px 8px; text-align: left; }
+td { border: 1px solid #d4d0c8; padding: 5px 8px; }
+.sel { background: #0a246a; color: #fff; }
+.side { background: #f5f5f0; border-left: 1px solid #acacac; padding: 10px; }
+.ok { color: #006600; }
+.warn { color: #aa0000; }
+</style>
+</head>
+<body>
+<div class="win">
+  <div class="title">Синхронизация остатков — 1С:Предприятие / МойСклад → WB, Ozon, Я.Маркет</div>
+  <div class="tb"><button>Записать</button><button>Синхронизировать сейчас</button><button>Конфликты</button></div>
+  <div class="app">
+    <table>
+      <thead><tr><th>Артикул</th><th>Номенклатура</th><th>1С</th><th>WB</th><th>Ozon</th><th>Цена</th><th>Статус</th></tr></thead>
+      <tbody>
+        <tr class="sel"><td>NV-2-BLK</td><td>Кроссовки Nova-2</td><td>84</td><td>84</td><td>84</td><td>6 490</td><td class="ok">ok 12с</td></tr>
+        <tr><td>AIR-20</td><td>Рюкзак Air 20L</td><td>12</td><td>12</td><td>11</td><td>4 200</td><td class="warn">конфликт Ozon</td></tr>
+        <tr><td>SOCK-3</td><td>Носки pack 3</td><td>400</td><td>400</td><td>400</td><td>390</td><td class="ok">ok</td></tr>
+        <tr><td>WIND-M</td><td>Куртка Wind M</td><td>0</td><td>0</td><td>0</td><td>8 900</td><td class="ok">скрыт, нет остатка</td></tr>
+        <tr><td>BELT-01</td><td>Ремень Classic</td><td>55</td><td>55</td><td>55</td><td>1 190</td><td class="ok">ok</td></tr>
+        <tr><td>HAT-NVY</td><td>Кепка Navy</td><td>7</td><td>8</td><td>7</td><td>890</td><td class="warn">WB +1, ждём confirm</td></tr>
+        <tr><td>TEE-BAS</td><td>Футболка Basic</td><td>220</td><td>220</td><td>220</td><td>1 290</td><td class="ok">ok</td></tr>
+        <tr><td>PANT-T</td><td>Штаны Tech</td><td>31</td><td>31</td><td>31</td><td>4 890</td><td class="ok">ok</td></tr>
+        <tr><td>BAG-MIN</td><td>Сумка Mini</td><td>18</td><td>18</td><td>18</td><td>3 490</td><td class="ok">ok 40с</td></tr>
+        <tr><td>SCF-WL</td><td>Шарф Wool</td><td>44</td><td>44</td><td>44</td><td>2 190</td><td class="ok">ok</td></tr>
+        <tr><td>GLS-DAY</td><td>Очки Day</td><td>9</td><td>9</td><td>8</td><td>2 790</td><td class="warn">Ozon −1</td></tr>
+        <tr><td>SOCK-5</td><td>Носки pack 5</td><td>800</td><td>800</td><td>800</td><td>490</td><td class="ok">ok</td></tr>
+        <tr><td>HOOD-GR</td><td>Худи Graphite</td><td>2</td><td>2</td><td>2</td><td>5 490</td><td class="ok">ok</td></tr>
+        <tr><td>SHOE-W</td><td>Слипоны White</td><td>0</td><td>0</td><td>0</td><td>3 990</td><td class="ok">скрыт</td></tr>
+        <tr><td>BELT-02</td><td>Ремень Slim</td><td>26</td><td>26</td><td>26</td><td>990</td><td class="ok">ok</td></tr>
+        <tr><td>GLOV-BK</td><td>Перчатки Black</td><td>40</td><td>40</td><td>40</td><td>790</td><td class="ok">ok</td></tr>
+        <tr><td>WATCH-S</td><td>Часы Steel</td><td>5</td><td>5</td><td>5</td><td>9 490</td><td class="ok">ok</td></tr>
+        <tr><td>SOCK-7</td><td>Носки pack 7</td><td>190</td><td>190</td><td>189</td><td>690</td><td class="warn">Ozon −1</td></tr>
+        <tr><td>CAP-RED</td><td>Кепка Red</td><td>14</td><td>14</td><td>14</td><td>890</td><td class="ok">ok</td></tr>
+        <tr><td>JKT-DNM</td><td>Джинсовка</td><td>3</td><td>3</td><td>3</td><td>7 490</td><td class="ok">ok</td></tr>
+      </tbody>
+    </table>
+    <aside class="side">
+      <b>Очередь</b>
+      <p style="margin:8px 0" class="ok">последний прогон 14:07:02 · 1.2с</p>
+      <p>Правило: 1С — мастер остатка. Маркетплейс не продаёт больше факта.</p>
+      <p style="margin-top:12px"><b>Конфликт AIR-20</b><br/>Ozon продал 1, пока шёл пакет. Пересчёт, повтор через 15с.</p>
+      <p style="margin-top:10px"><b>Очередь</b><br/>HAT-NVY confirm WB<br/>GLS-DAY retry Ozon<br/>SHO-W hide all channels</p>
+      <p style="margin-top:10px">Последние прогоны:<br/>14:07:02 · 1.2с · 214 SKU<br/>14:02:01 · 1.1с · 214 SKU<br/>13:57:00 · 1.4с · 214 SKU<br/>13:52:00 · 1.0с · 214 SKU</p>
+    </aside>
+  </div>
+</div>
+</body>
+</html>

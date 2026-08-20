@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Ledger — P&L</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./base.css" />
+<style>
+body { background: #f6f9fc; font-family: Inter, sans-serif; color: #0a2540; }
+.app { display: grid; grid-template-columns: 200px 1fr; height: 900px; }
+.nav { background: #0a2540; color: #adbdcc; padding: 18px 14px; }
+.brand { color: #fff; font-weight: 700; font-size: 16px; margin-bottom: 20px; }
+.n { padding: 8px 10px; border-radius: 6px; font-size: 13px; }
+.n.on { background: #1c3a5f; color: #fff; }
+.main { padding: 16px 22px; display: flex; flex-direction: column; overflow: hidden; }
+.row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.card { background: #fff; border-radius: 12px; padding: 14px 16px; box-shadow: 0 2px 8px rgba(10,37,64,.06); }
+.l { font-size: 12px; color: #6b7c93; }
+.v { font-size: 24px; font-weight: 650; margin-top: 4px; }
+.ok { color: #0d9488; }
+.warn { color: #d97706; }
+table { width: 100%; margin-top: 12px; background: #fff; border-radius: 12px; border-collapse: collapse; overflow: hidden; font-size: 13px; flex: 1; }
+th { text-align: left; padding: 8px 14px; color: #6b7c93; font-weight: 500; }
+td { padding: 7px 14px; border-top: 1px solid #eef2f6; }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="nav">
+    <div class="brand">ledger</div>
+    <div class="n on">Home</div>
+    <div class="n">P&amp;L</div>
+    <div class="n">Cash</div>
+    <div class="n">Ads</div>
+    <div class="n">Alerts</div>
+    <div class="n">1C map</div>
+    <div class="n">Tax pack</div>
+    <div style="margin-top:24px;font-size:12px;line-height:1.6;color:#7a93a8">CRM + ads + payments<br/>refresh 07:00 MSK<br/>4 alerts this week<br/><br/>VAT pack Friday<br/>CPA band · VK Ads</div>
+  </aside>
+  <main class="main">
+    <div style="font-size:13px;color:#6b7c93">Consolidated · CRM + ads + payments</div>
+    <h1 style="font-size:22px;margin:2px 0 12px">August 2026</h1>
+    <div class="row">
+      <div class="card"><div class="l">Revenue</div><div class="v">₽ 6.42M</div></div>
+      <div class="card"><div class="l">Contribution margin</div><div class="v ok">34.1%</div></div>
+      <div class="card"><div class="l">Ad spend vs plan</div><div class="v warn">+8%</div></div>
+    </div>
+    <svg viewBox="0 0 980 180" width="100%" height="180" style="margin-top:12px;background:#fff;border-radius:12px">
+      <polyline fill="rgba(13,148,136,.12)" stroke="#0d9488" stroke-width="2.5" points="20,140 80,132 140,128 200,110 260,116 320,98 380,102 440,84 500,90 560,72 620,78 680,64 740,68 800,52 860,56 940,40 960,44 960,170 20,170"/>
+    </svg>
+    <table>
+      <thead><tr><th>Source</th><th>In</th><th>Status</th><th>Alert</th></tr></thead>
+      <tbody>
+        <tr><td>Stripe / acquiring</td><td>₽ 4.10M</td><td>ok</td><td>—</td></tr>
+        <tr><td>amoCRM closed</td><td>₽ 6.38M</td><td>ok</td><td>—</td></tr>
+        <tr><td>VK Ads + Yandex</td><td>₽ 0.92M</td><td>watch</td><td>CPA above band</td></tr>
+        <tr><td>Refunds</td><td>₽ 0.11M</td><td>ok</td><td>—</td></tr>
+        <tr><td>Bank payouts</td><td>₽ 2.04M</td><td>ok</td><td>—</td></tr>
+        <tr><td>Payroll</td><td>₽ 0.86M</td><td>ok</td><td>—</td></tr>
+        <tr><td>Rent + SaaS</td><td>₽ 0.31M</td><td>ok</td><td>—</td></tr>
+        <tr><td>COGS / 1C</td><td>₽ 2.88M</td><td>ok</td><td>—</td></tr>
+        <tr><td>Tax estimate</td><td>₽ 0.42M</td><td>watch</td><td>VAT pack Friday</td></tr>
+        <tr><td>Telegram alerts</td><td>4 fired</td><td>ok</td><td>CPA band</td></tr>
+        <tr><td>WB / Ozon payouts</td><td>₽ 1.12M</td><td>ok</td><td>—</td></tr>
+        <tr><td>Cash on hand</td><td>₽ 1.86M</td><td>ok</td><td>runway 4.2 mo</td></tr>
+        <tr><td>Contractor payouts</td><td>₽ 0.48M</td><td>ok</td><td>—</td></tr>
+        <tr><td>Returns reserve</td><td>₽ 0.09M</td><td>ok</td><td>—</td></tr>
+        <tr><td>Office + coworking</td><td>₽ 0.14M</td><td>ok</td><td>—</td></tr>
+        <tr><td>Net cash 30d</td><td>₽ 0.72M</td><td>ok</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </main>
+</div>
+</body>
+</html>

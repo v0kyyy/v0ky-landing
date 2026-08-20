@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Reel Yard — multi-account</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./base.css" />
+<style>
+body { background: #0a0a0c; color: #f5f5f4; font-family: Inter, "Segoe UI", sans-serif; }
+.wrap { height: 900px; display: flex; flex-direction: column; }
+.top { height: 48px; display: flex; align-items: center; padding: 0 18px; border-bottom: 1px solid #1c1c20; flex-shrink: 0; }
+.pink { color: #f472b6; }
+.app { display: grid; grid-template-columns: 1fr 300px; flex: 1; min-height: 0; }
+.cal { padding: 10px 14px; overflow: hidden; display: flex; flex-direction: column; min-height: 0; }
+.week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; flex: 1; min-height: 0; }
+.day { display: flex; flex-direction: column; min-height: 0; }
+.day h5 { font-size: 11px; color: #737373; font-weight: 500; margin-bottom: 6px; flex-shrink: 0; }
+.slot { background: #17171b; border-radius: 8px; padding: 8px; font-size: 11.5px; margin-bottom: 6px; flex: 1; min-height: 0; }
+.slot.ig { border-left: 3px solid #f472b6; }
+.slot.tt { border-left: 3px solid #22d3ee; }
+.phone { margin: 10px 12px 12px; background: #111114; border: 8px solid #26262b; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column; }
+.preview { flex: 1; background: linear-gradient(180deg,#be185d 0%,#7c1d4a 40%,#0a0a0c 100%); position: relative; }
+.preview .ui { position: absolute; left: 12px; right: 12px; bottom: 16px; font-size: 13px; }
+.cap { padding: 12px; font-size: 12.5px; color: #d4d4d4; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top">
+  <b>Reel Yard</b>
+  <span style="margin-left:12px;color:#737373">Instagram · TikTok · 16 accounts</span>
+  <span class="pink" style="margin-left:auto;font-size:13px">AI pack ready · 09:00–21:00</span>
+</div>
+<div class="app">
+  <main class="cal">
+    <div class="week">
+      <div class="day"><h5>Mon 17</h5>
+        <div class="slot ig">@nord.eats<br/>Reel · 11:00</div>
+        <div class="slot tt">@nord.eats<br/>Hook · 18:30</div>
+        <div class="slot ig">@oak.linen<br/>Cover</div>
+        <div class="slot tt">@quiet.rooms<br/>POV 21:00</div>
+        <div class="slot ig">@mute.studio<br/>menu</div>
+        <div class="slot tt">@nord.eats<br/>BTS</div>
+      </div>
+      <div class="day"><h5>Tue 18</h5>
+        <div class="slot ig">@mute.studio<br/>Carousel</div>
+        <div class="slot tt">@quiet.rooms<br/>POV · 09:15</div>
+        <div class="slot ig">@nord.eats<br/>Stories</div>
+        <div class="slot ig">@oak.linen<br/>flatlay</div>
+        <div class="slot tt">@mute.studio<br/>BTS</div>
+        <div class="slot ig">@quiet.rooms<br/>cover 2</div>
+      </div>
+      <div class="day"><h5>Wed 19</h5>
+        <div class="slot tt">@oak.linen<br/>Sound orig.</div>
+        <div class="slot ig">@oak.linen<br/>Story set</div>
+        <div class="slot tt">@mute.studio<br/>Stitch</div>
+        <div class="slot ig">@quiet.rooms<br/>save pack</div>
+        <div class="slot tt">@nord.eats<br/>hook</div>
+        <div class="slot ig">@oak.linen<br/>reel</div>
+      </div>
+      <div class="day"><h5>Thu 20</h5>
+        <div class="slot ig">@nord.eats<br/>Reel · 12:00</div>
+        <div class="slot ig">@quiet.rooms<br/>Cover</div>
+        <div class="slot tt">@oak.linen<br/>Duet</div>
+        <div class="slot tt">@nord.eats<br/>hook 2</div>
+        <div class="slot ig">@mute.studio<br/>grid</div>
+        <div class="slot tt">trend 2</div>
+      </div>
+      <div class="day"><h5>Fri 21</h5>
+        <div class="slot tt">@mute.studio<br/>Trend stitch</div>
+        <div class="slot ig">@nord.eats<br/>Offer</div>
+        <div class="slot tt">@quiet.rooms<br/>B-roll</div>
+        <div class="slot ig">@mute.studio<br/>launch</div>
+        <div class="slot tt">@oak.linen<br/>sound</div>
+        <div class="slot ig">@nord.eats<br/>stories 2</div>
+      </div>
+      <div class="day"><h5>Sat 22</h5>
+        <div class="slot ig">weekend pack</div>
+        <div class="slot tt">@nord.eats<br/>brunch</div>
+        <div class="slot ig">@oak.linen<br/>3 posts</div>
+        <div class="slot tt">@quiet.rooms<br/>dump</div>
+        <div class="slot ig">@mute.studio<br/>recap</div>
+        <div class="slot tt">batch B</div>
+      </div>
+      <div class="day"><h5>Sun 23</h5>
+        <div class="slot tt">batch · 8 clips</div>
+        <div class="slot ig">@mute.studio<br/>dump</div>
+        <div class="slot tt">queue flush</div>
+        <div class="slot ig">buffer</div>
+        <div class="slot tt">@nord.eats<br/>prep</div>
+        <div class="slot ig">next week</div>
+      </div>
+    </div>
+  </main>
+  <aside class="phone">
+    <div style="text-align:center;font-size:11px;color:#737373;padding:8px">Preview · @nord.eats</div>
+    <div class="preview">
+      <div class="ui">
+        <b>@nord.eats</b>
+        <p style="margin-top:6px;opacity:.9">Tuesday lunch set — 12:00 drop.</p>
+        <p style="margin-top:8px;font-size:11px;opacity:.7">♪ original sound · Reel Yard</p>
+      </div>
+    </div>
+    <div class="cap">
+      <b>AI caption</b>
+      <p style="margin-top:6px;line-height:1.4">Shot list generated, cover cropped 9:16, proxy rotated. Hashtags from last 14d winners.</p>
+      <p class="mono" style="margin-top:8px;color:#737373;font-size:11px">device iPhone 13 · NL proxy · queue 11:58</p>
+    </div>
+  </aside>
+</div>
+</div>
+</body>
+</html>

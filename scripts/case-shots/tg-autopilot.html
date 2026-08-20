@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<title>Channelpilot — автопилот</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./base.css" />
+<style>
+body { background: #f4f7fb; color: #1b2430; font-family: Inter, sans-serif; }
+.wrap { height: 900px; display: flex; flex-direction: column; }
+.top { height: 48px; background: #2aabee; color: #fff; display: flex; align-items: center; padding: 0 18px; font-weight: 600; flex-shrink: 0; }
+.app { display: grid; grid-template-columns: 240px 1fr 260px; flex: 1; min-height: 0; }
+.side, .sched { background: #fff; padding: 12px; border-right: 1px solid #e4ebf2; overflow: hidden; }
+.sched { border-right: 0; border-left: 1px solid #e4ebf2; }
+.src { padding: 8px; border-radius: 8px; background: #f4f7fb; margin-bottom: 6px; font-size: 12.5px; }
+.src.on { outline: 2px solid #2aabee; background: #e8f6fd; }
+.paper { background: #fff; border-radius: 10px; box-shadow: 0 6px 20px rgba(30,60,90,.08); padding: 16px 18px; margin-bottom: 10px; flex: 1; }
+.main { padding: 12px 16px; overflow: hidden; display: flex; flex-direction: column; }
+.paper h2 { font-size: 16px; margin-bottom: 6px; }
+.paper p { font-size: 13px; line-height: 1.45; color: #334; }
+.time { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eef2f6; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top">Channelpilot <span style="opacity:.85;font-weight:500">/ канал «Рынок коротко»</span></div>
+<div class="app">
+  <aside class="side">
+    <div style="font-size:10px;letter-spacing:.14em;color:#7a8b9c;margin-bottom:8px">SOURCES</div>
+    <div class="src on">RBC · RSS · 12 new</div>
+    <div class="src">Kommersant · site · 4</div>
+    <div class="src">CNews · RSS · 7</div>
+    <div class="src">Telegram · 4 channels</div>
+    <div class="src">Interfax · RSS · 3</div>
+    <div class="src">TASS · site · 2</div>
+    <div class="src">Vedomosti · RSS · 5</div>
+    <div class="src">Forbes · site · 1</div>
+    <div style="margin-top:12px;font-size:12px;color:#7a8b9c;line-height:1.45">Style: короткий деловой. Dedup 72h. Max 8 posts/day. Уникальность ≥ 90%. Стоп-слова: реклама банков, IPO слухи.</div>
+  </aside>
+  <main class="main">
+    <div class="paper">
+      <div style="font-size:11px;color:#2aabee;margin-bottom:6px">REWRITTEN · unique 94% · очередь 12:30</div>
+      <h2>ЦБ сохранил ставку. Что это значит для вкладов на этой неделе</h2>
+      <p>Регулятор оставил ключевую ставку без изменений. Короткая версия: доходности депозитов не прыгнут, короткие вклады по-прежнему выгоднее длинных. Три цифры, без воды.</p>
+      <p>Источники: RBC + CNews. Дубль с позавчерашним постом не найден. 1840 → 720 знаков, тон спокойный.</p>
+    </div>
+    <div class="paper">
+      <div style="font-size:11px;color:#7a8b9c;margin-bottom:6px">DRAFT · 16:00</div>
+      <h2>Почему юань снова в сводках импортёров</h2>
+      <p>Курс и расчёты в CNY — коротко для канала. Ждёт рерайт после 15:40, когда закроется китайская сессия.</p>
+    </div>
+    <div class="paper">
+      <div style="font-size:11px;color:#16a34a;margin-bottom:6px">PUBLISHED · 09:00</div>
+      <h2>Нефть, рубль, одна таблица на утро</h2>
+      <p>Утренний дайджест ушёл. Охват 14.2k · ERR 6.1%. Источники: Interfax + TASS, без дубля с 18 авг.</p>
+    </div>
+    <div class="paper">
+      <div style="font-size:11px;color:#16a34a;margin-bottom:6px">PUBLISHED · 11:00</div>
+      <h2>Импортёры и курс: три цифры, без паники</h2>
+      <p>Короткий разбор для канала. 920 знаков, уникальность 91%.</p>
+    </div>
+  </main>
+  <aside class="sched">
+    <div style="font-size:10px;letter-spacing:.14em;color:#7a8b9c;margin-bottom:8px">TODAY</div>
+    <div class="time"><span>09:00</span><b>опубликовано</b></div>
+    <div class="time"><span>11:00</span><b>опубликовано</b></div>
+    <div class="time"><span>12:30</span><b style="color:#2aabee">в очереди</b></div>
+    <div class="time"><span>14:00</span><span>слот</span></div>
+    <div class="time"><span>16:00</span><span>черновик</span></div>
+    <div class="time"><span>18:30</span><span>слот</span></div>
+    <div class="time"><span>20:15</span><span>слот свободен</span></div>
+    <div class="time"><span>21:00</span><span>дайджест</span></div>
+  </aside>
+</div>
+</div>
+</body>
+</html>

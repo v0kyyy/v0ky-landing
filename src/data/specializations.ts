@@ -1,25 +1,33 @@
 import {
-  Bot,
-  ScanSearch,
-  Unplug,
-  Cog,
+  Activity,
+  FileStack,
+  Funnel,
+  Headset,
   LayoutDashboard,
-  Table2,
+  ScanSearch,
+  Share2,
+  Unplug,
+  Zap,
   type LucideIcon,
 } from "lucide-react";
 import type { Localized } from "@/i18n";
 
+export type SpecGroup = "business" | "niche";
+
 export type SpecProject = {
   name: Localized;
   description: Localized;
+  result: Localized;
   stack: string[];
-  /** класс CSS-паттерна для абстрактного превью в чёрно-красной гамме */
+  demo?: boolean;
+  image?: string;
   pattern: "preview-grid-dots" | "preview-diag-lines" | "preview-scanlines" | "preview-rings";
 };
 
 export type Specialization = {
   id: string;
   num: string;
+  group: SpecGroup;
   icon: LucideIcon;
   title: Localized;
   short: Localized;
@@ -29,332 +37,648 @@ export type Specialization = {
 
 export const specializations: Specialization[] = [
   {
-    id: "bots",
+    id: "speed",
     num: "01",
-    icon: Bot,
+    group: "niche",
+    icon: Zap,
     title: {
-      en: "Telegram / Discord bots",
-      ru: "Telegram / Discord-боты",
+      en: "Speed bots: watch and act instantly",
+      ru: "Скоростные боты: мониторинг и мгновенные действия",
     },
     short: {
-      en: "Bots that sell, book, and reply — while you sleep.",
-      ru: "Боты, которые продают, записывают и отвечают — пока вы спите.",
+      en: "When seconds decide the outcome — a slot, a number, a drop.",
+      ru: "Когда решают секунды — слот, номер, дроп.",
     },
     long: {
-      en: "I design bots as full products: conversation flows, payments, CRM and spreadsheet integrations, admin panels, and analytics. They hold up under thousands of users a day instead of falling over after the first broadcast. aiogram for Telegram, discord.py / discord.js for Discord — plus queues, webhooks, and monitoring out of the box.",
-      ru: "Проектирую ботов как полноценные продукты: сценарии диалогов, приём платежей, интеграции с CRM и таблицами, админ-панели и аналитика. Выдерживают нагрузку в тысячи пользователей в день, а не разваливаются после первой рассылки. aiogram для Telegram, discord.py / discord.js для Discord — плюс очереди, вебхуки и мониторинг из коробки.",
+      en: "Built for situations where the first reaction wins: visa slots, contested inventory, limited drops. Async pipelines, low latency, proxy rotation, and a Telegram ping the moment something happens — so a person never has to sit on F5.",
+      ru: "Для ситуаций, где побеждает тот, кто среагировал первым: визовые слоты, дефицитные номера, лимитированные дропы. Асинхронные пайплайны, минимальная задержка, ротация прокси и сигнал в Telegram в тот же момент — чтобы человеку не пришлось сидеть на F5.",
     },
     projects: [
       {
         name: {
-          en: "Booking bot for a clinic network",
-          ru: "Бот записи для сети клиник",
+          en: "Auto-booking visa-center slots",
+          ru: "Автобронирование слотов в визовом центре",
         },
         description: {
-          en: "Appointments with 30+ specialists, live calendar from the clinic system, reminders and rescheduling right in chat. No-shows dropped 35%, front desk got rid of 60% of inbound calls.",
-          ru: "Запись к 30+ специалистам с живым расписанием из МИС, напоминаниями и переносом слотов прямо в чате. Доля неявок снизилась на 35%, администраторы освободились от 60% входящих звонков.",
+          en: "New appointment slots at a Polish visa center vanish in seconds. A bot watches the calendar around the clock and books the slot onto pre-set applicant data the moment it appears.",
+          ru: "Новые слоты в визовом центре Польши исчезают за секунды. Бот круглосуточно следит за календарём и бронирует слот на заранее заданные данные заявителя в тот же момент, как он появляется.",
         },
-        stack: ["Python", "aiogram", "PostgreSQL", "Redis"],
+        result: {
+          en: "Booked in 2–4s after a slot appeared — manual refresh never won.",
+          ru: "Бронь за 2–4 с после появления слота — ручной мониторинг не успевал ни разу.",
+        },
+        stack: ["Python", "Playwright", "asyncio", "Telegram alerts"],
+        image: "/cases/visa-slots.png",
         pattern: "preview-grid-dots",
       },
       {
         name: {
-          en: "Community Discord bot, 40,000 members",
-          ru: "Discord-бот комьюнити на 40 000 участников",
+          en: "Instant SMS-number sniping",
+          ru: "Моментальный выкуп SMS-номеров",
         },
         description: {
-          en: "Auto-moderation, role assignment via an onboarding quiz, anti-cheat for giveaways, and an activity digest for the team. Manual moderation went from 5 hours a day to the occasional review.",
-          ru: "Автомодерация, выдача ролей по онбординг-квизу, античит для розыгрышей и дайджест активности для команды. Ручная модерация сократилась с 5 часов в день до точечных разборов.",
+          en: "Rental numbers on a high-competition marketplace disappear as soon as they are listed. Async workers watch the feed and buy matching numbers (price, operator, country) before a human can click.",
+          ru: "Номера в аренду на конкурентном рынке разбирают в момент появления. Асинхронные воркеры следят за лентой и выкупают подходящие номера (цена, оператор, страна) раньше, чем человек успевает кликнуть.",
         },
-        stack: ["Python", "discord.py", "Docker", "MongoDB"],
+        result: {
+          en: "Reaction 50–120ms; catch rate went from ~5% by hand to most matching listings.",
+          ru: "Реакция 50–120 мс; доля перехватов выросла с ~5% вручную до большинства подходящих лотов.",
+        },
+        stack: ["Python", "asyncio", "task queues", "high-load API"],
+        image: "/cases/sms-sniper.png",
         pattern: "preview-diag-lines",
       },
       {
         name: {
-          en: "Sales quiz bot with payments",
-          ru: "Продающий квиз-бот с оплатой",
+          en: "Limited drops & ticket checkout",
+          ru: "Автопокупка лимитированных товаров и билетов",
         },
         description: {
-          en: "Six-question lead qualification, segmentation, checkout inside the bot, and a deal pushed to CRM with full context. Subscriber-to-paid conversion went from 1.9% to 4.7%.",
-          ru: "Квалификация лидов по 6 вопросам, сегментация, оплата прямо в боте и передача сделки в CRM с полным контекстом. Конверсия из подписчика в оплату выросла с 1.9% до 4.7%.",
+          en: "A drop of limited merch or event tickets hits several sites at once. The bot watches all of them and submits checkout against preset rules — size, price cap, row — the instant stock appears.",
+          ru: "Дроп ограниченного товара или билетов стартует сразу на нескольких площадках. Бот следит за всеми и оформляет заказ по заданным правилам — размер, потолок цены, ряд — в момент появления остатка.",
         },
-        stack: ["Python", "aiogram", "ЮKassa API", "amoCRM API"],
-        pattern: "preview-rings",
+        result: {
+          en: "Demo: multi-venue watch + sub-second checkout pipeline.",
+          ru: "Демо: мониторинг нескольких площадок и оформление заказа меньше чем за секунду.",
+        },
+        stack: ["Python", "Playwright", "requests", "realtime alerts"],
+        demo: true,
+        image: "/cases/drop-cop.png",
+        pattern: "preview-scanlines",
       },
     ],
   },
   {
-    id: "scraping",
+    id: "parsing",
     num: "02",
+    group: "niche",
     icon: ScanSearch,
     title: {
-      en: "Web scraping & data extraction",
-      ru: "Веб-скрапинг и парсинг данных",
+      en: "Parsing, collection & data aggregation",
+      ru: "Парсинг, сбор и агрегация данных",
     },
     short: {
-      en: "Reliable data pipelines from sites that don't have an API.",
-      ru: "Стабильные пайплайны данных с сайтов, у которых нет API.",
+      en: "One source of truth instead of a dozen tabs and a spreadsheet.",
+      ru: "Единая точка правды вместо десятка вкладок и таблицы.",
     },
     long: {
-      en: "Playwright is the main tool: I work around anti-bot defenses, dynamic JS, proxy rotation, and fingerprints. This isn't a one-off script — it's a pipeline: queues, retries, validation, alerts when the markup changes. Data lands where people actually use it — a database, a spreadsheet, or a dashboard.",
-      ru: "Playwright — основной инструмент: обхожу антибот-защиты, работаю с динамическим JS-контентом, ротацией прокси и фингерпринтов. Строю не «скрипт на раз», а конвейер: очереди, ретраи, валидация данных, алерты при изменении вёрстки. Данные приезжают туда, где ими пользуются — в базу, таблицы или дашборд.",
+      en: "When the data that matters lives on sites, in admin panels, and in chats, I pull it into one feed the team actually uses. Classification, deduping, queues, and a place to read it — Telegram, a sheet, or a database — without anyone copying rows by hand.",
+      ru: "Когда нужные данные живут на сайтах, в админках и чатах, я собираю их в одну ленту, которой команда реально пользуется. Классификация, дедупликация, очереди и точка чтения — Telegram, таблица или база — без ручного копирования строк.",
     },
     projects: [
       {
         name: {
-          en: "Price monitoring across 12 marketplaces",
-          ru: "Мониторинг цен с 12 маркетплейсов",
+          en: "Envato stock: parse, classify, prepare",
+          ru: "Автопарсинг и классификация медиа со стока Envato",
         },
         description: {
-          en: "Competitor prices and stock via Playwright with rotating proxies, export to Google Sheets, and Telegram alerts when a price moves more than 5%. A weekly analysis that used to take 6 hours now runs on its own.",
-          ru: "Сбор цен и остатков конкурентов через Playwright с ротацией прокси, выгрузка в Google Sheets и Telegram-алерты при отклонении цены больше 5%. Еженедельный анализ сократился с 6 часов ручного труда до автономного процесса.",
+          en: "Content teams were sorting Envato Elements media by hand. A 24/7 pipeline parses new items, classifies them by rules and metadata, then cuts and stitches ready-to-use units with ffmpeg.",
+          ru: "Контент-команда вручную разбирала медиа со стока Envato Elements. Круглосуточный пайплайн парсит новые материалы, классифицирует по правилам и метаданным, затем нарезает и склеивает готовые единицы через ffmpeg.",
         },
-        stack: ["Python", "Playwright", "Google Sheets API", "Telegram Bot API"],
-        pattern: "preview-scanlines",
+        result: {
+          en: "Hundreds of content units a day without a manual sorting shift.",
+          ru: "Сотни единиц контента в сутки без ручной смены на сортировке.",
+        },
+        stack: ["Python", "Playwright", "ffmpeg", "task queue"],
+        image: "/cases/envato-media.png",
+        pattern: "preview-rings",
       },
       {
         name: {
-          en: "Niche tender aggregator",
-          ru: "Агрегатор тендеров по нише",
+          en: "Yandex Eats leads into one chat",
+          ru: "Агрегация отработанных лидов с Яндекс Еды",
         },
         description: {
-          en: "Daily crawl of 8 platforms, deduping and scoring tenders by keywords and budget, delivered to the sales team's Telegram channel by 9 a.m. They stopped missing relevant bids.",
-          ru: "Ежедневный обход 8 площадок, дедупликация и скоринг тендеров по ключевым словам и бюджету, доставка в Telegram-канал отдела продаж к 9 утра. Команда перестала пропускать релевантные закупки.",
+          en: "Worked leads sat in separate tables and were exported by hand. The bot pulls completed leads from Yandex Eats and drops a structured card into a shared staff chat for the next call.",
+          ru: "Отработанные лиды жили в разрозненных таблицах и выгружались руками. Бот забирает закрытые лиды из Яндекс Еды и кладёт структурированную карточку в общий чат сотрудников для обзвона.",
         },
-        stack: ["Python", "Playwright", "PostgreSQL", "Celery"],
+        result: {
+          en: "Leads in the shared chat within a minute — not at end of day from a sheet.",
+          ru: "Лиды в общем чате в течение минуты, а не к вечеру из таблицы.",
+        },
+        stack: ["Python", "Telegram Bot API", "web / API adapters"],
+        image: "/cases/yandex-eats-leads.png",
         pattern: "preview-grid-dots",
       },
       {
         name: {
-          en: "Review scraping for brand analytics",
-          ru: "Парсинг отзывов для бренд-аналитики",
+          en: "Freelance-board radar in Telegram",
+          ru: "Сбор проектов с фриланс-бирж в Telegram",
         },
         description: {
-          en: "50,000+ reviews a month from marketplaces and maps, sentiment tagging, a trend board by product. The product team caught a defective batch in 3 days instead of waiting for a quarterly report.",
-          ru: "Сбор 50 000+ отзывов в месяц с маркетплейсов и карт, разметка тональности, витрина трендов по товарам. Продакт-команда получила сигнал о браке партии за 3 дня вместо квартального отчёта.",
+          en: "New gigs on freelance boards were easy to miss between tabs. A bot watches listings, filters by niche, budget and keywords, dedupes, and sends only the relevant ones to a single Telegram chat.",
+          ru: "Новые заказы на биржах легко пропускались между вкладками. Бот следит за лентой, фильтрует по нише, бюджету и ключевым словам, убирает дубли и присылает только релевантное в один Telegram-чат.",
         },
-        stack: ["Python", "Playwright", "Pandas", "Plotly"],
+        result: {
+          en: "Relevant jobs in seconds — no more F5 across several boards.",
+          ru: "Релевантные заказы за секунды — без F5 по нескольким биржам.",
+        },
+        stack: ["Python", "aiogram", "board APIs / parsing", "dedup rules"],
+        image: "/cases/freelance-radar.png",
         pattern: "preview-diag-lines",
       },
     ],
   },
   {
-    id: "integrations",
+    id: "smm",
     num: "03",
-    icon: Unplug,
+    group: "niche",
+    icon: Share2,
     title: {
-      en: "Service integrations",
-      ru: "Интеграции между сервисами",
+      en: "SMM automation & content generation",
+      ru: "Автоматизация SMM и генерации контента",
     },
     short: {
-      en: "CRM, payments, spreadsheets, and messengers — one connected loop.",
-      ru: "CRM, платёжки, таблицы и мессенджеры — в один связный контур.",
+      en: "Volume and a steady cadence — without driving dozens of accounts by hand.",
+      ru: "Объём и ровный график публикаций — без ручного ведения десятков аккаунтов.",
     },
     long: {
-      en: "Disconnected tools mean copy-paste and errors at the seams. I wire CRM, payment providers, Google Workspace, and messengers through REST/webhooks and n8n: events flow on their own, statuses stay in sync, and nobody has to “move it to the spreadsheet.” Every integration ships with logs, retries, and an alert when something breaks.",
-      ru: "Разрозненные сервисы — это ручной перенос данных и ошибки на стыках. Я связываю CRM, платёжные системы, Google Workspace и мессенджеры через REST/Webhook API и n8n: события текут сами, статусы синхронизированы, и никто не забывает «перенести в табличку». Каждая интеграция — с логами, ретраями и алертом, если что-то пошло не так.",
+      en: "Full account lifecycle: create, warm up, generate content with AI, publish on a schedule. I treat this as a production system — queues, device/proxy rotation, uniqueness checks — not a pile of scripts an intern has to babysit.",
+      ru: "Полный цикл жизни аккаунта: создание, прогрев, генерация контента через AI, публикация по расписанию. Это производственная система — очереди, ротация устройств и прокси, контроль уникальности — а не набор скриптов, которые кто-то должен нянчить.",
     },
     projects: [
       {
         name: {
-          en: "Payments loop for an online school",
-          ru: "Контур оплат для онлайн-школы",
+          en: "Pinterest account combine",
+          ru: "Бот-комбайн для Pinterest",
         },
         description: {
-          en: "Payment provider, CRM, and Telegram in one flow: a charge unlocks the course, opens a deal, and starts the welcome sequence in 20 seconds. Manual access grants disappeared; payments lost “in the cracks” went from 3% to zero.",
-          ru: "Связка платёжной системы, CRM и Telegram: оплата открывает доступ к курсу, создаёт сделку и запускает welcome-цепочку за 20 секунд. Ручная выдача доступов исчезла, потери оплат «в стыках» — с 3% до нуля.",
+          en: "Agencies were burning hours on signup, warmup and posting. One pipeline registers accounts, warms them with natural activity, generates creatives and publishes — without a person on every step.",
+          ru: "Агентства тратили часы на регистрацию, прогрев и постинг. Один пайплайн регистрирует аккаунты, прогревает естественной активностью, генерирует креативы и публикует — без человека на каждом шаге.",
         },
-        stack: ["Python", "FastAPI", "Stripe API", "amoCRM API"],
+        result: {
+          en: "A pool of accounts running in parallel; posting no longer blocks the team.",
+          ru: "Пул аккаунтов в параллельной работе; постинг перестал блокировать команду.",
+        },
+        stack: ["Python", "Playwright", "AI generation", "scheduler"],
+        image: "/cases/pinterest-combine.png",
+        pattern: "preview-scanlines",
+      },
+      {
+        name: {
+          en: "Instagram / TikTok multi-account with AI",
+          ru: "Мультиаккаунтинг Instagram / TikTok с AI-контентом",
+        },
+        description: {
+          en: "A pool of accounts needs texts, covers and scripts every day. The system generates the content, posts on a schedule, and rotates proxy/device fingerprints to keep the pool stable.",
+          ru: "Пулу аккаунтов каждый день нужны тексты, обложки и сценарии. Система генерирует контент, публикует по расписанию и ротирует прокси и отпечатки устройств, чтобы пул жил стабильно.",
+        },
+        result: {
+          en: "Demo: AI content loop + scheduled posting across a managed pool.",
+          ru: "Демо: цикл AI-контента и автопостинг по пулу аккаунтов.",
+        },
+        stack: ["Python", "Playwright", "LLM / image gen", "antidetect"],
+        demo: true,
+        image: "/cases/social-studio.png",
         pattern: "preview-rings",
       },
       {
         name: {
-          en: "Inventory sync across three sales channels",
-          ru: "Синхронизация склада и трёх каналов продаж",
+          en: "Telegram channel autopilot",
+          ru: "Автопилот для Telegram-канала",
         },
         description: {
-          en: "A single stock service between a 1C-style ledger, an online store, and two marketplaces: updates in 90 seconds instead of an overnight dump. Overselling stopped completely.",
-          ru: "Единый сервис остатков между 1С-подобной учёткой, интернет-магазином и двумя маркетплейсами: обновление за 90 секунд вместо ночной выгрузки. Овербукинг товаров прекратился полностью.",
+          en: "Editors were rewriting the same news by hand. The bot pulls sources, rewrites in a set voice via an LLM, checks uniqueness, and publishes on a schedule.",
+          ru: "Редакторы вручную переписывали одни и те же новости. Бот забирает источники, рерайтит в заданном стиле через LLM, проверяет уникальность и публикует по расписанию.",
         },
-        stack: ["Python", "REST API", "Webhooks", "Redis"],
+        result: {
+          en: "Demo: a steady daily cadence without a living editor on every post.",
+          ru: "Демо: ровный ежедневный график без живого редактора на каждом посте.",
+        },
+        stack: ["Python", "aiogram", "RSS / site parsing", "LLM"],
+        demo: true,
+        image: "/cases/tg-autopilot.png",
         pattern: "preview-grid-dots",
-      },
-      {
-        name: {
-          en: "n8n hub for an agency",
-          ru: "n8n-хаб для агентства",
-        },
-        description: {
-          en: "40+ n8n scenarios: leads from forms and ads into CRM, invoices to accounting, client reports on a schedule. A team of 12 saves 80+ hours a month, combined.",
-          ru: "40+ сценариев на n8n: лиды из форм и рекламы в CRM, счета в бухгалтерию, отчёты клиентам по расписанию. Команда из 12 человек экономит суммарно 80+ часов в месяц.",
-        },
-        stack: ["n8n", "Google Workspace", "Telegram Bot API", "PostgreSQL"],
-        pattern: "preview-scanlines",
       },
     ],
   },
   {
-    id: "rpa",
+    id: "trading",
     num: "04",
-    icon: Cog,
+    group: "niche",
+    icon: Activity,
     title: {
-      en: "RPA & business process automation",
-      ru: "RPA и автоматизация бизнес-процессов",
+      en: "Trading bots & AI decision-making",
+      ru: "Трейдинг-боты и AI-принятие решений",
     },
     short: {
-      en: "Scripts instead of someone copying data between windows.",
-      ru: "Скрипты вместо сотрудника, копирующего данные между окнами.",
+      en: "The strategy stays yours — the bot watches the market and takes the shot.",
+      ru: "Стратегия остаётся вашей — бот следит за рынком и принимает решение.",
     },
     long: {
-      en: "I take over the processes where a person is acting as a living API: filling forms, generating documents, moving data between systems, recurring reports. Python + Playwright/Selenium RPA jobs run on a schedule, don't get sick, and don't mistype at 3 a.m. They usually pay for themselves in the first two or three months.",
-      ru: "Забираю у бизнеса процессы, где человек выполняет роль «живого API»: заполнение форм, формирование документов, разнос данных по системам, регулярные отчёты. RPA-скрипты на Python + Playwright/Selenium работают по расписанию, не болеют и не ошибаются в третьем часу ночи. Окупаются обычно за первые 2–3 месяца.",
+      en: "Not a script that fires a market order. A decision layer on top of the algorithm: entry, size, and risk from a set of strategies plus an AI read of the tape. Logging, backtests, and kill-switches are part of the product — this is real money.",
+      ru: "Не скрипт, который шлёт market-ордер. Слой решения поверх алгоритма: вход, размер и риск из набора стратегий плюс AI-чтение рынка. Логи, бэктесты и аварийные стопы — часть продукта: на кону реальные деньги.",
     },
     projects: [
       {
         name: {
-          en: "Logistics document workflow",
-          ru: "Автоматизация документооборота логистики",
+          en: "Autonomous Bybit bot with an AI core",
+          ru: "Автономный торговый бот для Bybit с AI-ядром",
         },
         description: {
-          en: "A robot builds invoices, acts, and waybills from incoming orders, files them, and sends them to counterparties. 400+ documents a week with no one in the loop; bank-detail errors disappeared.",
-          ru: "Робот формирует счета, акты и транспортные накладные из заявок, раскладывает по папкам и отправляет контрагентам. 400+ документов в неделю без участия человека, ошибки в реквизитах исчезли.",
+          en: "The bot chooses whether to enter, sizes the position, and sets trade parameters from a predefined strategy set and an AI read of market context — with hard risk limits.",
+          ru: "Бот сам решает, входить ли в позицию, выбирает размер и параметры сделки из заранее заданного набора стратегий и AI-анализа рынка — с жёсткими лимитами риска.",
         },
-        stack: ["Python", "Playwright", "Google Drive API", "Jinja2"],
+        result: {
+          en: "Architecture and risk controls first; backtested on multi-year history before live.",
+          ru: "Сначала архитектура и риск-контроль; бэктест на многолетней истории до боевого запуска.",
+        },
+        stack: ["Python", "Bybit API", "LLM / ML", "risk engine"],
+        image: "/cases/bybit-ai.png",
         pattern: "preview-diag-lines",
       },
       {
         name: {
-          en: "Overnight reconciliation for finance",
-          ru: "Ночная сверка для финансового отдела",
+          en: "Cross-venue arbitrage bot",
+          ru: "Арбитражный бот между площадками",
         },
         description: {
-          en: "A script matches bank, acquirer, and CRM transactions, flags mismatches, and drops a ready report in Slack by 8 a.m. Accounting went from a full day of reconciling to 30 minutes of exceptions.",
-          ru: "Скрипт сверяет транзакции банка, эквайринга и CRM, размечает расхождения и к 8 утра кладёт готовый отчёт в Slack. Бухгалтерия сократила сверку с целого дня до 30 минут проверки исключений.",
+          en: "Watches the spread on an asset across several exchanges and desks in real time, and fires only when the edge still holds after fees.",
+          ru: "Следит за спредом актива между несколькими биржами и обменниками в реальном времени и исполняет сделку, только если край остаётся после комиссий.",
         },
-        stack: ["Python", "Pandas", "Bank API", "cron"],
-        pattern: "preview-rings",
+        result: {
+          en: "Demo: multi-API loop with fee-aware execution and a full trade log.",
+          ru: "Демо: контур на нескольких API с учётом комиссий и полным логом сделок.",
+        },
+        stack: ["Python", "asyncio", "multi-API", "risk controls"],
+        demo: true,
+        image: "/cases/arb-bot.png",
+        pattern: "preview-scanlines",
       },
       {
         name: {
-          en: "Inbound order processing from email",
-          ru: "Обработка входящих заявок с почты",
+          en: "AI signal screener",
+          ru: "AI-скринер сигналов для входа",
         },
         description: {
-          en: "Parses PDF and Excel attachments, extracts line items, creates orders in the ledger, and replies with a confirmation. Response time fell from 3 hours to 4 minutes.",
-          ru: "Парсинг вложений из писем (PDF, Excel), извлечение позиций, создание заказов в учётной системе и ответ клиенту с подтверждением. Время реакции на заявку упало с 3 часов до 4 минут.",
+          en: "Scans the market against technical and AI criteria, then sends entry/exit signals to Telegram — with optional one-tap confirm before execution.",
+          ru: "Сканирует рынок по техническим и AI-критериям и присылает сигналы входа/выхода в Telegram — с опциональным подтверждением перед исполнением.",
         },
-        stack: ["Python", "IMAP", "Celery", "PostgreSQL"],
-        pattern: "preview-grid-dots",
+        result: {
+          en: "Demo: signals with context in chat, execution only after you confirm.",
+          ru: "Демо: сигналы с контекстом в чат, исполнение только после подтверждения.",
+        },
+        stack: ["Python", "exchange APIs", "LLM", "aiogram"],
+        demo: true,
+        image: "/cases/signal-screener.png",
+        pattern: "preview-rings",
       },
     ],
   },
   {
     id: "dashboards",
     num: "05",
+    group: "niche",
     icon: LayoutDashboard,
     title: {
-      en: "Real-time dashboards & analytics",
-      ru: "Дашборды и аналитика в реальном времени",
+      en: "Dashboards, reporting & BI automation",
+      ru: "Дашборды, отчётность и BI-автоматизация",
     },
     short: {
-      en: "Live business metrics instead of a weekly Excel dump.",
-      ru: "Живые метрики бизнеса вместо еженедельной выгрузки в Excel.",
+      en: "A live picture of the numbers — without hiring an analyst to stitch spreadsheets.",
+      ru: "Живая картина по цифрам — без найма аналитика и ручного сведения таблиц.",
     },
     long: {
-      en: "I build custom dashboards on top of the company's real data: sales, operations, marketing, finance. Front-end in React/Next.js with Recharts or Plotly; data from databases, APIs, and spreadsheets through a dedicated aggregation layer. Not another BI tool nobody opens — a working screen the team lives in every day.",
-      ru: "Собираю кастомные дашборды поверх реальных данных компании: продажи, операционка, маркетинг, финансы. Фронтенд на React/Next.js с Recharts или Plotly, данные — из баз, API и таблиц через собственный слой агрегации. Не «ещё один BI, который никто не открывает», а рабочий экран, по которому команда живёт каждый день.",
+      en: "I turn the data you already have into a screen the owner actually opens: shifts, marketplace economics, a single P&L. Collection on a schedule, formulas you can trust, and an alert when a metric steps out of line.",
+      ru: "Превращаю данные, которые у вас уже есть, в экран, который собственник реально открывает: смены, юнит-экономика маркетплейсов, единый P&L. Сбор по расписанию, формулы, которым можно верить, и алерт, если метрика ушла за норму.",
     },
     projects: [
       {
         name: {
-          en: "Ops screen for a delivery network",
-          ru: "Операционный экран сети доставки",
+          en: "Shifts & tips dashboard on Google Sheets",
+          ru: "Автономный дашборд смен и чаевых на Google Таблицах",
         },
         description: {
-          en: "Live order map, courier load, SLA by zone, and alerts when things dip — refresh every 30 seconds. Average dispatcher response to an incident dropped by a factor of three.",
-          ru: "Живая карта заказов, нагрузка на курьеров, SLA по зонам и алерты при просадке — обновление каждые 30 секунд. Среднее время реакции диспетчеров на инцидент сократилось втрое.",
+          en: "Shift hours and tips were typed in by hand every week. A Sheets + Apps Script dashboard ingests the forms and builds monthly reporting on its own — no one re-keying rows.",
+          ru: "Часы смен и чаевые каждую неделю вбивали руками. Дашборд на Google Sheets и Apps Script забирает формы и сам собирает помесячную отчётность — без повторного ввода строк.",
         },
-        stack: ["Next.js", "Recharts", "FastAPI", "PostgreSQL"],
-        pattern: "preview-scanlines",
+        result: {
+          en: "The monthly close no longer depends on someone updating a sheet by hand.",
+          ru: "Месячное закрытие больше не зависит от того, кто обновит таблицу руками.",
+        },
+        stack: ["Google Apps Script", "Sheets API", "forms", "charts"],
+        image: "/cases/sheets-shifts.png",
+        pattern: "preview-grid-dots",
       },
       {
         name: {
-          en: "P&L dashboard for founders",
-          ru: "P&L-дашборд для founders",
+          en: "WB / Ozon seller dashboard",
+          ru: "Дашборд для продавцов маркетплейсов (WB / Ozon)",
         },
         description: {
-          en: "Auto-collects revenue, spend, and unit economics from the bank, CRM, and ad accounts into one screen with trends. Owners see margin by line of business day by day, not at the end of the quarter.",
-          ru: "Автосбор выручки, расходов и юнит-экономики из банка, CRM и рекламных кабинетов в единый экран с трендами. Собственники видят маржинальность по направлениям день в день, а не в конце квартала.",
+          en: "Sales, stock and ads lived in separate cabinets. One board pulls marketplace APIs and computes real unit economics after fees, logistics and ads.",
+          ru: "Продажи, остатки и реклама жили в разных кабинетах. Один борд забирает API маркетплейсов и считает реальную юнит-экономику после комиссий, логистики и рекламы.",
         },
-        stack: ["Python", "Pandas", "Next.js", "Chart.js"],
+        result: {
+          en: "Demo: true margin by SKU, not the number the marketplace shows.",
+          ru: "Демо: живая маржа по SKU, а не цифра, которую показывает кабинет.",
+        },
+        stack: ["Python", "WB / Ozon API", "Sheets / BI", "cron"],
+        demo: true,
+        image: "/cases/mp-seller.png",
+        pattern: "preview-diag-lines",
+      },
+      {
+        name: {
+          en: "Consolidated finance dashboard",
+          ru: "Консолидированный финансовый дашборд",
+        },
+        description: {
+          en: "CRM, ad cabinets and payments never sat on one screen. A collector merges them into a single report and fires Telegram alerts when a KPI leaves the band.",
+          ru: "CRM, рекламные кабинеты и платежи никогда не сходились на одном экране. Сборщик сводит их в единый отчёт и шлёт алерт в Telegram, если KPI выходит за коридор.",
+        },
+        result: {
+          en: "Demo: one morning report instead of three exports and a pivot.",
+          ru: "Демо: один утренний отчёт вместо трёх выгрузок и сводной.",
+        },
+        stack: ["Python", "API adapters", "Sheets / BI", "Telegram alerts"],
+        demo: true,
+        image: "/cases/finance-pnl.png",
+        pattern: "preview-scanlines",
+      },
+    ],
+  },
+  {
+    id: "sales",
+    num: "06",
+    group: "business",
+    icon: Funnel,
+    title: {
+      en: "Sales & CRM automation",
+      ru: "Автоматизация продаж и CRM",
+    },
+    short: {
+      en: "Leads stop falling between messenger, socials, and the CRM.",
+      ru: "Заявки перестают проваливаться между мессенджером, соцсетями и CRM.",
+    },
+    long: {
+      en: "Inbound from Telegram, WhatsApp and Instagram should become a deal with an owner — not a message someone might see later. I wire messengers to amoCRM / Bitrix24, score the lead, and escalate deals that sit still. First-response time is the metric that moves.",
+      ru: "Входящие из Telegram, WhatsApp и Instagram должны становиться сделкой с ответственным — а не сообщением, которое кто-то может увидеть позже. Связываю мессенджеры с amoCRM / Bitrix24, скорю лид и эскалирую сделки, которые зависли. Двигается метрика времени первого касания.",
+    },
+    projects: [
+      {
+        name: {
+          en: "Messenger leads synced into CRM",
+          ru: "Автосинхронизация заявок из мессенджеров в CRM",
+        },
+        description: {
+          en: "Managers were copy-pasting chats into the CRM and losing the first hour. Telegram, WhatsApp and Instagram Direct open a deal automatically and round-robin it to a free owner.",
+          ru: "Менеджеры копировали чаты в CRM и теряли первый час. Telegram, WhatsApp и Instagram Direct сами открывают сделку и раздают её свободному ответственному.",
+        },
+        result: {
+          en: "Time-to-first-touch dropped from hours to minutes; nothing sits in a personal chat.",
+          ru: "Время до первого касания — с часов до минут; ничего не зависает в личном чате.",
+        },
+        stack: ["Python", "messenger APIs", "amoCRM / Bitrix24", "assignment queue"],
+        image: "/cases/crm-inbox.png",
         pattern: "preview-rings",
       },
       {
         name: {
-          en: "Agency marketing board",
-          ru: "Маркетинг-борд агентства",
+          en: "AI scoring of inbound leads",
+          ru: "AI-скоринг и приоритизация входящих лидов",
         },
         description: {
-          en: "A single view across 20+ client projects: spend, leads, CPL, and campaign status with alerts on anomalies. Reporting calls shrank from an hour to 15 minutes — everything is already on screen.",
-          ru: "Сквозная витрина по 20+ клиентским проектам: расходы, лиды, CPL и статусы кампаний с алертами при аномалиях. Отчётные созвоны сократились с часа до 15 минут — всё уже на экране.",
+          en: "Every inquiry looked equally urgent in the pipeline. An AI layer reads the text, sets lead temperature and priority in the CRM, and drafts the first reply for the manager.",
+          ru: "В воронке все обращения выглядели одинаково срочными. AI-слой читает текст, ставит «температуру» и приоритет в CRM и готовит менеджеру черновик первого ответа.",
         },
-        stack: ["TypeScript", "Next.js", "Plotly", "Google Ads API"],
+        result: {
+          en: "Hot leads surface first; managers stop starting from a cold FAQ.",
+          ru: "Горячие лиды всплывают первыми; менеджеры не начинают день с холодного FAQ.",
+        },
+        stack: ["Python", "LLM", "CRM API", "webhooks"],
+        image: "/cases/lead-scoring.png",
+        pattern: "preview-grid-dots",
+      },
+      {
+        name: {
+          en: "Stale-deal watchdog with escalation",
+          ru: "Контроль «зависших» сделок с автоэскалацией",
+        },
+        description: {
+          en: "Deals died in a stage because nobody poked them. A bot watches CRM idle time, nags the owner, and after a second miss — pings the head of sales.",
+          ru: "Сделки умирали в стадии, потому что их никто не трогал. Бот следит за простоем в CRM, напоминает ответственному, а при повторном молчании — пишет руководителю отдела.",
+        },
+        result: {
+          en: "Idle deals get a second life instead of quietly rotting in the funnel.",
+          ru: "Зависшие сделки получают второй шанс, а не тихо гниют в воронке.",
+        },
+        stack: ["Python", "CRM API", "scheduler", "Telegram / email"],
+        image: "/cases/stale-watchdog.png",
         pattern: "preview-diag-lines",
       },
     ],
   },
   {
-    id: "workspace",
-    num: "06",
-    icon: Table2,
+    id: "support",
+    num: "07",
+    group: "business",
+    icon: Headset,
     title: {
-      en: "Google Workspace automation",
-      ru: "Google Workspace автоматизация",
+      en: "Customer-service automation",
+      ru: "Автоматизация клиентского сервиса",
     },
     short: {
-      en: "Apps Script that turns Sheets and Docs into a mini-ERP.",
-      ru: "Apps Script превращает Таблицы и Документы в мини-ERP.",
+      en: "Typical tickets close themselves — the rest land on a human with full context.",
+      ru: "Типовые обращения закрываются сами — остальное уходит человеку с полным контекстом.",
     },
     long: {
-      en: "Google Workspace is an underrated automation platform. With Apps Script I connect Sheets, Docs, Forms, Calendar, and Gmail: document generation, approvals, reports, and notifications — no extra SaaS, no monthly fee. Ideal for teams already living in Google; you feel it in the first week.",
-      ru: "Google Workspace — недооценённая платформа автоматизации. На Apps Script я строю связки Таблиц, Документов, Форм, Календаря и Gmail: автогенерация документов, согласования, отчёты и уведомления без сторонних сервисов и абонентской платы. Идеально для команд, которые уже живут в Google — эффект заметен в первую же неделю.",
+      en: "A full support desk is expensive; a slow reply costs loyalty. I put an AI layer on Telegram / WhatsApp for order status, FAQ and returns, escalate the messy ones, and pull every channel into one queue so nothing dies between tabs.",
+      ru: "Полноценный саппорт дорогой, медленный ответ роняет лояльность. Ставлю AI-слой на Telegram / WhatsApp для статуса заказа, FAQ и возвратов, эскалирую сложное и собираю все каналы в одну очередь — чтобы ничего не умирало между вкладками.",
     },
     projects: [
       {
         name: {
-          en: "Commercial proposal generator",
-          ru: "Генератор коммерческих предложений",
+          en: "AI support bot with human escalation",
+          ru: "AI-бот поддержки с эскалацией на оператора",
         },
         description: {
-          en: "A manager fills a row in Sheets — the script builds a proposal from a Docs template, converts it to PDF, and sends it to the client with a copy in CRM. Prep time went from 40 minutes to 2.",
-          ru: "Менеджер заполняет строку в Таблице — скрипт собирает КП из шаблона Документа, конвертирует в PDF и отправляет клиенту с копией в CRM. Подготовка КП сократилась с 40 минут до 2.",
+          en: "Most inbound is “where is my order” and FAQ. The bot closes typical tickets from a knowledge base and hands emotional or odd cases to a human with the full thread.",
+          ru: "Большая часть входящих — «где заказ» и FAQ. Бот закрывает типовые обращения по базе знаний и передаёт эмоциональные или странные кейсы человеку вместе со всей перепиской.",
         },
-        stack: ["Apps Script", "Google Docs API", "Gmail API"],
-        pattern: "preview-grid-dots",
-      },
-      {
-        name: {
-          en: "Leave and schedule approvals",
-          ru: "Согласование отпусков и графиков",
+        result: {
+          en: "About 70–80% of threads close without an operator; first reply in seconds.",
+          ru: "Около 70–80% обращений закрываются без оператора; первый ответ — за секунды.",
         },
-        description: {
-          en: "Form → automatic overlap check by team → one-click manager approval from email → write to Calendar and the timesheet. HR stopped maintaining three parallel spreadsheets.",
-          ru: "Форма → автоматическая проверка пересечений по отделу → согласование руководителем в один клик из письма → запись в Календарь и табель. HR перестал вести три параллельные таблицы.",
-        },
-        stack: ["Apps Script", "Google Calendar API", "Google Forms"],
+        stack: ["Python", "aiogram / WhatsApp API", "LLM", "knowledge base"],
+        image: "/cases/support-bot.png",
         pattern: "preview-scanlines",
       },
       {
         name: {
-          en: "Project budget control",
-          ru: "Бюджетный контроль проектов",
+          en: "Unified inbox: mail, socials, messengers",
+          ru: "Единая очередь из почты, соцсетей и мессенджеров",
         },
         description: {
-          en: "A script pulls bank exports into a master sheet, checks them against project budgets, and alerts leads when spend crosses 80% of the cap. Overruns show up weeks before month-end close.",
-          ru: "Скрипт стягивает расходы из выгрузок банка в мастер-таблицу, сверяет с бюджетами проектов и шлёт руководителям алерт при превышении 80% лимита. Перерасходы ловятся за недели до закрытия месяца.",
+          en: "Support was hunting tickets across Gmail, DMs and chats. Everything lands in one queue, auto-tagged by topic and urgency.",
+          ru: "Саппорт ловил обращения между почтой, директ и чатами. Всё стекается в одну очередь с авторазметкой по теме и срочности.",
         },
-        stack: ["Apps Script", "Google Sheets API", "Telegram Bot API"],
+        result: {
+          en: "Fewer lost tickets; the team works one list instead of five tabs.",
+          ru: "Меньше потерянных обращений; команда работает по одному списку, а не по пяти вкладкам.",
+        },
+        stack: ["Python", "mail / social APIs", "AI / rule tagging", "helpdesk"],
+        image: "/cases/unified-inbox.png",
         pattern: "preview-rings",
+      },
+      {
+        name: {
+          en: "NPS / CSAT auto-survey after close",
+          ru: "Автосбор обратной связи и отчёт по NPS / CSAT",
+        },
+        description: {
+          en: "Nobody remembered to ask “how was it?” after a ticket. A short survey goes out on close, scores roll into a report, and a bad rating pages someone immediately.",
+          ru: "После закрытия обращения никто не вспоминал спросить «как всё прошло». Короткий опрос уходит сам, оценки складываются в отчёт, а негатив сразу будит ответственного.",
+        },
+        result: {
+          en: "Negative scores get a human in minutes, not in next week’s spreadsheet.",
+          ru: "Негатив видит человек за минуты, а не в таблице на следующей неделе.",
+        },
+        stack: ["Python", "CRM / messengers", "Sheets / BI", "alerts"],
+        image: "/cases/nps-report.png",
+        pattern: "preview-grid-dots",
+      },
+    ],
+  },
+  {
+    id: "systems",
+    num: "08",
+    group: "business",
+    icon: Unplug,
+    title: {
+      en: "Integrations & business-system sync",
+      ru: "Интеграции и синхронизация бизнес-систем",
+    },
+    short: {
+      en: "Ledger, warehouse, marketplaces and payments — one loop, no copy-paste.",
+      ru: "Учётка, склад, маркетплейсы и платежи — один контур, без копипаста.",
+    },
+    long: {
+      en: "When 1C, the warehouse, marketplaces and the acquirer don’t talk, stock and money drift. I build the bus: events, queues, conflict handling, and a log of mismatches — the senior kind of integration, not a one-off Zapier zap.",
+      ru: "Когда 1С, склад, маркетплейсы и эквайринг не разговаривают, плывут остатки и деньги. Собираю шину: события, очереди, разбор конфликтов и лог расхождений — интеграция сеньорского уровня, а не разовый сценарий в конструкторе.",
+    },
+    projects: [
+      {
+        name: {
+          en: "1C ↔ marketplace stock & prices",
+          ru: "Синхронизация остатков и цен: 1С ↔ маркетплейсы",
+        },
+        description: {
+          en: "A sale on one channel oversold stock that was already gone. Stock and prices sync between the ledger (1C / MoySklad) and WB / Ozon / Yandex Market so you never sell a ghost SKU.",
+          ru: "Продажа на одном канале уводила в минус товар, которого уже не было. Остатки и цены синхронизируются между учёткой (1С / МойСклад) и WB / Ozon / Я.Маркетом — без продажи «призрачного» SKU.",
+        },
+        result: {
+          en: "Overselling stops; sync in minutes instead of a nightly dump.",
+          ru: "Овербукинг прекращается; синхронизация за минуты вместо ночной выгрузки.",
+        },
+        stack: ["Python", "1C / MoySklad API", "WB / Ozon API", "sync queue"],
+        image: "/cases/stock-sync.png",
+        pattern: "preview-diag-lines",
+      },
+      {
+        name: {
+          en: "CRM ↔ warehouse ↔ payments bus",
+          ru: "Единая шина CRM ↔ склад ↔ платежи",
+        },
+        description: {
+          en: "Paid orders still waited for someone to reserve stock. A payment event flips the CRM status and reserves the warehouse — order, money and shipment stay in lockstep.",
+          ru: "Оплаченные заказы ждали, пока кто-то зарезервирует склад. Событие оплаты меняет статус в CRM и резервирует остаток — заказ, деньги и отгрузка идут синхронно.",
+        },
+        result: {
+          en: "A handful of manual clicks per order disappear; the happy path is hands-off.",
+          ru: "С каждого заказа снимается пачка ручных кликов; счастливый путь идёт без человека.",
+        },
+        stack: ["Python", "webhooks", "REST APIs", "event log"],
+        image: "/cases/event-bus.png",
+        pattern: "preview-scanlines",
+      },
+      {
+        name: {
+          en: "Bank / acquirer vs orders reconciliation",
+          ru: "Автосверка платежей с заказами",
+        },
+        description: {
+          en: "Accounting matched the statement to CRM / 1C by eye. The bot pairs incoming payments with orders, closes the matches, and highlights the rest for a human.",
+          ru: "Бухгалтерия сверяла выписку с CRM / 1С глазами. Бот сопоставляет поступления с заказами, закрывает совпадения и подсвечивает расхождения для ручной проверки.",
+        },
+        result: {
+          en: "A full day of reconciling becomes an exceptions list.",
+          ru: "Целый день сверки превращается в список исключений.",
+        },
+        stack: ["Python", "bank / acquirer API", "CRM / 1C API", "matching rules"],
+        image: "/cases/recon-desk.png",
+        pattern: "preview-rings",
+      },
+    ],
+  },
+  {
+    id: "docs",
+    num: "09",
+    group: "business",
+    icon: FileStack,
+    title: {
+      en: "Documents & internal workflows",
+      ru: "Документооборот и внутренние процессы",
+    },
+    short: {
+      en: "Contracts, approvals and onboarding — without a chain of “remind me tomorrow”.",
+      ru: "Договоры, согласования и онбординг — без цепочки «напомни мне завтра».",
+    },
+    long: {
+      en: "Internal ops die in mail threads and side chats. I generate contracts from CRM, route leave and spend requests in Telegram by role and amount, and run new-hire checklists so HR is not the bottleneck.",
+      ru: "Внутренняя операционка умирает в цепочках писем и боковых чатах. Генерирую договоры из CRM, гоняю заявки на отпуск и закупки в Telegram по роли и сумме и веду чек-листы новичков — чтобы HR не был узким местом.",
+    },
+    projects: [
+      {
+        name: {
+          en: "Contracts, invoices, acts from CRM",
+          ru: "Автогенерация договоров, счетов и актов из CRM",
+        },
+        description: {
+          en: "A “won” deal still meant a manager building a Word file. A CRM trigger fills a template, issues the PDF, and sends it for signature or payment.",
+          ru: "Сделка в статусе «успешно» всё равно означала, что менеджер собирает Word. Триггер в CRM заполняет шаблон, выпускает PDF и отправляет на подпись или оплату.",
+        },
+        result: {
+          en: "Document turnaround in minutes; fewer broken bank details in the PDF.",
+          ru: "Документ за минуты; меньше битых реквизитов в PDF.",
+        },
+        stack: ["Python", "CRM API", "docx / PDF templates", "e-sign"],
+        image: "/cases/doc-factory.png",
+        pattern: "preview-grid-dots",
+      },
+      {
+        name: {
+          en: "Telegram bot for internal approvals",
+          ru: "Бот-согласование внутренних заявок",
+        },
+        description: {
+          en: "Leave, purchases and expenses lived in email. An employee files a request in Telegram; the bot routes it by role and amount, records status, and notifies the chain.",
+          ru: "Отпуска, закупки и расходы жили в почте. Сотрудник подаёт заявку в Telegram; бот ведёт её по роли и лимиту суммы, фиксирует статус и уведомляет цепочку.",
+        },
+        result: {
+          en: "Approvals stop disappearing; average cycle time shrinks from days to hours.",
+          ru: "Заявки перестают теряться; средний цикл — с дней до часов.",
+        },
+        stack: ["Python", "aiogram", "status machine", "calendar / sheets"],
+        image: "/cases/approve-bot.png",
+        pattern: "preview-diag-lines",
+      },
+      {
+        name: {
+          en: "New-hire onboarding autopilot",
+          ru: "Автоматизация онбординга сотрудников",
+        },
+        description: {
+          en: "A new row in HR used to mean a scavenger hunt for access and docs. Adding a person starts a checklist: accounts, papers, intro meetings, and nags to whoever is late.",
+          ru: "Новая строка в HR означала квест за доступами и документами. Добавление человека запускает чек-лист: доступы, бумаги, вводные встречи и напоминания тем, кто тормозит.",
+        },
+        result: {
+          en: "Time-to-productive shrinks; fewer steps wait on a forgotten ping.",
+          ru: "Выход «в строй» быстрее; меньше шагов, которые ждут забытого пинга.",
+        },
+        stack: ["Python", "HR system / sheets", "Telegram / email", "scheduler"],
+        image: "/cases/onboard-hr.png",
+        pattern: "preview-scanlines",
       },
     ],
   },

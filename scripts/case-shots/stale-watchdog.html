@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<title>Watchdog — зависшие сделки</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./base.css" />
+<style>
+body { background: #f3efe6; font-family: Inter, sans-serif; color: #2c2416; }
+.wrap { height: 900px; display: flex; flex-direction: column; }
+.top { height: 52px; background: #3b2f1a; color: #f3efe6; display: flex; align-items: center; padding: 0 20px; flex-shrink: 0; }
+.kpis { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; padding: 12px 20px 0; }
+.kpi { background: #fff; padding: 10px 12px; border-radius: 4px; }
+.kpi .l { font-size: 11px; color: #8a7d64; }
+.kpi .v { font-size: 22px; font-weight: 700; }
+table { width: calc(100% - 40px); margin: 12px 20px 0; border-collapse: collapse; background: #fff; font-size: 13px; flex-shrink: 0; }
+th { text-align: left; padding: 8px 12px; background: #ebe4d4; }
+td { padding: 8px 12px; border-top: 1px solid #ebe4d4; }
+.late { background: #fde8e4; }
+.ok { color: #3d6b3a; }
+.bad { color: #a33b2a; font-weight: 700; }
+.bot { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 12px 20px 16px; flex: 1; }
+.box { background: #fff; padding: 12px 14px; }
+.log { font-size: 12.5px; line-height: 1.65; color: #5c5348; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><b>Watchdog</b><span style="margin-left:14px;opacity:.75">простой в CRM · эскалация</span></div>
+<div class="kpis">
+  <div class="kpi"><div class="l">В воронке</div><div class="v">64</div></div>
+  <div class="kpi"><div class="l">За SLA</div><div class="v" style="color:#a33b2a">11</div></div>
+  <div class="kpi"><div class="l">Пингов сегодня</div><div class="v">27</div></div>
+  <div class="kpi"><div class="l">Эскалаций РОП</div><div class="v">4</div></div>
+</div>
+<table>
+  <thead><tr><th>Сделка</th><th>Менеджер</th><th>Стадия</th><th>Тишина</th><th>Действие</th></tr></thead>
+  <tbody>
+    <tr class="late"><td>Клиника «Север»</td><td>Антон</td><td>КП отправлено</td><td class="bad">6д 4ч</td><td>пинг #2 → РОП</td></tr>
+    <tr class="late"><td>Онлайн-школа N</td><td>Мария</td><td>Квалификация</td><td class="bad">3д 11ч</td><td>пинг менеджеру</td></tr>
+    <tr><td>Логистика West</td><td>Илья</td><td>Переговоры</td><td>18ч</td><td class="ok">ещё в SLA</td></tr>
+    <tr class="late"><td>Доставка «Лапша»</td><td>Антон</td><td>Счёт</td><td class="bad">9д</td><td>эскалация вчера</td></tr>
+    <tr><td>Agency Pixel</td><td>Мария</td><td>Новая</td><td>4ч</td><td class="ok">ок</td></tr>
+    <tr class="late"><td>Фитнес Box</td><td>Илья</td><td>КП</td><td class="bad">4д 2ч</td><td>пинг #1</td></tr>
+    <tr><td>Shop Nord</td><td>Антон</td><td>Оплата</td><td>11ч</td><td class="ok">ок</td></tr>
+    <tr class="late"><td>Кафе «Угол»</td><td>Мария</td><td>Квалификация</td><td class="bad">5д</td><td>пинг #2</td></tr>
+    <tr><td>Studio Mute</td><td>Илья</td><td>Новая</td><td>2ч</td><td class="ok">ок</td></tr>
+    <tr class="late"><td>Юрфирма Лето</td><td>Антон</td><td>Счёт</td><td class="bad">7д</td><td>РОП сегодня 09:00</td></tr>
+    <tr><td>Quiet Rooms</td><td>Мария</td><td>КП</td><td>9ч</td><td class="ok">ок</td></tr>
+    <tr class="late"><td>Pasta Bar</td><td>Илья</td><td>Квалификация</td><td class="bad">3д 2ч</td><td>пинг #1</td></tr>
+    <tr><td>Oak Linen</td><td>Антон</td><td>Новая</td><td>1ч</td><td class="ok">ок</td></tr>
+    <tr class="late"><td>Ramen Club</td><td>Мария</td><td>Счёт</td><td class="bad">8д</td><td>эскалация</td></tr>
+  </tbody>
+</table>
+<div class="bot">
+  <div class="box">
+    <div style="font-size:11px;letter-spacing:.12em;color:#8a7d64;margin-bottom:8px">ЦЕПОЧКА</div>
+    1. 48ч без движения → Telegram менеджеру<br/>
+    2. ещё 48ч → повтор<br/>
+    3. → письмо + TG руководителю отдела<br/>
+    4. сделка помечается «заморожена» в CRM
+  </div>
+  <div class="box log">
+    <div style="font-size:11px;letter-spacing:.12em;color:#8a7d64;margin-bottom:8px">ЖУРНАЛ</div>
+    09:01 · пинг Антону · Клиника Север<br/>
+    09:01 · эскалация РОП · Юрфирма Лето<br/>
+    09:12 · Мария ответила · Кафе Угол<br/>
+    10:40 · повтор · Онлайн-школа N<br/>
+    11:02 · Илья двинул Логистика West<br/>
+    12:18 · пинг · Фитнес Box
+  </div>
+</div>
+</div>
+</body>
+</html>

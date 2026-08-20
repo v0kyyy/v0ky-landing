@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>BidRadar — freelance feed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./base.css" />
+<style>
+body { background: #0e1621; color: #e8edf2; font-family: Inter, "Segoe UI", sans-serif; }
+.app { display: grid; grid-template-columns: 250px 1fr 320px; height: 900px; }
+.side { background: #17212b; padding: 16px 14px; border-right: 1px solid #232e3c; }
+.logo { color: #6ab3f3; font-weight: 700; font-size: 18px; }
+h4 { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #6d7f91; margin: 16px 0 8px; }
+.chip { display: inline-block; margin: 0 6px 6px 0; padding: 5px 10px; border-radius: 99px; background: #232e3c; font-size: 12px; }
+.chip.on { background: #2b5278; }
+.feed { padding: 12px 18px; overflow: hidden; display: flex; flex-direction: column; }
+.post { background: #182533; border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; flex: 1; }
+.post .src { font-size: 11px; color: #6ab3f3; }
+.post h3 { font-size: 14px; margin: 2px 0 4px; }
+.post p { font-size: 12.5px; color: #b7c4d1; line-height: 1.4; }
+.pay { margin-top: 6px; color: #6bd49a; font-weight: 600; font-size: 12.5px; }
+.tg { background: #17212b; border-left: 1px solid #232e3c; padding: 12px; }
+.phone { background: #0e1621; border-radius: 24px; border: 8px solid #232e3c; height: 100%; padding: 12px 10px; overflow: hidden; display: flex; flex-direction: column; }
+.msg { background: #182533; border-radius: 12px 12px 12px 4px; padding: 8px 10px; font-size: 12px; margin-bottom: 7px; flex: 1; }
+.msg .t { color: #6ab3f3; font-size: 11px; }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="logo">BidRadar</div>
+    <h4>Boards</h4>
+    <div class="chip on">Kwork</div><div class="chip on">Upwork</div><div class="chip on">FL.ru</div><div class="chip on">Habr Freelance</div>
+    <h4>Keywords</h4>
+    <div class="chip on">python</div><div class="chip on">бот</div><div class="chip on">парсинг</div><div class="chip on">n8n</div><div class="chip on">crm</div>
+    <div class="chip">playwright</div><div class="chip">telegram</div>
+    <h4>Budget</h4>
+    <div class="chip on">≥ 15 000 ₽</div>
+    <div class="chip on">≥ $200</div>
+    <h4>Today</h4>
+    <div style="font-size:13px;line-height:1.7;color:#b7c4d1">matched 23<br/>sent to TG 18<br/>skipped dup 7<br/>low budget 11</div>
+    <div style="margin-top:16px;font-size:12px;color:#6d7f91" class="mono">dedup on · 4 sources<br/>last poll 12s ago<br/>proxy RU/NL rotate</div>
+  </aside>
+  <main class="feed">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <b>Matched jobs · today 23</b>
+      <span style="color:#6bd49a;font-size:12px">● live</span>
+    </div>
+    <div class="post"><div class="src">Kwork · 2 min ago</div><h3>Telegram-бот записи в клинику</h3><p>Слоты врачей, напоминания, оплата. Python / aiogram. Срок 10 дней.</p><div class="pay">бюджет 45 000 ₽</div></div>
+    <div class="post"><div class="src">Upwork · 7 min ago</div><h3>Playwright scraper for marketplace SKUs</h3><p>Daily stock + price crawl, 8 domains, Google Sheet output.</p><div class="pay">$350 fixed</div></div>
+    <div class="post"><div class="src">Habr Freelance · 18 min ago</div><h3>Интеграция amoCRM ↔ WhatsApp</h3><p>Входящие в сделки, распределение менеджеров, без дублей.</p><div class="pay">бюджет 80 000 ₽</div></div>
+    <div class="post"><div class="src">Kwork · 22 min ago</div><h3>Парсер отзывов WB + дашборд</h3><p>50k отзывов / мес, тональность, алерт на брак партии.</p><div class="pay">бюджет 32 000 ₽</div></div>
+    <div class="post"><div class="src">Upwork · 41 min ago</div><h3>n8n hub for 12-person agency</h3><p>Leads, invoices, client reports. Retry + Telegram alerts.</p><div class="pay">$600 fixed</div></div>
+    <div class="post"><div class="src">FL.ru · 1h ago</div><h3>Бот согласования отпусков</h3><p>Telegram, роли, лимиты сумм, календарь.</p><div class="pay">бюджет 28 000 ₽</div></div>
+    <div class="post"><div class="src">Habr · 1h ago</div><h3>Сверка банк ↔ 1С</h3><p>Исключения в таблицу, дайджест бухгалтеру 18:00.</p><div class="pay">бюджет 54 000 ₽</div></div>
+    <div class="post"><div class="src">Kwork · 2h ago</div><h3>Дашборд смен и чаевых</h3><p>Google Sheets + формы, Apps Script в 02:00.</p><div class="pay">бюджет 22 000 ₽</div></div>
+    <div class="post"><div class="src">Upwork · 3h ago</div><h3>Bybit paper bot + Telegram confirms</h3><p>Risk 1%, kill-switch, no live until confirm.</p><div class="pay">$420 fixed</div></div>
+  </main>
+  <aside class="tg">
+    <div class="phone">
+      <div style="text-align:center;font-size:12px;color:#6d7f91;margin-bottom:10px">Telegram · BidRadar</div>
+      <div class="msg"><div class="t">BidRadar bot</div>🆕 Kwork<br/><b>Telegram-бот записи в клинику</b><br/>45 000 ₽ · python, бот</div>
+      <div class="msg"><div class="t">BidRadar bot</div>🆕 Upwork<br/><b>Playwright scraper…</b><br/>$350 · парсинг</div>
+      <div class="msg"><div class="t">BidRadar bot</div>🆕 Habr<br/><b>amoCRM ↔ WhatsApp</b><br/>80 000 ₽ · crm</div>
+      <div class="msg"><div class="t">BidRadar bot</div>🆕 Kwork<br/><b>Парсер отзывов WB</b><br/>32 000 ₽ · парсинг</div>
+      <div class="msg"><div class="t">BidRadar bot</div>🆕 Upwork<br/><b>n8n hub for agency</b><br/>$600 · n8n</div>
+      <div class="msg"><div class="t">BidRadar bot</div>🆕 FL.ru<br/><b>Бот согласования</b><br/>28 000 ₽ · бот</div>
+      <div class="msg"><div class="t">BidRadar bot</div>🆕 Habr<br/><b>Сверка банк ↔ 1С</b><br/>54 000 ₽ · 1c</div>
+      <div class="msg"><div class="t">BidRadar bot</div>🆕 Kwork<br/><b>Дашборд смен</b><br/>22 000 ₽ · sheets</div>
+      <div class="msg"><div class="t">BidRadar bot</div>🆕 Upwork<br/><b>Bybit paper bot</b><br/>$420 · trading</div>
+    </div>
+  </aside>
+</div>
+</body>
+</html>

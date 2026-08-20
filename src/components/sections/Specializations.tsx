@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Layers, Plus, X } from "lucide-react";
 import { useGSAP } from "@gsap/react";
@@ -8,7 +10,10 @@ import { gsap } from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/scroll";
 import { useTilt } from "@/lib/useTilt";
 import SectionHeading, { SectionWatermark } from "@/components/ui/SectionHeading";
-import { specializations, type Specialization } from "@/data/specializations";
+import {
+  specializations,
+  type Specialization,
+} from "@/data/specializations";
 import { useI18n } from "@/components/providers/LocaleProvider";
 
 const contentVariants = {
@@ -34,8 +39,8 @@ function SpecCard({
   const { locale, t } = useI18n();
   const cardRef = useRef<HTMLDivElement>(null);
   const tiltRef = useTilt<HTMLDivElement>(3, !expanded);
+  const [shot, setShot] = useState<{ src: string; alt: string } | null>(null);
 
-  // при раскрытии подводим карточку в вьюпорт
   useEffect(() => {
     if (!expanded) return;
     const el = cardRef.current;
@@ -46,15 +51,19 @@ function SpecCard({
     return () => clearTimeout(timer);
   }, [expanded]);
 
-  // Escape закрывает раскрытую панель
   useEffect(() => {
-    if (!expanded) return;
+    if (!expanded && !shot) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onToggle();
+      if (e.key !== "Escape") return;
+      if (shot) {
+        setShot(null);
+        return;
+      }
+      onToggle();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [expanded, onToggle]);
+  }, [expanded, onToggle, shot]);
 
   return (
     <motion.div
@@ -69,7 +78,6 @@ function SpecCard({
             : "border-line hover:border-accent/40"
       }`}
     >
-      {/* красный градиентный glow в углу при hover */}
       <div
         className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-accent/15 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
         aria-hidden
@@ -150,24 +158,57 @@ function SpecCard({
                   animate="visible"
                   className="flex flex-col overflow-hidden rounded-xl border border-line bg-surface"
                 >
-                  {/* абстрактное превью в чёрно-красной гамме — чистый CSS-паттерн */}
-                  <div
-                    className={`relative h-24 ${project.pattern}`}
-                    style={{
-                      background:
-                        "radial-gradient(80% 120% at 80% 0%, rgba(74,14,14,0.55), rgba(8,8,10,0.9))",
-                    }}
-                    aria-hidden
-                  >
-                    <div className={`absolute inset-0 ${project.pattern}`} />
-                    <span className="absolute bottom-2 right-3 font-mono text-[9px] uppercase tracking-[0.25em] text-dim">
-                      case_{spec.num}.{i + 1}
-                    </span>
-                  </div>
+                  {project.image ? (
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setShot({ src: project.image!, alt: project.name[locale] })
+                      }
+                      data-cursor-text={t.specs.openShot}
+                      className="relative aspect-[16/10] w-full overflow-hidden bg-black text-left"
+                    >
+                      <Image
+                        src={project.image}
+                        alt={project.name[locale]}
+                        fill
+                        sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw"
+                        className="object-cover object-[center_12%]"
+                      />
+                    </button>
+                  ) : (
+                    <div
+                      className={`relative h-52 ${project.pattern}`}
+                      style={{
+                        background:
+                          "radial-gradient(80% 120% at 80% 0%, rgba(74,14,14,0.55), rgba(8,8,10,0.9))",
+                      }}
+                      aria-hidden
+                    >
+                      <div className={`absolute inset-0 ${project.pattern}`} />
+                      <span className="absolute bottom-2 right-3 font-mono text-[9px] uppercase tracking-[0.25em] text-dim">
+                        case_{spec.num}.{i + 1}
+                      </span>
+                    </div>
+                  )}
                   <div className="flex flex-1 flex-col p-5">
-                    <h4 className="text-sm font-semibold leading-snug text-fg">{project.name[locale]}</h4>
+                    <div className="flex items-start justify-between gap-2">
+                      <h4 className="text-sm font-semibold leading-snug text-fg">
+                        {project.name[locale]}
+                      </h4>
+                      {project.demo ? (
+                        <span className="shrink-0 rounded border border-line px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.16em] text-dim">
+                          {t.specs.demo}
+                        </span>
+                      ) : null}
+                    </div>
                     <p className="mt-2.5 flex-1 text-[13px] leading-relaxed text-muted">
                       {project.description[locale]}
+                    </p>
+                    <p className="mt-3 text-[12px] leading-snug text-fg/90">
+                      <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-accent">
+                        {t.specs.result}
+                      </span>
+                      <span className="mt-1 block">{project.result[locale]}</span>
                     </p>
                     <div className="mt-4 flex flex-wrap gap-1.5">
                       {project.stack.map((tech) => (
@@ -186,6 +227,36 @@ function SpecCard({
           </motion.div>
         )}
       </AnimatePresence>
+
+      {shot
+        ? createPortal(
+            <div
+              className="fixed inset-0 z-[220] flex items-center justify-center bg-black/80 p-4 md:p-10"
+              onClick={() => setShot(null)}
+              role="dialog"
+              aria-modal="true"
+              aria-label={t.specs.closeShot}
+            >
+              <button
+                type="button"
+                onClick={() => setShot(null)}
+                aria-label={t.specs.closeShot}
+                className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full border border-line bg-surface-deep text-muted transition-colors hover:border-accent hover:text-accent"
+              >
+                <X size={16} />
+              </button>
+              <Image
+                src={shot.src}
+                alt={shot.alt}
+                width={1440}
+                height={900}
+                className="max-h-[90vh] w-auto max-w-full rounded-lg border border-line shadow-[0_24px_80px_rgba(0,0,0,0.55)]"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </div>,
+            document.body
+          )
+        : null}
     </motion.div>
   );
 }
@@ -227,10 +298,8 @@ export default function Specializations() {
         title={t.specs.title}
       />
 
-      <div ref={gridRef} className="relative z-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <div ref={gridRef} className="relative z-10 mt-8 grid gap-5 md:mt-12 md:grid-cols-2 lg:grid-cols-3">
         {specializations.map((spec) => (
-          /* обёртка — цель GSAP-анимации входа: без CSS-transition и без framer,
-             чтобы не конфликтовать ни с transition на opacity, ни с layout-проекцией */
           <div
             key={spec.id}
             className={expanded === spec.id ? "md:col-span-2 lg:col-span-3" : ""}

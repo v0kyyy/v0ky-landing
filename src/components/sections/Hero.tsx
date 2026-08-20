@@ -136,7 +136,7 @@ export default function Hero() {
 
       <div
         ref={innerRef}
-        className="relative z-10 mx-auto grid w-full max-w-6xl gap-14 px-6 pb-28 pt-36 md:grid-cols-[1.05fr_0.95fr] md:items-center lg:px-8"
+        className="relative z-10 mx-auto grid w-full max-w-6xl gap-14 px-6 pb-28 pt-36 md:grid-cols-[1.05fr_0.95fr] md:items-center md:pb-40 lg:px-8"
       >
         {/* ---- Левая колонка ---- */}
         <div>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<title>Unitboard — WB / Ozon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./base.css" />
+<style>
+body { background: #f5f6f8; font-family: Inter, sans-serif; color: #1a1a1a; }
+.wrap { height: 900px; display: flex; flex-direction: column; }
+.top { height: 52px; background: #fff; border-bottom: 1px solid #e6e8ee; display: flex; align-items: center; padding: 0 20px; gap: 12px; flex-shrink: 0; }
+.app { display: grid; grid-template-columns: 200px 1fr; flex: 1; min-height: 0; }
+.nav { background: #fff; border-right: 1px solid #e6e8ee; padding: 14px; }
+.n { padding: 8px 10px; border-radius: 8px; font-size: 13px; color: #555; }
+.n.on { background: #f3e8ff; color: #7a3cff; font-weight: 600; }
+main { display: flex; flex-direction: column; min-height: 0; }
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 12px 16px 8px; flex-shrink: 0; }
+.kpi { background: #fff; border-radius: 12px; padding: 12px; }
+.kpi .l { font-size: 12px; color: #7a7f8c; }
+.kpi .v { font-size: 22px; font-weight: 700; }
+.wb { color: #7a3cff; }
+table { width: calc(100% - 32px); margin: 0 16px 16px; background: #fff; border-collapse: collapse; border-radius: 12px; overflow: hidden; font-size: 12.5px; flex: 1; }
+th { text-align: left; padding: 8px 12px; color: #7a7f8c; font-weight: 500; background: #fafafb; }
+td { padding: 7px 12px; border-top: 1px solid #f0f1f4; }
+.pill { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 99px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top">
+  <b>Unitboard</b>
+  <span class="pill" style="background:#f3e8ff;color:#7a3cff">WB</span>
+  <span class="pill" style="background:#e8f0ff;color:#005bff">Ozon</span>
+  <span style="margin-left:auto;font-size:13px;color:#7a7f8c">юнит-экономика после комиссий, логистики, рекламы</span>
+</div>
+<div class="app">
+  <aside class="nav">
+    <div class="n on">Сводка</div>
+    <div class="n">SKU</div>
+    <div class="n">Реклама</div>
+    <div class="n">Остатки</div>
+    <div class="n">Возвраты</div>
+    <div class="n">FBO / FBS</div>
+    <div class="n">Алерты</div>
+    <div style="margin-top:20px;font-size:12px;color:#7a7f8c;line-height:1.55">Синк 15 мин<br/>WB API + Ozon<br/>реклама из кабинетов<br/><br/>SKU в минусе: 7<br/>скрыто: 2</div>
+  </aside>
+  <main>
+    <div class="kpis">
+      <div class="kpi"><div class="l">Выручка 7д</div><div class="v">1,84 млн</div></div>
+      <div class="kpi"><div class="l">Маржа после всего</div><div class="v wb">18.4%</div></div>
+      <div class="kpi"><div class="l">ДРР</div><div class="v">9.1%</div></div>
+      <div class="kpi"><div class="l">SKU в минусе</div><div class="v" style="color:#c0392b">7</div></div>
+    </div>
+    <table>
+      <thead><tr><th>SKU</th><th>Канал</th><th>Продажи</th><th>Комиссия</th><th>Логистика</th><th>Реклама</th><th>Маржа</th></tr></thead>
+      <tbody>
+        <tr><td>Кроссовки Nova-2</td><td><span class="pill" style="background:#f3e8ff;color:#7a3cff">WB</span></td><td>312</td><td>18%</td><td>86 ₽</td><td>42 ₽</td><td style="color:#1a8f4a;font-weight:600">24%</td></tr>
+        <tr><td>Кроссовки Nova-2</td><td><span class="pill" style="background:#e8f0ff;color:#005bff">Ozon</span></td><td>188</td><td>15%</td><td>94 ₽</td><td>51 ₽</td><td style="color:#1a8f4a;font-weight:600">21%</td></tr>
+        <tr><td>Рюкзак Air 20L</td><td><span class="pill" style="background:#f3e8ff;color:#7a3cff">WB</span></td><td>90</td><td>20%</td><td>102 ₽</td><td>88 ₽</td><td style="color:#c0392b;font-weight:600">-3%</td></tr>
+        <tr><td>Носки pack 3</td><td><span class="pill" style="background:#e8f0ff;color:#005bff">Ozon</span></td><td>540</td><td>12%</td><td>28 ₽</td><td>11 ₽</td><td style="color:#1a8f4a;font-weight:600">31%</td></tr>
+        <tr><td>Куртка Wind</td><td><span class="pill" style="background:#f3e8ff;color:#7a3cff">WB</span></td><td>44</td><td>22%</td><td>210 ₽</td><td>160 ₽</td><td style="color:#c0392b;font-weight:600">-8%</td></tr>
+        <tr><td>Ремень Classic</td><td><span class="pill" style="background:#e8f0ff;color:#005bff">Ozon</span></td><td>210</td><td>14%</td><td>41 ₽</td><td>18 ₽</td><td style="color:#1a8f4a;font-weight:600">27%</td></tr>
+        <tr><td>Кепка Navy</td><td><span class="pill" style="background:#f3e8ff;color:#7a3cff">WB</span></td><td>96</td><td>19%</td><td>52 ₽</td><td>33 ₽</td><td style="color:#1a8f4a;font-weight:600">16%</td></tr>
+        <tr><td>Футболка Basic</td><td><span class="pill" style="background:#e8f0ff;color:#005bff">Ozon</span></td><td>420</td><td>12%</td><td>24 ₽</td><td>9 ₽</td><td style="color:#1a8f4a;font-weight:600">34%</td></tr>
+        <tr><td>Штаны Tech</td><td><span class="pill" style="background:#f3e8ff;color:#7a3cff">WB</span></td><td>71</td><td>21%</td><td>118 ₽</td><td>90 ₽</td><td style="color:#c0392b;font-weight:600">-2%</td></tr>
+        <tr><td>Сумка Mini</td><td><span class="pill" style="background:#e8f0ff;color:#005bff">Ozon</span></td><td>133</td><td>16%</td><td>67 ₽</td><td>40 ₽</td><td style="color:#1a8f4a;font-weight:600">19%</td></tr>
+        <tr><td>Шарф Wool</td><td><span class="pill" style="background:#f3e8ff;color:#7a3cff">WB</span></td><td>58</td><td>18%</td><td>39 ₽</td><td>22 ₽</td><td style="color:#1a8f4a;font-weight:600">22%</td></tr>
+        <tr><td>Очки Day</td><td><span class="pill" style="background:#e8f0ff;color:#005bff">Ozon</span></td><td>40</td><td>20%</td><td>88 ₽</td><td>70 ₽</td><td style="color:#c0392b;font-weight:600">-5%</td></tr>
+        <tr><td>Носки pack 5</td><td><span class="pill" style="background:#f3e8ff;color:#7a3cff">WB</span></td><td>610</td><td>11%</td><td>19 ₽</td><td>7 ₽</td><td style="color:#1a8f4a;font-weight:600">36%</td></tr>
+        <tr><td>Худи Graphite</td><td><span class="pill" style="background:#e8f0ff;color:#005bff">Ozon</span></td><td>27</td><td>17%</td><td>96 ₽</td><td>81 ₽</td><td style="color:#c0392b;font-weight:600">-1%</td></tr>
+        <tr><td>Слипоны White</td><td><span class="pill" style="background:#f3e8ff;color:#7a3cff">WB</span></td><td>12</td><td>19%</td><td>140 ₽</td><td>110 ₽</td><td style="color:#c0392b;font-weight:600">-11%</td></tr>
+        <tr><td>Ремень Slim</td><td><span class="pill" style="background:#e8f0ff;color:#005bff">Ozon</span></td><td>88</td><td>13%</td><td>36 ₽</td><td>14 ₽</td><td style="color:#1a8f4a;font-weight:600">29%</td></tr>
+        <tr><td>Худи Graphite</td><td><span class="pill" style="background:#f3e8ff;color:#7a3cff">WB</span></td><td>19</td><td>20%</td><td>108 ₽</td><td>92 ₽</td><td style="color:#c0392b;font-weight:600">-4%</td></tr>
+        <tr><td>Носки pack 7</td><td><span class="pill" style="background:#e8f0ff;color:#005bff">Ozon</span></td><td>280</td><td>11%</td><td>22 ₽</td><td>8 ₽</td><td style="color:#1a8f4a;font-weight:600">33%</td></tr>
+        <tr><td>Кепка Red</td><td><span class="pill" style="background:#f3e8ff;color:#7a3cff">WB</span></td><td>51</td><td>18%</td><td>48 ₽</td><td>21 ₽</td><td style="color:#1a8f4a;font-weight:600">17%</td></tr>
+        <tr><td>Джинсовка</td><td><span class="pill" style="background:#e8f0ff;color:#005bff">Ozon</span></td><td>23</td><td>16%</td><td>126 ₽</td><td>99 ₽</td><td style="color:#c0392b;font-weight:600">-6%</td></tr>
+        <tr><td>Перчатки Black</td><td><span class="pill" style="background:#f3e8ff;color:#7a3cff">WB</span></td><td>74</td><td>15%</td><td>31 ₽</td><td>12 ₽</td><td style="color:#1a8f4a;font-weight:600">26%</td></tr>
+        <tr><td>Часы Steel</td><td><span class="pill" style="background:#e8f0ff;color:#005bff">Ozon</span></td><td>9</td><td>18%</td><td>72 ₽</td><td>95 ₽</td><td style="color:#c0392b;font-weight:600">-9%</td></tr>
+        <tr><td>Шарф Wool</td><td><span class="pill" style="background:#e8f0ff;color:#005bff">Ozon</span></td><td>41</td><td>14%</td><td>44 ₽</td><td>19 ₽</td><td style="color:#1a8f4a;font-weight:600">21%</td></tr>
+        <tr><td>Футболка Basic</td><td><span class="pill" style="background:#f3e8ff;color:#7a3cff">WB</span></td><td>198</td><td>12%</td><td>26 ₽</td><td>11 ₽</td><td style="color:#1a8f4a;font-weight:600">32%</td></tr>
+        <tr><td>Куртка Wind</td><td><span class="pill" style="background:#e8f0ff;color:#005bff">Ozon</span></td><td>18</td><td>21%</td><td>198 ₽</td><td>140 ₽</td><td style="color:#c0392b;font-weight:600">-7%</td></tr>
+        <tr><td>Сумка Mini</td><td><span class="pill" style="background:#f3e8ff;color:#7a3cff">WB</span></td><td>61</td><td>16%</td><td>71 ₽</td><td>38 ₽</td><td style="color:#1a8f4a;font-weight:600">18%</td></tr>
+        <tr><td>Кроссовки Nova-2</td><td><span class="pill" style="background:#e8f0ff;color:#005bff">Ozon</span></td><td>104</td><td>15%</td><td>91 ₽</td><td>47 ₽</td><td style="color:#1a8f4a;font-weight:600">20%</td></tr>
+        <tr><td>Носки pack 3</td><td><span class="pill" style="background:#f3e8ff;color:#7a3cff">WB</span></td><td>390</td><td>11%</td><td>21 ₽</td><td>9 ₽</td><td style="color:#1a8f4a;font-weight:600">35%</td></tr>
+      </tbody>
+    </table>
+  </main>
+</div>
+</div>
+</body>
+</html>

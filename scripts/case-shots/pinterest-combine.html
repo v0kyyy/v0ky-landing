@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>PinForge — account pool</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./base.css" />
+<style>
+body { background: #fff; font-family: Inter, "Segoe UI", sans-serif; color: #111; }
+.wrap { height: 900px; display: flex; flex-direction: column; }
+.top { height: 56px; border-bottom: 1px solid #e9e9e9; display: flex; align-items: center; padding: 0 20px; gap: 16px; flex-shrink: 0; }
+.logo { width: 32px; height: 32px; background: #e60023; color: #fff; border-radius: 8px; display: grid; place-items: center; font-weight: 800; }
+.search { flex: 1; max-width: 420px; background: #f0f0f0; border-radius: 99px; padding: 9px 16px; color: #767676; font-size: 14px; }
+.grid { display: grid; grid-template-columns: 240px 1fr; flex: 1; min-height: 0; }
+.side { padding: 12px 14px; border-right: 1px solid #eee; overflow: hidden; }
+.acc { display: flex; gap: 10px; align-items: center; padding: 7px 8px; border-radius: 12px; }
+.acc.on { background: #f5f5f5; }
+.dot { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; }
+.pins { padding: 10px 12px; column-count: 5; column-gap: 10px; }
+.pin { break-inside: avoid; margin-bottom: 10px; border-radius: 14px; overflow: hidden; background: #efefef; }
+.ph { width: 100%; }
+.p1 { height: 132px; background: linear-gradient(160deg,#e60023,#ff8a00); }
+.p2 { height: 168px; background: linear-gradient(160deg,#0f766e,#99f6e4); }
+.p3 { height: 114px; background: linear-gradient(160deg,#1d4ed8,#93c5fd); }
+.p4 { height: 148px; background: linear-gradient(160deg,#a21caf,#f0abfc); }
+.p5 { height: 124px; background: linear-gradient(160deg,#854d0e,#fde68a); }
+.p6 { height: 140px; background: linear-gradient(160deg,#9f1239,#fda4af); }
+.cap { padding: 7px 9px 10px; font-size: 12px; background: #fff; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top">
+  <div class="logo">P</div>
+  <b>PinForge</b>
+  <div class="search">interior moodboard · scheduled</div>
+  <span style="margin-left:auto;font-size:13px;color:#767676">pool 24 accounts · 18 posting today</span>
+</div>
+<div class="grid">
+  <aside class="side">
+    <div style="font-size:11px;color:#767676;margin-bottom:8px">ACCOUNT POOL</div>
+    <div class="acc on"><div class="dot" style="background:#e60023"></div><div><b>atelier.nord</b><div style="font-size:11px;color:#767676">warm · 14d · 42 pins</div></div></div>
+    <div class="acc"><div class="dot" style="background:#0f766e"></div><div><b>loft.daily</b><div style="font-size:11px;color:#767676">warm · 9d · 31 pins</div></div></div>
+    <div class="acc"><div class="dot" style="background:#1d4ed8"></div><div><b>quiet.rooms</b><div style="font-size:11px;color:#767676">new · 2d · 8 pins</div></div></div>
+    <div class="acc"><div class="dot" style="background:#a21caf"></div><div><b>oak.and.linen</b><div style="font-size:11px;color:#767676">warm · 21d · 67 pins</div></div></div>
+    <div class="acc"><div class="dot" style="background:#854d0e"></div><div><b>studio.mute</b><div style="font-size:11px;color:#767676">posting now</div></div></div>
+    <div class="acc"><div class="dot" style="background:#be185d"></div><div><b>sage.walls</b><div style="font-size:11px;color:#767676">warm · 11d</div></div></div>
+    <div class="acc"><div class="dot" style="background:#0ea5e9"></div><div><b>tile.mood</b><div style="font-size:11px;color:#767676">warmup · 5d</div></div></div>
+    <div class="acc"><div class="dot" style="background:#65a30d"></div><div><b>entry.bench</b><div style="font-size:11px;color:#767676">warm · 18d</div></div></div>
+    <div class="acc"><div class="dot" style="background:#7c3aed"></div><div><b>lamp.set</b><div style="font-size:11px;color:#767676">scheduled</div></div></div>
+    <div style="margin-top:12px;font-size:12px;line-height:1.45;color:#767676">Cycle: register → warmup → AI pins → schedule. 18 of 24 posting today. No manual publish.</div>
+  </aside>
+  <div class="pins">
+    <div class="pin"><div class="ph p1"></div><div class="cap">Warm oak kitchen · 9:16</div></div>
+    <div class="pin"><div class="ph p2"></div><div class="cap">Bathroom tile mood</div></div>
+    <div class="pin"><div class="ph p3"></div><div class="cap">Reading nook lighting</div></div>
+    <div class="pin"><div class="ph p4"></div><div class="cap">Textile close-up</div></div>
+    <div class="pin"><div class="ph p5"></div><div class="cap">Entryway bench ideas</div></div>
+    <div class="pin"><div class="ph p6"></div><div class="cap">Evening lamp set</div></div>
+    <div class="pin"><div class="ph p3" style="height:120px"></div><div class="cap">Shelf styling 01</div></div>
+    <div class="pin"><div class="ph p2" style="height:96px"></div><div class="cap">Sage wall paint</div></div>
+    <div class="pin"><div class="ph p1" style="height:128px"></div><div class="cap">Terracotta floor</div></div>
+    <div class="pin"><div class="ph p5" style="height:90px"></div><div class="cap">Linen curtains</div></div>
+    <div class="pin"><div class="ph p4" style="height:108px"></div><div class="cap">Coffee corner oak</div></div>
+    <div class="pin"><div class="ph p6" style="height:118px"></div><div class="cap">Hallway runner</div></div>
+    <div class="pin"><div class="ph p2" style="height:100px"></div><div class="cap">Matte black fixtures</div></div>
+    <div class="pin"><div class="ph p1" style="height:112px"></div><div class="cap">Breakfast nook</div></div>
+    <div class="pin"><div class="ph p3" style="height:94px"></div><div class="cap">Open shelf pantry</div></div>
+    <div class="pin"><div class="ph p5" style="height:122px"></div><div class="cap">Wool throw stack</div></div>
+    <div class="pin"><div class="ph p4" style="height:88px"></div><div class="cap">Window seat</div></div>
+    <div class="pin"><div class="ph p6" style="height:104px"></div><div class="cap">Clay vase set</div></div>
+    <div class="pin"><div class="ph p2" style="height:116px"></div><div class="cap">Spa bath palette</div></div>
+    <div class="pin"><div class="ph p1" style="height:98px"></div><div class="cap">Dining table oak</div></div>
+    <div class="pin"><div class="ph p3" style="height:110px"></div><div class="cap">Plant shelf mix</div></div>
+    <div class="pin"><div class="ph p5" style="height:128px"></div><div class="cap">Stone sink</div></div>
+    <div class="pin"><div class="ph p2" style="height:104px"></div><div class="cap">Soft grid tiles</div></div>
+    <div class="pin"><div class="ph p6" style="height:118px"></div><div class="cap">Evening sofa</div></div>
+    <div class="pin"><div class="ph p4" style="height:96px"></div><div class="cap">Brass hardware</div></div>
+  </div>
+</div>
+</div>
+</body>
+</html>

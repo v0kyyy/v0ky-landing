@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Framewell — Envato ingest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./base.css" />
+<style>
+body { background: #f4efe6; color: #2a2420; font-family: Inter, "Segoe UI", sans-serif; }
+.wrap { display: grid; grid-template-columns: 220px 1fr 280px; grid-template-rows: 52px 1fr; height: 900px; }
+.side { grid-column: 1; grid-row: 1 / -1; background: #2a1f3d; color: #efe8f8; padding: 18px 14px; }
+.brand { font-weight: 700; font-size: 18px; letter-spacing: -0.03em; }
+.brand span { color: #c4a0ff; }
+.side h4 { margin: 16px 0 6px; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #9b8bb3; }
+.item { padding: 7px 10px; border-radius: 8px; font-size: 13px; color: #d9ccec; }
+.item.on { background: #3d2d58; color: #fff; }
+.item b { float: right; color: #c4a0ff; font-weight: 600; }
+.top { grid-column: 2 / -1; grid-row: 1; display: flex; align-items: center; gap: 16px; padding: 0 20px; background: #fff; border-bottom: 1px solid #e6dccf; }
+.live { background: #efe4ff; color: #6b3cc9; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 99px; }
+.main { grid-column: 2; grid-row: 2; padding: 12px 16px; overflow: hidden; min-height: 0; }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr); gap: 10px; height: 100%; }
+.card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 0 #e6dccf; display: flex; flex-direction: column; min-height: 0; }
+.thumb { flex: 1; min-height: 70px; }
+.t1 { background: linear-gradient(135deg,#5b2d8e,#c4a0ff); }
+.t2 { background: linear-gradient(135deg,#1d4e4a,#7ad4c4); }
+.t3 { background: linear-gradient(135deg,#8a2e1c,#f0a07a); }
+.t4 { background: linear-gradient(135deg,#1c3a6e,#7aa7f0); }
+.t5 { background: linear-gradient(135deg,#6a4a12,#e8c56a); }
+.t6 { background: linear-gradient(135deg,#3a1d4e,#e07ad4); }
+.t7 { background: linear-gradient(135deg,#12401f,#7ad48a); }
+.t8 { background: linear-gradient(135deg,#4e1d2a,#f07a9a); }
+.meta { padding: 8px 10px 10px; }
+.meta p { font-size: 12px; font-weight: 600; }
+.tag { display: inline-block; margin-top: 4px; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 99px; }
+.v { background: #efe4ff; color: #6b3cc9; }
+.a { background: #e4f4ef; color: #1d6b52; }
+.m { background: #fbeee4; color: #a8521d; }
+.queue { grid-column: 3; grid-row: 2; background: #fff; border-left: 1px solid #e6dccf; padding: 12px 14px; overflow: hidden; display: flex; flex-direction: column; }
+.queue h3 { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8a7d70; margin-bottom: 10px; flex-shrink: 0; }
+.job { border: 1px solid #eadfce; border-radius: 10px; padding: 8px 10px; margin-bottom: 7px; font-size: 12px; flex: 1; }
+.job .st { color: #1d6b52; font-weight: 600; font-size: 11px; }
+.bar { height: 4px; background: #efe4ff; border-radius: 99px; margin-top: 6px; }
+.bar i { display: block; height: 100%; background: #7c3aed; border-radius: 99px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <aside class="side">
+    <div class="brand">Frame<span>well</span></div>
+    <h4>Libraries</h4>
+    <div class="item on">Video footage <b>148</b></div>
+    <div class="item">Music beds <b>91</b></div>
+    <div class="item">Motion graphics <b>54</b></div>
+    <div class="item">Photos <b>19</b></div>
+    <div class="item">SFX packs <b>33</b></div>
+    <h4>Rules</h4>
+    <div class="item">Vertical 9:16</div>
+    <div class="item">No logos in frame</div>
+    <div class="item">BPM 90–128</div>
+    <div class="item">Safe zone titles</div>
+    <h4>Workers</h4>
+    <div class="item">ffmpeg <b>4/6</b></div>
+    <div class="item">whisper <b>1/2</b></div>
+    <div class="item">poll 8 min</div>
+  </aside>
+  <div class="top">
+    <div style="font-weight:650;font-size:15px">Envato ingest <span style="color:#8a7d70;font-weight:500">/ Elements · last 24h</span></div>
+    <span class="live">CLASSIFYING</span>
+    <div style="margin-left:auto;font-size:13px;color:#8a7d70">312 units ready · 18 in ffmpeg</div>
+  </div>
+  <main class="main">
+    <div class="grid">
+      <div class="card"><div class="thumb t1"></div><div class="meta"><p>city_night_4k_021</p><span class="tag v">video · b-roll</span></div></div>
+      <div class="card"><div class="thumb t2"></div><div class="meta"><p>lofi_bed_118bpm</p><span class="tag a">audio · cut</span></div></div>
+      <div class="card"><div class="thumb t3"></div><div class="meta"><p>food_macro_slowmo</p><span class="tag v">video · food</span></div></div>
+      <div class="card"><div class="thumb t4"></div><div class="meta"><p>lower_third_pack</p><span class="tag m">gfx · titles</span></div></div>
+      <div class="card"><div class="thumb t5"></div><div class="meta"><p>sunrise_drone_01</p><span class="tag v">video · aerial</span></div></div>
+      <div class="card"><div class="thumb t6"></div><div class="meta"><p>glitch_transition</p><span class="tag m">gfx · trans</span></div></div>
+      <div class="card"><div class="thumb t7"></div><div class="meta"><p>podcast_roomtone</p><span class="tag a">audio · fx</span></div></div>
+      <div class="card"><div class="thumb t8"></div><div class="meta"><p>hands_typing_4k</p><span class="tag v">video · b-roll</span></div></div>
+      <div class="card"><div class="thumb t2"></div><div class="meta"><p>office_broll_wide</p><span class="tag v">video · office</span></div></div>
+      <div class="card"><div class="thumb t4"></div><div class="meta"><p>whoosh_pack_12</p><span class="tag a">audio · sfx</span></div></div>
+      <div class="card"><div class="thumb t1"></div><div class="meta"><p>caption_kit_v3</p><span class="tag m">gfx · type</span></div></div>
+      <div class="card"><div class="thumb t3"></div><div class="meta"><p>kitchen_steam_4k</p><span class="tag v">video · food</span></div></div>
+      <div class="card"><div class="thumb t7"></div><div class="meta"><p>rain_window_loop</p><span class="tag v">video · loop</span></div></div>
+      <div class="card"><div class="thumb t5"></div><div class="meta"><p>piano_bed_92bpm</p><span class="tag a">audio · bed</span></div></div>
+      <div class="card"><div class="thumb t8"></div><div class="meta"><p>endcard_pack</p><span class="tag m">gfx · end</span></div></div>
+      <div class="card"><div class="thumb t6"></div><div class="meta"><p>crowd_night_wide</p><span class="tag v">video · crowd</span></div></div>
+    </div>
+  </main>
+  <aside class="queue">
+    <h3>Post pipeline</h3>
+    <div class="job"><div class="st">RUNNING</div>cut · city_night_4k_021 → 9:16<div class="bar"><i style="width:72%"></i></div></div>
+    <div class="job"><div class="st">RUNNING</div>stitch · lofi_bed + voiceover<div class="bar"><i style="width:40%"></i></div></div>
+    <div class="job"><div class="st">RUNNING</div>whisper · podcast_roomtone<div class="bar"><i style="width:18%"></i></div></div>
+    <div class="job"><div class="st" style="color:#8a7d70">QUEUED</div>normalize · food_macro_slowmo<div class="bar"><i style="width:0"></i></div></div>
+    <div class="job"><div class="st" style="color:#8a7d70">QUEUED</div>export · lower_third_pack<div class="bar"><i style="width:0"></i></div></div>
+    <div class="job"><div class="st" style="color:#8a7d70">QUEUED</div>crop · sunrise_drone_01<div class="bar"><i style="width:0"></i></div></div>
+    <div class="job"><div class="st" style="color:#8a7d70">QUEUED</div>loudnorm · whoosh_pack_12<div class="bar"><i style="width:0"></i></div></div>
+    <div class="job"><div class="st" style="color:#1d6b52">DONE</div>hands_typing_4k → library</div>
+    <div class="job"><div class="st" style="color:#1d6b52">DONE</div>glitch_transition → gfx</div>
+    <div style="margin-top:10px;font-size:12px;color:#8a7d70" class="mono">ffmpeg workers 4/6<br/>Envato poll every 8 min<br/>312 ready / 18 in flight</div>
+  </aside>
+</div>
+</body>
+</html>

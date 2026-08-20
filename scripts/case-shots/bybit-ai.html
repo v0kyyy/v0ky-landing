@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Helix — Bybit AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./base.css" />
+<style>
+body { background: #0b0e11; color: #eaecef; font-family: "IBM Plex Sans", sans-serif; }
+.mono { font-family: "IBM Plex Mono", monospace; }
+.wrap { height: 900px; display: flex; flex-direction: column; }
+.top { height: 48px; background: #12161c; display: flex; align-items: center; padding: 0 16px; gap: 18px; border-bottom: 1px solid #1e2329; font-size: 13px; flex-shrink: 0; }
+.yel { color: #f7a600; }
+.gr { color: #0ecb81; }
+.rd { color: #f6465d; }
+.app { display: grid; grid-template-columns: 1fr 260px 300px; flex: 1; min-height: 0; }
+.chart { padding: 8px 12px; display: flex; flex-direction: column; }
+.candles { display: flex; align-items: stretch; gap: 4px; flex: 1; padding: 12px 4px 8px; min-height: 0; background-image: repeating-linear-gradient(to bottom, transparent 0 44px, #1a1f27 44px 45px), repeating-linear-gradient(to right, transparent 0 48px, #161b22 48px 49px); }
+.c { width: 12px; position: relative; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
+.c i { display: block; width: 2px; background: currentColor; margin: 0 auto; }
+.c b { display: block; width: 12px; margin: -1px auto; }
+.book { border-left: 1px solid #1e2329; padding: 10px 12px; font-size: 12px; display: flex; flex-direction: column; }
+.row { display: flex; justify-content: space-between; padding: 2px 0; flex: 1; align-items: center; }
+.ai { background: #12161c; border-left: 1px solid #1e2329; padding: 14px; display: flex; flex-direction: column; }
+.btn { margin-top: 12px; width: 100%; background: #0ecb81; color: #0b0e11; border: 0; padding: 11px; font-weight: 700; border-radius: 4px; }
+.fills { margin-top: 10px; border-top: 1px solid #1e2329; padding-top: 8px; font-size: 12px; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top">
+  <b class="yel">HELIX</b>
+  <span>BTCUSDT · Perp</span>
+  <span class="gr">48 241.6</span>
+  <span class="rd">-0.42%</span>
+  <span style="margin-left:auto;color:#848e9c">risk 1.2% · AI core v3 · paper→live</span>
+</div>
+<div class="app">
+  <section class="chart">
+    <div class="candles">
+      <div class="c gr"><i style="height:38%"></i><b style="height:18%;background:#0ecb81"></b></div>
+      <div class="c rd"><i style="height:58%"></i><b style="height:28%;background:#f6465d"></b></div>
+      <div class="c gr"><i style="height:46%"></i><b style="height:20%;background:#0ecb81"></b></div>
+      <div class="c gr"><i style="height:72%"></i><b style="height:34%;background:#0ecb81"></b></div>
+      <div class="c rd"><i style="height:54%"></i><b style="height:24%;background:#f6465d"></b></div>
+      <div class="c rd"><i style="height:36%"></i><b style="height:14%;background:#f6465d"></b></div>
+      <div class="c gr"><i style="height:82%"></i><b style="height:40%;background:#0ecb81"></b></div>
+      <div class="c gr"><i style="height:62%"></i><b style="height:24%;background:#0ecb81"></b></div>
+      <div class="c rd"><i style="height:76%"></i><b style="height:32%;background:#f6465d"></b></div>
+      <div class="c gr"><i style="height:50%"></i><b style="height:20%;background:#0ecb81"></b></div>
+      <div class="c gr"><i style="height:90%"></i><b style="height:42%;background:#0ecb81"></b></div>
+      <div class="c rd"><i style="height:32%"></i><b style="height:12%;background:#f6465d"></b></div>
+      <div class="c gr"><i style="height:64%"></i><b style="height:28%;background:#0ecb81"></b></div>
+      <div class="c gr"><i style="height:96%"></i><b style="height:44%;background:#0ecb81"></b></div>
+      <div class="c rd"><i style="height:46%"></i><b style="height:18%;background:#f6465d"></b></div>
+      <div class="c gr"><i style="height:58%"></i><b style="height:24%;background:#0ecb81"></b></div>
+      <div class="c gr"><i style="height:80%"></i><b style="height:30%;background:#0ecb81"></b></div>
+      <div class="c rd"><i style="height:40%"></i><b style="height:16%;background:#f6465d"></b></div>
+      <div class="c gr"><i style="height:88%"></i><b style="height:38%;background:#0ecb81"></b></div>
+      <div class="c gr"><i style="height:62%"></i><b style="height:26%;background:#0ecb81"></b></div>
+      <div class="c rd"><i style="height:68%"></i><b style="height:28%;background:#f6465d"></b></div>
+      <div class="c gr"><i style="height:52%"></i><b style="height:22%;background:#0ecb81"></b></div>
+      <div class="c gr"><i style="height:78%"></i><b style="height:34%;background:#0ecb81"></b></div>
+      <div class="c rd"><i style="height:36%"></i><b style="height:14%;background:#f6465d"></b></div>
+      <div class="c gr"><i style="height:86%"></i><b style="height:36%;background:#0ecb81"></b></div>
+      <div class="c gr"><i style="height:60%"></i><b style="height:24%;background:#0ecb81"></b></div>
+      <div class="c rd"><i style="height:44%"></i><b style="height:16%;background:#f6465d"></b></div>
+      <div class="c gr"><i style="height:70%"></i><b style="height:30%;background:#0ecb81"></b></div>
+    </div>
+    <div class="fills mono">
+      <div style="color:#848e9c;font-size:11px;margin-bottom:6px">15m · EMA 21/55 · funding 0.01% · last fills</div>
+      <div class="row gr"><span>14:07 LONG 0.42</span><span>+$186</span></div>
+      <div class="row rd"><span>13:22 SHORT 0.31</span><span>−$42</span></div>
+      <div class="row gr"><span>12:01 LONG 0.28</span><span>+$91</span></div>
+      <div class="row gr"><span>10:44 LONG 0.50</span><span>+$210</span></div>
+      <div class="row rd"><span>09:18 SHORT 0.22</span><span>−$18</span></div>
+      <div class="row gr"><span>08:02 LONG 0.35</span><span>+$74</span></div>
+      <div class="row gr"><span>07:11 LONG 0.19</span><span>+$41</span></div>
+      <div class="row rd"><span>06:40 skip SOL</span><span>conf 0.21</span></div>
+    </div>
+  </section>
+  <aside class="book mono">
+    <div style="color:#848e9c;margin-bottom:8px">ORDER BOOK</div>
+    <div class="row rd"><span>48 268</span><span>0.410</span></div>
+    <div class="row rd"><span>48 261</span><span>0.880</span></div>
+    <div class="row rd"><span>48 255</span><span>1.102</span></div>
+    <div class="row rd"><span>48 252</span><span>1.204</span></div>
+    <div class="row rd"><span>48 248</span><span>0.882</span></div>
+    <div class="row rd"><span>48 245</span><span>2.110</span></div>
+    <div class="row rd"><span>48 243</span><span>0.640</span></div>
+    <div class="row" style="color:#f7a600;padding:8px 0"><span>48 241.6</span><span>last</span></div>
+    <div class="row gr"><span>48 239</span><span>1.640</span></div>
+    <div class="row gr"><span>48 234</span><span>0.910</span></div>
+    <div class="row gr"><span>48 228</span><span>3.002</span></div>
+    <div class="row gr"><span>48 221</span><span>1.440</span></div>
+    <div class="row gr"><span>48 214</span><span>2.180</span></div>
+    <div class="row gr"><span>48 208</span><span>0.770</span></div>
+    <div class="row gr"><span>48 199</span><span>4.120</span></div>
+    <div style="margin-top:auto;color:#848e9c;font-size:11px;line-height:1.55">depth 24 lvls<br/>spread 2.6<br/>liq 48 180 / 48 410</div>
+  </aside>
+  <aside class="ai">
+    <div style="font-size:11px;letter-spacing:.14em;color:#848e9c">AI DECISION</div>
+    <div style="font-size:28px;font-weight:700;margin:6px 0" class="gr">LONG</div>
+    <p style="font-size:13px;color:#848e9c;line-height:1.45">Regime: squeeze-break. Size 0.42 BTC. SL 47 880 · TP 48 920. Kill-switch armed.</p>
+    <div class="mono" style="margin-top:12px;font-size:12px;line-height:1.7;color:#c0c4cc">
+      strategy  breakout-B<br/>
+      conf      0.71<br/>
+      risk      1.2% equity<br/>
+      backtest  2019–2025 pass<br/>
+      funding   0.01% 8h<br/>
+      session   London overlap
+    </div>
+    <div style="margin-top:12px;font-size:12px;line-height:1.55;color:#848e9c">
+      Filters: no news 30m · OI ↑ · basis ok<br/>
+      Last skip: SOL · conf 0.21<br/>
+      Last skip: TON · news spike
+    </div>
+    <button class="btn">SENT TO BYBIT</button>
+    <div class="mono" style="margin-top:10px;font-size:11px;color:#848e9c">orderId 8f2a19 · ack 41ms</div>
+  </aside>
+</div>
+</div>
+</body>
+</html>
