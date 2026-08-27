@@ -6,7 +6,7 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useSyncExternalStore,
+  useState,
   type ReactNode,
 } from "react";
 import {
@@ -21,11 +21,11 @@ type LocaleContextValue = {
   locale: Locale;
   setLocale: (locale: Locale) => void;
   t: Dictionary;
+  /** false до чтения localStorage — GSAP нельзя запускать, иначе en→ru сорвёт from()-анимации */
+  ready: boolean;
 };
 
 const LocaleContext = createContext<LocaleContextValue | null>(null);
-
-const listeners = new Set<() => void>();
 
 function isLocale(value: string | null): value is Locale {
   return value === "en" || value === "ru";
@@ -36,29 +36,22 @@ function readStoredLocale(): Locale {
   return isLocale(stored) ? stored : defaultLocale;
 }
 
-function subscribe(listener: () => void) {
-  listeners.add(listener);
-  window.addEventListener("storage", listener);
-  return () => {
-    listeners.delete(listener);
-    window.removeEventListener("storage", listener);
-  };
-}
-
-function emit() {
-  listeners.forEach((listener) => listener());
-}
-
-function getSnapshot() {
-  return readStoredLocale();
-}
-
-function getServerSnapshot() {
-  return defaultLocale;
-}
-
 export function LocaleProvider({ children }: { children: ReactNode }) {
-  const locale = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const [locale, setLocaleState] = useState<Locale>(defaultLocale);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    setLocaleState(readStoredLocale());
+    setReady(true);
+
+    const onStorage = (event: StorageEvent) => {
+      if (event.key === localeStorageKey || event.key === null) {
+        setLocaleState(readStoredLocale());
+      }
+    };
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, []);
 
   useEffect(() => {
     document.documentElement.lang = locale;
@@ -66,12 +59,12 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
 
   const setLocale = useCallback((next: Locale) => {
     window.localStorage.setItem(localeStorageKey, next);
-    emit();
+    setLocaleState(next);
   }, []);
 
   const value = useMemo<LocaleContextValue>(
-    () => ({ locale, setLocale, t: dictionaries[locale] }),
-    [locale, setLocale]
+    () => ({ locale, setLocale, t: dictionaries[locale], ready }),
+    [locale, setLocale, ready]
   );
 
   return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>;

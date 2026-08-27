@@ -72,6 +72,8 @@ export const kworkFinal = {
 
 export const kworkStats = {
   since: { en: "On Kwork since July 21, 2018", ru: "На Kwork с 21 июля 2018" },
+  startOrders: 11,
+  startReviews: 6,
   orders: 126,
   reviews: 72,
   success: 100,

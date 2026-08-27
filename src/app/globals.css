@@ -74,12 +74,6 @@ body {
   border-radius: 2px;
 }
 
-/* Нативный курсор скрыт только когда активен кастомный (desktop, pointer: fine) */
-html.has-custom-cursor,
-html.has-custom-cursor * {
-  cursor: none !important;
-}
-
 /* Плёнка зерна поверх всего — дешёвый способ добавить "плотности" картинке */
 body::after {
   content: "";

@@ -3,6 +3,7 @@
 import { useRef, type ReactNode, type RefObject } from "react";
 import Image from "next/image";
 import {
+  ArrowUpRight,
   CalendarClock,
   Flag,
   MessageCircle,
@@ -75,7 +76,7 @@ function StatRow({
 }
 
 export default function Experience() {
-  const { locale, t } = useI18n();
+  const { locale, t, ready } = useI18n();
   const sectionRef = useRef<HTMLElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<SVGLineElement>(null);
@@ -88,7 +89,7 @@ export default function Experience() {
     () => {
       const wrap = wrapRef.current;
       const line = lineRef.current;
-      if (!wrap || !line) return;
+      if (!ready || !wrap || !line) return;
 
       const jobs = Array.from(wrap.querySelectorAll<HTMLElement>("[data-xp-item]"));
       let activeJob = -1;
@@ -131,7 +132,10 @@ export default function Experience() {
       };
 
       const dots = wrap.querySelectorAll<HTMLElement>("[data-xp-dot]");
-      const counters = { orders: 0, reviews: 0 };
+      const counters = {
+        orders: kworkStats.startOrders,
+        reviews: kworkStats.startReviews,
+      };
       let shownOrders = -1;
       let shownReviews = -1;
       const setCounts = () => {
@@ -174,7 +178,7 @@ export default function Experience() {
 
       gsap.fromTo(
         counters,
-        { orders: 0, reviews: 0 },
+        { orders: kworkStats.startOrders, reviews: kworkStats.startReviews },
         {
           orders: kworkStats.orders,
           reviews: kworkStats.reviews,
@@ -225,7 +229,7 @@ export default function Experience() {
 
       return () => mm.revert();
     },
-    { scope: sectionRef, dependencies: [locale] }
+    { scope: sectionRef, dependencies: [ready] }
   );
 
   const kworkHref = site.links.kwork[locale];
@@ -287,7 +291,7 @@ export default function Experience() {
                 <StatRow icon={Flag}>
                   <span>
                     <span ref={ordersRef} className="font-semibold tabular-nums text-fg">
-                      0
+                      {kworkStats.startOrders}
                     </span>{" "}
                     {t.help.kworkOrders}
                   </span>
@@ -295,7 +299,7 @@ export default function Experience() {
                 <StatRow icon={MessageCircle}>
                   <span>
                     <span ref={reviewsRef} className="font-semibold tabular-nums text-fg">
-                      0
+                      {kworkStats.startReviews}
                     </span>{" "}
                     {t.help.kworkReviews}
                   </span>
@@ -324,7 +328,7 @@ export default function Experience() {
         </aside>
 
         <div className="relative mt-10 pl-8 lg:col-start-3 lg:mt-0 lg:pl-0">
-          {experience.toReversed().map(({ id, company, role, period, current, bullets, stack }, index) => (
+          {experience.toReversed().map(({ id, company, url, role, period, current, bullets, stack }, index) => (
             <article
               key={id}
               data-xp-item
@@ -340,8 +344,20 @@ export default function Experience() {
 
               <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
                 <div>
-                  <h3 className="text-lg font-semibold text-fg md:text-xl">{role[locale]}</h3>
-                  <p className="mt-1 font-mono text-sm text-accent">{company}</p>
+                  <h3 className="text-lg font-semibold text-fg md:text-xl">{role}</h3>
+                  {url ? (
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-1 inline-flex items-center gap-1 font-mono text-sm text-accent transition-colors duration-300 hover:text-fg"
+                    >
+                      {company}
+                      <ArrowUpRight size={13} strokeWidth={2} aria-hidden />
+                    </a>
+                  ) : (
+                    <p className="mt-1 font-mono text-sm text-accent">{company}</p>
+                  )}
                 </div>
                 <span
                   className={`rounded-full border px-3.5 py-1.5 font-mono text-[11px] tracking-wide ${

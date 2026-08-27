@@ -4,6 +4,7 @@ import { useRef, type ComponentType, type ElementType, type ReactNode, type Ref 
 import { useGSAP } from "@gsap/react";
 import { gsap, SplitText } from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/scroll";
+import { useI18n } from "@/components/providers/LocaleProvider";
 
 type SplitRevealProps = {
   children: ReactNode;
@@ -32,12 +33,13 @@ export default function SplitReveal({
   delay = 0,
   immediate = false,
 }: SplitRevealProps) {
+  const { ready } = useI18n();
   const ref = useRef<HTMLElement>(null);
 
   useGSAP(
     () => {
       const el = ref.current;
-      if (!el || prefersReducedMotion()) return;
+      if (!ready || !el || prefersReducedMotion()) return;
 
       const split = new SplitText(el, {
         type: mode === "chars" ? "chars,words" : mode,
@@ -60,30 +62,35 @@ export default function SplitReveal({
           },
         });
       } else {
-        gsap.from(targets, {
-          yPercent: 115,
-          opacity: 0,
-          duration: 0.9,
-          stagger: mode === "chars" ? 0.025 : 0.05,
-          ease: "power3.out",
-          delay,
-          ...(immediate
-            ? {}
-            : {
-                scrollTrigger: {
-                  trigger: el,
-                  start: "top 86%",
-                  once: true,
-                },
-              }),
-        });
+        gsap.fromTo(
+          targets,
+          { yPercent: 115, opacity: 0 },
+          {
+            yPercent: 0,
+            opacity: 1,
+            duration: 0.9,
+            stagger: mode === "chars" ? 0.025 : 0.05,
+            ease: "power3.out",
+            delay,
+            overwrite: "auto",
+            ...(immediate
+              ? {}
+              : {
+                  scrollTrigger: {
+                    trigger: el,
+                    start: "top 86%",
+                    once: true,
+                  },
+                }),
+          }
+        );
       }
 
       return () => {
         split.revert();
       };
     },
-    { scope: ref, dependencies: [mode, scrub, delay, immediate, children] }
+    { scope: ref, dependencies: [ready, mode, scrub, delay, immediate, children] }
   );
 
   // Полиморфный тег: приводим к обобщённому компоненту, чтобы TS принял ref/children

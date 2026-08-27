@@ -16,7 +16,7 @@ function displayHost(url: string) {
 }
 
 export default function Contact() {
-  const { locale, t } = useI18n();
+  const { locale, t, ready } = useI18n();
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const revealedRef = useRef(false);
@@ -56,7 +56,7 @@ export default function Contact() {
 
   useGSAP(
     () => {
-      if (prefersReducedMotion()) return;
+      if (!ready || prefersReducedMotion()) return;
       const heading = headingRef.current;
       const words = heading?.querySelectorAll("[data-word]");
       if (!heading || !words?.length) return;
@@ -81,7 +81,7 @@ export default function Contact() {
         },
       });
     },
-    { scope: sectionRef, dependencies: [locale] }
+    { scope: sectionRef, dependencies: [locale, ready] }
   );
 
   return (

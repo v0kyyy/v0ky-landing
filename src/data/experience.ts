@@ -2,8 +2,9 @@ import type { Localized } from "@/i18n";
 
 export type Experience = {
   id: string;
-  company: string; // [TODO: можно заменить] — все компании вымышленные
-  role: Localized;
+  company: string;
+  url?: string;
+  role: string;
   period: Localized;
   current?: boolean;
   bullets: Localized<string[]>;
@@ -12,83 +13,78 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
-    id: "nordstack",
-    company: "NordStack Systems",
-    role: {
-      en: "Senior Automation Engineer",
-      ru: "Senior Automation Engineer",
-    },
+    id: "helpstat",
+    company: "HelpStat",
+    url: "https://helpstat.su",
+    role: "Full-stack Engineer",
     period: {
-      en: "2023 — Present",
-      ru: "2023 — настоящее время",
+      en: "2024 — Present",
+      ru: "2024 — настоящее время",
     },
     current: true,
     bullets: {
       en: [
-        "Lead the automation practice: 25+ projects a year — from RPA scripts to payment integrations shipped end-to-end, with SLAs and monitoring.",
-        "Built a Playwright scraping pipeline with queues, proxy rotation, and self-healing: 2M+ pages a month at 99.9% reliability.",
-        "Automated client onboarding (docs, access, notifications): from two days of a manager's time to 15 minutes with no one in the loop.",
-        "Mentor two junior developers; introduced code-review standards and mandatory smoke tests for every automation.",
+        "Building HelpStat — a marketplace-analytics SaaS for Ozon, Wildberries and other platforms. Full cycle: data collection, product UI, billing.",
+        "Designed automated parsing of storefronts and seller cabinets so catalogue, rank and sales data refresh themselves and reach the user without manual exports.",
+        "Shipped the customer-facing layer: dashboards, SKU reports and growth tools — sellers see demand, visibility and unit economics in one place instead of a dozen cabinets.",
+        "Delivered payment integration and the surrounding backend: subscriptions, access, billing — the service is sold as a product, not run as an internal spreadsheet.",
       ],
       ru: [
-        "Веду направление автоматизации: 25+ проектов в год — от RPA-скриптов до платёжных интеграций под ключ, с SLA и мониторингом.",
-        "Построил конвейер веб-скрапинга на Playwright с очередями, ротацией прокси и self-healing: 2M+ страниц в месяц при стабильности 99.9%.",
-        "Автоматизировал онбординг клиентов (документы, доступы, уведомления): с 2 дней ручной работы менеджера до 15 минут полностью без участия человека.",
-        "Менторю двух младших разработчиков, внедрил стандарты код-ревью и обязательные smoke-тесты для каждой автоматизации.",
+        "Разрабатываю HelpStat — SaaS-платформу аналитики маркетплейсов (Ozon, Wildberries и другие). Полный цикл: сбор данных, продукт, биллинг.",
+        "Настроил автоматизированный парсинг витрин и кабинетов МП: каталог, позиции и продажи обновляются сами и доходят до пользователя без ручных выгрузок.",
+        "Собрал пользовательский контур: дашборды, отчёты по SKU и инструменты роста — продавец видит спрос, видимость и юнит-экономику в одном месте вместо десятка кабинетов.",
+        "Закрыл платёжную интеграцию и сопутствующий backend: подписка, доступ, биллинг — сервис продаётся как продукт, а не живёт таблицей внутри команды.",
       ],
     },
-    stack: ["Python", "Playwright", "FastAPI", "n8n", "aiogram", "Docker"],
+    stack: ["Python", "Playwright", "FastAPI", "Next.js", "PostgreSQL", "Payments"],
   },
   {
-    id: "orbita",
-    company: "Orbita Labs",
-    role: {
-      en: "Full-stack Developer, internal tools",
-      ru: "Full-stack разработчик, внутренние инструменты",
+    id: "synex",
+    company: "Synex",
+    url: "https://synex.ltd",
+    role: "Automation Engineer, operator testing",
+    period: {
+      en: "2024 — 2026",
+      ru: "2024 — 2026",
     },
+    bullets: {
+      en: [
+        "At a telecom company that tests mobile operators, I turned large-scale SMS-number verification from a manual shift into a fleet of autonomous scripts.",
+        "Mapped weak points in operator processes and replaced one-off checks with pipelines that keep running when a person is not at the keyboard.",
+        "Built test runs that stay alive against real site protection — CAPTCHA, anti-fraud, rate limits — so a bulk pass does not die on the first challenge.",
+        "Scaled one scenario into a farm: different operators, changing rules, unattended execution with logs and recovery instead of a pile of fragile scripts.",
+      ],
+      ru: [
+        "В компании связи, которая тестирует мобильных операторов, перевёл массовую проверку SMS-номеров с ручной смены на флот автономных скриптов.",
+        "Находил слабые места в процессах операторов и заменял разовые проверки пайплайнами, которые живут без человека за клавиатурой.",
+        "Собирал прогоны, которые не останавливаются на реальной защите площадок — CAPTCHA, антифрод, лимиты — чтобы массовый проход не умирал на первом челлендже.",
+        "Масштабировал один сценарий в ферму: разные операторы, смена правил, автономный запуск с логами и восстановлением вместо пачки хрупких скриптов.",
+      ],
+    },
+    stack: ["Python", "Playwright", "asyncio", "Task queues", "Proxy rotation"],
+  },
+  {
+    id: "travel",
+    company: "Travel company",
+    role: "Automation Engineer",
     period: {
       en: "2021 — 2023",
       ru: "2021 — 2023",
     },
     bullets: {
       en: [
-        "Designed an internal integrations platform (FastAPI + Celery) connecting CRM, billing, and support: 30+ flows, 200,000+ events a day.",
-        "Replaced manual payment reconciliation with an automated pipeline — month-end close went from 3 days to 4 hours.",
-        "Built a real-time ops dashboard (Next.js + Recharts) for 40 people — decisions on live data instead of weekly exports.",
-        "Set up monitoring and auto-restart for critical jobs: integration downtime dropped 92%.",
+        "Audited the team's manual work: found where people burned hours on content, posting and reports — and closed those bottlenecks with automation instead of more headcount.",
+        "Built a content generation and publishing pipeline: assets are produced and shipped on a schedule, without someone posting into every time slot by hand.",
+        "Set up a controlled account warm-up flow so social channels reach a working state without burn-out or click-work.",
+        "Wrote collection scripts and live dashboards: channel decisions were made on live numbers, not a weekly spreadsheet dump.",
       ],
       ru: [
-        "Спроектировал внутреннюю платформу интеграций (FastAPI + Celery), связавшую CRM, биллинг и поддержку: 30+ сценариев, 200 000+ событий в сутки.",
-        "Перевёл ручную сверку платежей на автоматический пайплайн — закрытие месяца сократилось с 3 дней до 4 часов.",
-        "Собрал реал-тайм дашборд операционных метрик (Next.js + Recharts) для 40 сотрудников — решения на живых данных вместо еженедельных выгрузок.",
-        "Настроил мониторинг и автоперезапуск критичных задач: даунтайм интеграций снизился на 92%.",
+        "Аудировал ручную работу команды: находил, где люди теряли часы на контент, постинг и отчёты — и закрывал эти узкие места автоматизацией, а не расширением штата.",
+        "Собрал конвейер генерации и публикации контента: материалы готовятся и выходят по расписанию, без ручного постинга в каждое окно.",
+        "Выстроил контролируемый прогрев аккаунтов — соцсети выходят на рабочий режим без выгорания и ручного кликанья.",
+        "Написал скрипты сбора аналитики и умные дашборды: решения по каналам принимались по живым цифрам, а не по выгрузке раз в неделю.",
       ],
     },
-    stack: ["Python", "FastAPI", "Celery", "TypeScript", "Next.js", "PostgreSQL"],
-  },
-  {
-    id: "pixelforge",
-    company: "Pixelforge Digital",
-    role: {
-      en: "Automation Developer",
-      ru: "Automation Developer",
-    },
-    period: {
-      en: "2019 — 2021",
-      ru: "2019 — 2021",
-    },
-    bullets: {
-      en: [
-        "Shipped 14 Telegram bots for the agency's clients: intake, quizzes, CRM integrations — average lead handling time fell from 4 hours to 6 minutes.",
-        "Automated ad-campaign reporting: five ad accounts into Google Sheets with alerts — 25 hours of team busywork gone each month.",
-        "Rolled out price and stock monitoring for 3 e-commerce clients (Playwright + proxy rotation) at 99.4% data accuracy.",
-      ],
-      ru: [
-        "Разработал 14 Telegram-ботов для клиентов агентства: приём заявок, квизы, интеграции с CRM — среднее время обработки лида упало с 4 часов до 6 минут.",
-        "Автоматизировал отчётность по рекламным кампаниям: сбор из 5 кабинетов в Google Sheets с алертами — минус 25 часов ручной работы команды в месяц.",
-        "Внедрил мониторинг цен и наличия для 3 e-commerce клиентов (Playwright + ротация прокси) с точностью данных 99.4%.",
-      ],
-    },
-    stack: ["Python", "aiogram", "Playwright", "Google Sheets API", "MySQL"],
+    stack: ["Python", "Playwright", "Google Apps Script", "Dashboards", "Schedulers"],
   },
 ];

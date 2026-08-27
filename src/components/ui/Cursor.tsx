@@ -4,116 +4,97 @@ import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 import { useMediaQuery } from "@/lib/scroll";
 
+const INTERACTIVE =
+  "a, button, [role='button'], [data-cursor], [data-magnetic], label, summary";
+const TEXT_FIELD = "input, textarea, select, [contenteditable='true']";
+
 /**
- * Кастомный курсор: точка + кольцо с lerp-задержкой.
- * Магнитное увеличение на интерактивных элементах, текстовая подсказка
- * через data-cursor-text. На touch-устройствах не рендерится вовсе.
+ * Десктоп: нативный курсор остаётся, рядом — маленькая точка без лага.
+ * На ссылках и кнопках чуть увеличивается. На touch и при reduced motion — выкл.
  */
 export default function Cursor() {
   const finePointer = useMediaQuery("(pointer: fine)");
   const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
   const enabled = finePointer && !reducedMotion;
-
-  const dotRef = useRef<HTMLDivElement>(null);
-  const ringRef = useRef<HTMLDivElement>(null);
-  const labelRef = useRef<HTMLSpanElement>(null);
+  const markRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!enabled) return;
-    const dot = dotRef.current;
-    const ring = ringRef.current;
-    const label = labelRef.current;
-    if (!dot || !ring || !label) return;
+    const mark = markRef.current;
+    if (!mark) return;
 
-    document.documentElement.classList.add("has-custom-cursor");
+    gsap.set(mark, { xPercent: -50, yPercent: -50, autoAlpha: 0, scale: 1 });
 
-    const dotX = gsap.quickTo(dot, "x", { duration: 0.06, ease: "power2.out" });
-    const dotY = gsap.quickTo(dot, "y", { duration: 0.06, ease: "power2.out" });
-    const ringX = gsap.quickTo(ring, "x", { duration: 0.28, ease: "power3.out" });
-    const ringY = gsap.quickTo(ring, "y", { duration: 0.28, ease: "power3.out" });
+    const xTo = gsap.quickTo(mark, "x", { duration: 0.12, ease: "power3.out" });
+    const yTo = gsap.quickTo(mark, "y", { duration: 0.12, ease: "power3.out" });
 
     let visible = false;
+    let hover = false;
+    let pressed = false;
+    let typing = false;
+
+    const apply = () => {
+      if (typing) {
+        gsap.to(mark, { autoAlpha: 0, duration: 0.12, overwrite: "auto" });
+        return;
+      }
+      const scale = (hover ? 2.35 : 1) * (pressed ? 0.8 : 1);
+      gsap.to(mark, {
+        autoAlpha: visible ? (hover ? 0.95 : 0.7) : 0,
+        scale,
+        backgroundColor: hover ? "rgba(232,51,42,0.18)" : "rgba(242,241,239,0.22)",
+        borderColor: hover ? "rgba(232,51,42,0.85)" : "rgba(242,241,239,0.45)",
+        duration: 0.2,
+        ease: "power3.out",
+        overwrite: "auto",
+      });
+    };
 
     const onMove = (e: MouseEvent) => {
       if (!visible) {
         visible = true;
-        gsap.to([dot, ring], { autoAlpha: 1, duration: 0.25 });
+        apply();
       }
-      dotX(e.clientX);
-      dotY(e.clientY);
-      ringX(e.clientX);
-      ringY(e.clientY);
+      xTo(e.clientX);
+      yTo(e.clientY);
     };
 
-    const setState = (state: "default" | "hover" | "label", text = "") => {
-      label.textContent = text;
-      if (state === "label") {
-        gsap.to(ring, {
-          scale: 2.6,
-          backgroundColor: "rgba(232,51,42,0.95)",
-          borderColor: "rgba(232,51,42,1)",
-          duration: 0.3,
-          ease: "power3.out",
-        });
-        gsap.to(label, { autoAlpha: 1, duration: 0.2 });
-        gsap.to(dot, { autoAlpha: 0, duration: 0.2 });
-      } else if (state === "hover") {
-        gsap.to(ring, {
-          scale: 1.7,
-          backgroundColor: "rgba(232,51,42,0.1)",
-          borderColor: "rgba(232,51,42,0.9)",
-          duration: 0.3,
-          ease: "power3.out",
-        });
-        gsap.to(label, { autoAlpha: 0, duration: 0.15 });
-        gsap.to(dot, { autoAlpha: 1, duration: 0.2 });
-      } else {
-        gsap.to(ring, {
-          scale: 1,
-          backgroundColor: "rgba(232,51,42,0)",
-          borderColor: "rgba(242,241,239,0.35)",
-          duration: 0.3,
-          ease: "power3.out",
-        });
-        gsap.to(label, { autoAlpha: 0, duration: 0.15 });
-        gsap.to(dot, { autoAlpha: 1, duration: 0.2 });
-      }
-    };
-
-    const onOver = (e: MouseEvent) => {
+    const readTarget = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
       if (!target || typeof target.closest !== "function") return;
-      const labelled = target.closest<HTMLElement>("[data-cursor-text]");
-      if (labelled) {
-        setState("label", labelled.dataset.cursorText ?? "");
-        return;
-      }
-      const interactive = target.closest(
-        "a, button, [role='button'], input, textarea, select, [data-cursor]"
-      );
-      setState(interactive ? "hover" : "default");
+      typing = Boolean(target.closest(TEXT_FIELD));
+      hover = !typing && Boolean(target.closest(INTERACTIVE));
+      apply();
     };
 
-    const onDown = () => gsap.to(ring, { scale: "-=0.25", duration: 0.15 });
-    const onUp = () => gsap.to(ring, { scale: "+=0.25", duration: 0.2 });
+    const onDown = () => {
+      pressed = true;
+      apply();
+    };
+    const onUp = () => {
+      pressed = false;
+      apply();
+    };
     const onLeave = () => {
       visible = false;
-      gsap.to([dot, ring], { autoAlpha: 0, duration: 0.25 });
+      hover = false;
+      pressed = false;
+      apply();
     };
 
     window.addEventListener("mousemove", onMove, { passive: true });
-    window.addEventListener("mouseover", onOver, { passive: true });
+    window.addEventListener("mouseover", readTarget, { passive: true });
     window.addEventListener("mousedown", onDown);
     window.addEventListener("mouseup", onUp);
     document.documentElement.addEventListener("mouseleave", onLeave);
 
     return () => {
-      document.documentElement.classList.remove("has-custom-cursor");
       window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mouseover", onOver);
+      window.removeEventListener("mouseover", readTarget);
       window.removeEventListener("mousedown", onDown);
       window.removeEventListener("mouseup", onUp);
       document.documentElement.removeEventListener("mouseleave", onLeave);
+      gsap.killTweensOf(mark);
     };
   }, [enabled]);
 
@@ -122,18 +103,12 @@ export default function Cursor() {
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 z-[300]">
       <div
-        ref={ringRef}
-        className="invisible fixed left-0 top-0 -ml-[22px] -mt-[22px] flex h-11 w-11 items-center justify-center rounded-full border opacity-0"
-        style={{ borderColor: "rgba(242,241,239,0.35)" }}
-      >
-        <span
-          ref={labelRef}
-          className="invisible font-mono text-[9px] font-semibold uppercase tracking-wider text-bg opacity-0"
-        />
-      </div>
-      <div
-        ref={dotRef}
-        className="invisible fixed left-0 top-0 -ml-[3px] -mt-[3px] h-1.5 w-1.5 rounded-full bg-accent opacity-0"
+        ref={markRef}
+        className="invisible fixed left-0 top-0 size-2.5 rounded-full border opacity-0"
+        style={{
+          borderColor: "rgba(242,241,239,0.45)",
+          backgroundColor: "rgba(242,241,239,0.22)",
+        }}
       />
     </div>
   );

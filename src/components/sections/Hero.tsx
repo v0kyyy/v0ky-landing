@@ -67,7 +67,7 @@ function HeroScrim() {
 }
 
 export default function Hero() {
-  const { locale, t } = useI18n();
+  const { locale, t, ready } = useI18n();
   const { done } = usePreloader();
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
@@ -87,7 +87,7 @@ export default function Hero() {
   // Intro-хореография после прелоадера: посимвольный подъём имени с blur→sharp
   useGSAP(
     () => {
-      if (!done || prefersReducedMotion()) return;
+      if (!ready || !done || prefersReducedMotion()) return;
       const name = nameRef.current;
       if (!name) return;
 
@@ -120,7 +120,7 @@ export default function Hero() {
         split.revert();
       };
     },
-    { dependencies: [done], scope: sectionRef }
+    { dependencies: [done, ready], scope: sectionRef }
   );
 
   return (

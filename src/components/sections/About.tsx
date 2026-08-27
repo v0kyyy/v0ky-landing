@@ -11,50 +11,50 @@ import { stackCategories } from "@/data/stack";
 import { useI18n } from "@/components/providers/LocaleProvider";
 
 export default function About() {
-  const { locale, t } = useI18n();
+  const { locale, t, ready } = useI18n();
   const sectionRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const stackRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
-      if (prefersReducedMotion()) return;
+      if (!ready || prefersReducedMotion()) return;
+
+      const reveal = (
+        targets: gsap.TweenTarget,
+        trigger: gsap.DOMTarget | undefined,
+        extra: { y?: number; duration?: number; stagger?: number; start?: string } = {}
+      ) => {
+        if (!trigger) return;
+        gsap.fromTo(
+          targets,
+          { y: extra.y ?? 16, autoAlpha: 0 },
+          {
+            y: 0,
+            autoAlpha: 1,
+            duration: extra.duration ?? 0.55,
+            stagger: extra.stagger,
+            ease: "power3.out",
+            overwrite: "auto",
+            scrollTrigger: { trigger, start: extra.start ?? "top 82%", once: true },
+          }
+        );
+      };
 
       const paragraphs = textRef.current?.querySelectorAll("p");
       if (paragraphs?.length) {
-        gsap.from(paragraphs, {
-          y: 14,
-          autoAlpha: 0,
-          duration: 0.6,
-          stagger: 0.08,
-          ease: "power3.out",
-          scrollTrigger: { trigger: textRef.current, start: "top 82%", once: true },
-        });
+        reveal(paragraphs, textRef.current, { y: 14, duration: 0.6, stagger: 0.08 });
       }
 
       const flow = sectionRef.current?.querySelector("[data-chaos-flow]");
-      if (flow) {
-        gsap.from(flow, {
-          y: 18,
-          autoAlpha: 0,
-          duration: 0.7,
-          ease: "power3.out",
-          scrollTrigger: { trigger: flow, start: "top 88%", once: true },
-        });
-      }
+      if (flow) reveal(flow, flow, { y: 18, duration: 0.7, start: "top 88%" });
 
       const groups = stackRef.current?.querySelectorAll("[data-stack-group]");
-      if (!groups?.length) return;
-      gsap.from(groups, {
-        y: 16,
-        autoAlpha: 0,
-        duration: 0.55,
-        stagger: 0.06,
-        ease: "power3.out",
-        scrollTrigger: { trigger: stackRef.current, start: "top 82%", once: true },
-      });
+      if (groups?.length) {
+        reveal(groups, stackRef.current, { y: 16, duration: 0.55, stagger: 0.06 });
+      }
     },
-    { scope: sectionRef, dependencies: [locale] }
+    { scope: sectionRef, dependencies: [ready] }
   );
 
   return (

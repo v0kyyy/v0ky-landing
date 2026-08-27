@@ -17,7 +17,7 @@ function TypingDots() {
 }
 
 export default function ContactChat() {
-  const { locale, t } = useI18n();
+  const { locale, t, ready } = useI18n();
   const phoneRef = useRef<HTMLDivElement>(null);
   const threadRef = useRef<HTMLDivElement>(null);
   const typingRef = useRef<HTMLDivElement>(null);
@@ -29,6 +29,7 @@ export default function ContactChat() {
       const typing = typingRef.current;
       const bubbles = thread?.querySelectorAll<HTMLElement>("[data-bubble]");
       if (!phone || !thread || !typing || !bubbles?.length) return;
+      if (!ready) return;
 
       const scrollBottom = () => {
         thread.scrollTop = thread.scrollHeight;
@@ -92,7 +93,7 @@ export default function ContactChat() {
         tl.kill();
       };
     },
-    { scope: phoneRef, dependencies: [locale] }
+    { scope: phoneRef, dependencies: [locale, ready] }
   );
 
   return (

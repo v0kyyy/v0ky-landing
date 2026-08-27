@@ -9,7 +9,7 @@ import KworkMention from "@/components/ui/KworkMention";
 import { kworkExperience, kworkFinal } from "@/data/kwork";
 
 export default function KworkJourney() {
-  const { locale, t } = useI18n();
+  const { locale, t, ready } = useI18n();
   const wrapRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<SVGLineElement>(null);
   const years = kworkExperience.years;
@@ -19,7 +19,7 @@ export default function KworkJourney() {
     () => {
       const line = lineRef.current;
       const wrap = wrapRef.current;
-      if (!line || !wrap) return;
+      if (!ready || !line || !wrap) return;
 
       const dots = wrap.querySelectorAll<HTMLElement>("[data-xp-dot]");
 
@@ -47,13 +47,18 @@ export default function KworkJourney() {
       );
 
       wrap.querySelectorAll<HTMLElement>("[data-xp-item]").forEach((item) => {
-        gsap.from(item, {
-          x: 48,
-          autoAlpha: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: { trigger: item, start: "top 78%", once: true },
-        });
+        gsap.fromTo(
+          item,
+          { x: 48, autoAlpha: 0 },
+          {
+            x: 0,
+            autoAlpha: 1,
+            duration: 0.8,
+            ease: "power3.out",
+            overwrite: "auto",
+            scrollTrigger: { trigger: item, start: "top 78%", once: true },
+          }
+        );
 
         const dot = item.querySelector<HTMLElement>("[data-xp-dot]");
         if (!dot) return;
@@ -79,7 +84,7 @@ export default function KworkJourney() {
         });
       });
     },
-    { scope: wrapRef }
+    { scope: wrapRef, dependencies: [ready] }
   );
 
   return (

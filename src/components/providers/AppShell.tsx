@@ -7,7 +7,7 @@ import { LocaleProvider } from "./LocaleProvider";
 import Preloader from "@/components/ui/Preloader";
 import Cursor from "@/components/ui/Cursor";
 
-/** Клиентская обвязка: смус-скролл, прелоадер и кастомный курсор. */
+/** Клиентская обвязка: смус-скролл, прелоадер и акцент курсора на десктопе. */
 export default function AppShell({ children }: { children: ReactNode }) {
   return (
     <LocaleProvider>

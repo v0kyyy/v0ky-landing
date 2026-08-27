@@ -94,7 +94,6 @@ function SpecCard({
             onClick={onToggle}
             aria-expanded={false}
             className="block h-full w-full text-left"
-            data-cursor-text={t.specs.openCursor}
           >
             <div ref={tiltRef} className="flex h-full flex-col p-7 will-change-transform">
               <div className="flex items-center justify-between gap-3">
@@ -164,7 +163,6 @@ function SpecCard({
                       onClick={() =>
                         setShot({ src: project.image!, alt: project.name[locale] })
                       }
-                      data-cursor-text={t.specs.openShot}
                       className="relative aspect-[16/10] w-full overflow-hidden bg-black text-left"
                     >
                       <Image
@@ -262,26 +260,31 @@ function SpecCard({
 }
 
 export default function Specializations() {
-  const { locale, t } = useI18n();
+  const { locale, t, ready } = useI18n();
   const sectionRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const [expanded, setExpanded] = useState<string | null>(null);
 
   useGSAP(
     () => {
-      if (prefersReducedMotion()) return;
+      if (!ready || prefersReducedMotion()) return;
       const cards = gridRef.current?.children;
       if (!cards?.length) return;
-      gsap.from(cards, {
-        y: 44,
-        autoAlpha: 0,
-        duration: 0.75,
-        stagger: 0.09,
-        ease: "power3.out",
-        scrollTrigger: { trigger: gridRef.current, start: "top 80%", once: true },
-      });
+      gsap.fromTo(
+        cards,
+        { y: 44, autoAlpha: 0 },
+        {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.75,
+          stagger: 0.09,
+          ease: "power3.out",
+          overwrite: "auto",
+          scrollTrigger: { trigger: gridRef.current, start: "top 80%", once: true },
+        }
+      );
     },
-    { scope: sectionRef }
+    { scope: sectionRef, dependencies: [ready] }
   );
 
   return (
