@@ -291,7 +291,7 @@ export default function Specializations() {
     <section
       ref={sectionRef}
       id="cases"
-      className="relative mx-auto max-w-6xl px-6 py-28 md:py-40 lg:px-8"
+      className="relative mx-auto max-w-6xl overflow-x-clip px-6 py-28 md:py-40 lg:px-8"
     >
       <SectionWatermark icon={Layers} />
       <SectionHeading

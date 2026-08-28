@@ -75,8 +75,97 @@ function StatRow({
   );
 }
 
+function KworkCard({
+  ordersRef,
+  reviewsRef,
+  initialOrders,
+  initialReviews,
+}: {
+  ordersRef?: RefObject<HTMLSpanElement | null>;
+  reviewsRef?: RefObject<HTMLSpanElement | null>;
+  initialOrders: number;
+  initialReviews: number;
+}) {
+  const { locale, t } = useI18n();
+  const kworkHref = site.links.kwork[locale];
+
+  return (
+    <article className="relative overflow-hidden rounded-2xl border border-line bg-surface-deep transition-colors duration-300 hover:border-accent/40">
+      <span
+        data-xp-dot
+        className="absolute -left-[29px] top-8 block h-3 w-3 rounded-full border-2 lg:-right-[1.375rem] lg:left-auto lg:top-10"
+        style={{ backgroundColor: "#08080a", borderColor: "#6e6b67" }}
+        aria-hidden
+      />
+
+      <a
+        href={kworkHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={t.help.kworkOpen}
+        className="absolute right-3 top-3 z-10 flex size-9 items-center justify-center rounded-full border border-line bg-surface text-muted transition-colors duration-300 hover:border-accent/50 hover:text-accent"
+      >
+        <MousePointerClick size={16} strokeWidth={1.8} />
+      </a>
+
+      <div className="flex items-center gap-3 border-b border-white/[0.06] px-5 py-4 pr-14 md:px-6">
+        <Image
+          src="/me.jpg"
+          alt={t.hero.photoAlt}
+          width={48}
+          height={48}
+          className="size-12 shrink-0 rounded-full object-cover object-[center_20%] ring-1 ring-white/10"
+        />
+        <h3 className="font-display text-xl font-semibold text-accent">
+          {t.help.kworkName}
+        </h3>
+      </div>
+
+      <ul className="divide-y divide-white/[0.06]">
+        <StatRow icon={CalendarClock}>
+          <span className="text-fg/90">{t.help.kworkSince}</span>
+        </StatRow>
+        <StatRow icon={Flag}>
+          <span>
+            <span ref={ordersRef} className="font-semibold tabular-nums text-fg">
+              {initialOrders}
+            </span>{" "}
+            {t.help.kworkOrders}
+          </span>
+        </StatRow>
+        <StatRow icon={MessageCircle}>
+          <span>
+            <span ref={reviewsRef} className="font-semibold tabular-nums text-fg">
+              {initialReviews}
+            </span>{" "}
+            {t.help.kworkReviews}
+          </span>
+        </StatRow>
+        <StatRow icon={ThumbsUp}>
+          <span>
+            <span className="font-semibold tabular-nums text-fg">100%</span>{" "}
+            {t.help.kworkSuccess}
+          </span>
+        </StatRow>
+        <StatRow icon={Timer}>
+          <span>
+            <span className="font-semibold tabular-nums text-fg">100%</span>{" "}
+            {t.help.kworkOnTime}
+          </span>
+        </StatRow>
+        <StatRow icon={UserRoundPlus}>
+          <span>
+            <span className="font-semibold tabular-nums text-fg">48%</span>{" "}
+            {t.help.kworkRepeat}
+          </span>
+        </StatRow>
+      </ul>
+    </article>
+  );
+}
+
 export default function Experience() {
-  const { locale, t, ready } = useI18n();
+  const { locale, ready } = useI18n();
   const sectionRef = useRef<HTMLElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<SVGLineElement>(null);
@@ -163,6 +252,8 @@ export default function Experience() {
         return;
       }
 
+      const desktop = window.matchMedia("(min-width: 1024px)").matches;
+
       const scrollRange = {
         trigger: wrap,
         start: "top 72%",
@@ -176,23 +267,25 @@ export default function Experience() {
         { strokeDashoffset: 0, ease: "none", scrollTrigger: scrollRange }
       );
 
-      gsap.fromTo(
-        counters,
-        { orders: kworkStats.startOrders, reviews: kworkStats.startReviews },
-        {
-          orders: kworkStats.orders,
-          reviews: kworkStats.reviews,
-          ease: "none",
-          onUpdate: setCounts,
-          scrollTrigger: {
-            trigger: wrap,
-            start: "top 18%",
-            end: "bottom 82%",
-            scrub: 0.7,
-            invalidateOnRefresh: true,
-          },
-        }
-      );
+      if (desktop) {
+        gsap.fromTo(
+          counters,
+          { orders: kworkStats.startOrders, reviews: kworkStats.startReviews },
+          {
+            orders: kworkStats.orders,
+            reviews: kworkStats.reviews,
+            ease: "none",
+            onUpdate: setCounts,
+            scrollTrigger: {
+              trigger: wrap,
+              start: "top 18%",
+              end: "bottom 82%",
+              scrub: 0.7,
+              invalidateOnRefresh: true,
+            },
+          }
+        );
+      }
 
       const mm = gsap.matchMedia();
       mm.add("(min-width: 1024px)", () => {
@@ -232,12 +325,10 @@ export default function Experience() {
     { scope: sectionRef, dependencies: [ready] }
   );
 
-  const kworkHref = site.links.kwork[locale];
-
   return (
     <section
       ref={sectionRef}
-      className="relative z-10 mx-auto max-w-6xl px-6 pb-28 pt-2 md:pb-40 lg:px-8"
+      className="relative z-10 mx-auto max-w-6xl overflow-x-clip px-6 pb-28 pt-2 md:pb-40 lg:px-8"
     >
       <div
         ref={wrapRef}
@@ -248,92 +339,27 @@ export default function Experience() {
           className="pointer-events-none absolute left-2 top-0 h-full w-[2px] lg:left-[21rem]"
         />
 
-        <aside ref={railRef} className="relative pl-8 lg:h-full lg:pl-0">
+        <aside ref={railRef} className="relative hidden pl-8 lg:block lg:h-full lg:pl-0">
           <div
             ref={cardRef}
             className="relative lg:absolute lg:inset-x-0 lg:top-0"
           >
-            <article className="relative overflow-hidden rounded-2xl border border-line bg-surface-deep transition-colors duration-300 hover:border-accent/40">
-              <span
-                data-xp-dot
-                className="absolute -left-[29px] top-8 block h-3 w-3 rounded-full border-2 lg:-right-[1.375rem] lg:left-auto lg:top-10"
-                style={{ backgroundColor: "#08080a", borderColor: "#6e6b67" }}
-                aria-hidden
-              />
-
-              <a
-                href={kworkHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={t.help.kworkOpen}
-                className="absolute right-3 top-3 z-10 flex size-9 items-center justify-center rounded-full border border-line bg-surface text-muted transition-colors duration-300 hover:border-accent/50 hover:text-accent"
-              >
-                <MousePointerClick size={16} strokeWidth={1.8} />
-              </a>
-
-              <div className="flex items-center gap-3 border-b border-white/[0.06] px-5 py-4 pr-14 md:px-6">
-                <Image
-                  src="/me.jpg"
-                  alt={t.hero.photoAlt}
-                  width={48}
-                  height={48}
-                  className="size-12 shrink-0 rounded-full object-cover object-[center_20%] ring-1 ring-white/10"
-                />
-                <h3 className="font-display text-xl font-semibold text-accent">
-                  {t.help.kworkName}
-                </h3>
-              </div>
-
-              <ul className="divide-y divide-white/[0.06]">
-                <StatRow icon={CalendarClock}>
-                  <span className="text-fg/90">{t.help.kworkSince}</span>
-                </StatRow>
-                <StatRow icon={Flag}>
-                  <span>
-                    <span ref={ordersRef} className="font-semibold tabular-nums text-fg">
-                      {kworkStats.startOrders}
-                    </span>{" "}
-                    {t.help.kworkOrders}
-                  </span>
-                </StatRow>
-                <StatRow icon={MessageCircle}>
-                  <span>
-                    <span ref={reviewsRef} className="font-semibold tabular-nums text-fg">
-                      {kworkStats.startReviews}
-                    </span>{" "}
-                    {t.help.kworkReviews}
-                  </span>
-                </StatRow>
-                <StatRow icon={ThumbsUp}>
-                  <span>
-                    <span className="font-semibold tabular-nums text-fg">100%</span>{" "}
-                    {t.help.kworkSuccess}
-                  </span>
-                </StatRow>
-                <StatRow icon={Timer}>
-                  <span>
-                    <span className="font-semibold tabular-nums text-fg">100%</span>{" "}
-                    {t.help.kworkOnTime}
-                  </span>
-                </StatRow>
-                <StatRow icon={UserRoundPlus}>
-                  <span>
-                    <span className="font-semibold tabular-nums text-fg">48%</span>{" "}
-                    {t.help.kworkRepeat}
-                  </span>
-                </StatRow>
-              </ul>
-            </article>
+            <KworkCard
+              ordersRef={ordersRef}
+              reviewsRef={reviewsRef}
+              initialOrders={kworkStats.startOrders}
+              initialReviews={kworkStats.startReviews}
+            />
           </div>
         </aside>
 
-        <div className="relative mt-10 pl-8 lg:col-start-3 lg:mt-0 lg:pl-0">
+        <div className="relative min-w-0 pl-8 lg:col-start-3 lg:pl-0">
           {experience.toReversed().map(({ id, company, url, role, period, current, bullets, stack }, index) => (
             <article
               key={id}
               data-xp-item
               data-active={index === 0 ? "true" : "false"}
-              className="relative mb-12 rounded-2xl border border-line bg-surface-deep p-7 opacity-[0.34] transition-[opacity,border-color] duration-500 ease-out last:mb-0 data-[active=true]:border-accent/40 data-[active=true]:opacity-100 md:p-9"
+              className="relative mb-12 rounded-2xl border border-line bg-surface-deep p-7 opacity-[0.34] transition-[opacity,border-color] duration-500 ease-out data-[active=true]:border-accent/40 data-[active=true]:opacity-100 lg:last:mb-0 md:p-9"
             >
               <span
                 data-xp-dot
@@ -389,6 +415,12 @@ export default function Experience() {
               </div>
             </article>
           ))}
+          <div className="relative lg:hidden">
+            <KworkCard
+              initialOrders={kworkStats.orders}
+              initialReviews={kworkStats.reviews}
+            />
+          </div>
         </div>
       </div>
     </section>

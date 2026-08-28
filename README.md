@@ -56,17 +56,3 @@ Design tokens объявлены в `src/app/globals.css` в блоке `@theme`
 - Текстовые reveal — `src/components/ui/SplitReveal.tsx`
 
 При `prefers-reduced-motion: reduce` тяжёлые анимации (пиннинг, посимвольные reveal, смус-скролл) автоматически отключаются.
-
-## Деплой на Vercel
-
-1. Запушить репозиторий на GitHub/GitLab
-2. На [vercel.com](https://vercel.com) → **Add New Project** → импортировать репозиторий
-3. Фреймворк определится автоматически (Next.js), настройки по умолчанию
-4. **Domains** → добавить `v0ky.dev` и настроить DNS (A-запись `76.76.21.21` или CNAME `cname.vercel-dns.com`)
-
-## Замена домена
-
-Если сайт будет жить не на `v0ky.dev`:
-
-1. `src/data/site.ts` — поля `domain` и `url`
-2. Метаданные, sitemap и robots подтянут новый URL автоматически (всё читается из `site.ts`)

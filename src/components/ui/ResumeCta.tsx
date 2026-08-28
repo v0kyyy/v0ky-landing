@@ -17,7 +17,7 @@ export default function ResumeCta() {
         <a
           href={site.links.resume[locale]}
           download={locale === "ru" ? "Vladimir-Kireev-CV.pdf" : "Vladimir-Chireev-CV.pdf"}
-          className="btn-fill inline-flex items-center gap-3 rounded-full border border-line-strong px-12 py-5 font-mono text-sm font-medium uppercase tracking-[0.2em] text-fg md:px-16 md:text-base"
+          className="btn-fill inline-flex max-w-full items-center gap-3 rounded-full border border-line-strong px-7 py-4 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-fg sm:px-12 sm:py-5 sm:text-sm sm:tracking-[0.2em] md:px-16 md:text-base"
         >
           <Download size={18} strokeWidth={1.75} />
           {t.help.resumeCta}

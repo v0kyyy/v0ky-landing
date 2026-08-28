@@ -29,12 +29,12 @@ body { background: #e7ecf2; font-family: Inter, sans-serif; color: #1b2430; }
     <div style="font-size:11px;letter-spacing:.12em;color:#8a96a8">CRM TRIGGER</div>
     <h2 style="margin:8px 0 14px;color:#fff;font-size:18px">Сделка успешно</h2>
     <div class="kv"><span>Компания</span><b>Клиника «Север»</b></div>
-    <div class="kv"><span>ИНН</span><b>7704••••91</b></div>
-    <div class="kv"><span>КПП</span><b>770401001</b></div>
+    <div class="kv"><span>ИНН</span><b class="pii">7704••••91</b></div>
+    <div class="kv"><span>КПП</span><b class="pii">770401001</b></div>
     <div class="kv"><span>Сумма</span><b>₽ 180 000</b></div>
     <div class="kv"><span>Сделка</span><b>#10482</b></div>
     <div class="kv"><span>Статус</span><b>договор</b></div>
-    <div class="kv"><span>Менеджер</span><b>Антон</b></div>
+    <div class="kv"><span>Менеджер</span><b class="pii">Антон</b></div>
     <div class="kv"><span>Юрист</span><b>—</b></div>
     <p style="margin-top:16px;font-size:12px;color:#8a96a8">Событие: lead.status = won</p>
     <p style="font-size:12px;color:#8a96a8">Шаблон: contract_v4.docx</p>
@@ -47,7 +47,7 @@ body { background: #e7ecf2; font-family: Inter, sans-serif; color: #1b2430; }
     <div class="paper">
       <h1>ДОГОВОР № 2026-10482<br/>на разработку и внедрение</h1>
       <p>г. Москва &nbsp;&nbsp;&nbsp; 20 августа 2026 г.</p>
-      <p>ООО «Север», именуемое «Заказчик», в лице Иванова А.П., и исполнитель заключили настоящий договор о нижеследующем.</p>
+      <p>ООО «Север», именуемое «Заказчик», в лице <span class="pii">Иванова А.П.</span>, и исполнитель заключили настоящий договор о нижеследующем.</p>
       <p>1. Предмет. Автоматизация записи пациентов, интеграция с МИС, Telegram-бот, напоминания WhatsApp.</p>
       <p>2. Стоимость. 180 000 (сто восемьдесят тысяч) рублей, НДС не облагается.</p>
       <p>3. Срок. 10 рабочих дней с момента оплаты счёта № 441.</p>
@@ -56,9 +56,9 @@ body { background: #e7ecf2; font-family: Inter, sans-serif; color: #1b2430; }
       <p>6. Конфиденциальность. NDA — приложение №1, тот же триггер.</p>
       <p>7. Приложения: техническое задание, график платежей, счёт № 441.</p>
       <p>8. Приёмка. Замечания в течение 3 рабочих дней, иначе работы считаются принятыми.</p>
-      <p>9. Реквизиты Заказчика: р/с ••••4419, банк «Север», к/с ••••0001, БИК 044525•••.</p>
+      <p>9. Реквизиты Заказчика: р/с <span class="pii">••••4419</span>, банк «Север», к/с <span class="pii">••••0001</span>, БИК <span class="pii">044525•••</span>.</p>
       <p style="margin-top:12px">Подписи:</p>
-      <p>Заказчик ________________ / Иванов А.П. /</p>
+      <p>Заказчик ________________ / <span class="pii">Иванов А.П.</span> /</p>
       <p>Исполнитель ________________ / v0ky /</p>
       <p style="margin-top:10px">Реквизиты из CRM. Подпись — Контур.Док. Ссылка отправлена на email сделки.</p>
     </div>
@@ -68,7 +68,7 @@ body { background: #e7ecf2; font-family: Inter, sans-serif; color: #1b2430; }
     <div class="box"><div>Акт</div><div>черновик, ждёт close</div></div>
     <div class="box"><div>Подпись</div><div class="ok">ссылка отправлена</div></div>
     <div class="box"><div>NDA</div><div class="ok">в пакете</div></div>
-    <div class="box"><div>Email</div><div>ivanov@sever.clinic</div></div>
+    <div class="box"><div>Email</div><div class="pii">ivanov@sever.clinic</div></div>
     <div class="box"><div>Тайминг</div><div>2 мин вместо 40</div></div>
     <p style="color:#66758a;font-size:12px">без ручного Word. Поля из карточки. Если ИНН пустой — стоп, менеджеру в TG.</p>
   </aside>

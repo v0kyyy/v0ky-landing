@@ -6,3 +6,24 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 .mono { font-family: "JetBrains Mono", Consolas, ui-monospace, monospace; }
+
+/* Soft redaction — as if this were a real product screenshot */
+.pii {
+  filter: blur(5.5px);
+  user-select: none;
+  pointer-events: none;
+  transform: translateZ(0);
+}
+span.pii,
+b.pii,
+div.pii,
+code.pii,
+h4.pii {
+  display: inline-block;
+  padding: 0 1px;
+  margin: 0 -1px;
+  vertical-align: baseline;
+}
+.pii-lg {
+  filter: blur(8px);
+}

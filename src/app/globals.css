@@ -25,6 +25,8 @@
 html {
   background: #08080a;
   scrollbar-color: #2a2626 #08080a;
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 html.lenis,
@@ -46,6 +48,7 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
+  max-width: 100%;
 }
 
 ::selection {

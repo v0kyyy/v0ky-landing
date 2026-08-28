@@ -58,7 +58,7 @@ export default function About() {
   );
 
   return (
-    <section ref={sectionRef} id="about" className="relative mx-auto max-w-6xl px-6 py-28 md:py-40 lg:px-8">
+    <section ref={sectionRef} id="about" className="relative overflow-x-clip mx-auto max-w-6xl px-6 py-28 md:py-40 lg:px-8">
       <SectionWatermark icon={Fingerprint} />
       <SectionHeading
         key={locale}

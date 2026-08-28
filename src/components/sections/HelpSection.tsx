@@ -11,7 +11,7 @@ export default function HelpSection() {
 
   return (
     <>
-      <section id="experience" className="relative">
+      <section id="experience" className="relative overflow-x-clip">
         <div className="relative mx-auto max-w-6xl px-6 pt-28 md:pt-40 lg:px-8">
           <SectionWatermark icon={Wrench} />
           <SectionHeading

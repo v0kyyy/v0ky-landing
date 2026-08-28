@@ -88,7 +88,7 @@ export default function Contact() {
     <section
       ref={sectionRef}
       id="contact"
-      className="relative mx-auto max-w-6xl px-6 py-28 md:py-40 lg:px-8"
+      className="relative mx-auto max-w-6xl overflow-x-clip px-6 py-28 md:py-40 lg:px-8"
     >
       <div className="mb-6 flex items-center gap-4">
         <span className="font-mono text-sm text-accent">04</span>

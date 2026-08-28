@@ -38,20 +38,20 @@ td { padding: 8px 12px; border-top: 1px solid #ebe4d4; }
 <table>
   <thead><tr><th>Сделка</th><th>Менеджер</th><th>Стадия</th><th>Тишина</th><th>Действие</th></tr></thead>
   <tbody>
-    <tr class="late"><td>Клиника «Север»</td><td>Антон</td><td>КП отправлено</td><td class="bad">6д 4ч</td><td>пинг #2 → РОП</td></tr>
-    <tr class="late"><td>Онлайн-школа N</td><td>Мария</td><td>Квалификация</td><td class="bad">3д 11ч</td><td>пинг менеджеру</td></tr>
-    <tr><td>Логистика West</td><td>Илья</td><td>Переговоры</td><td>18ч</td><td class="ok">ещё в SLA</td></tr>
-    <tr class="late"><td>Доставка «Лапша»</td><td>Антон</td><td>Счёт</td><td class="bad">9д</td><td>эскалация вчера</td></tr>
-    <tr><td>Agency Pixel</td><td>Мария</td><td>Новая</td><td>4ч</td><td class="ok">ок</td></tr>
-    <tr class="late"><td>Фитнес Box</td><td>Илья</td><td>КП</td><td class="bad">4д 2ч</td><td>пинг #1</td></tr>
-    <tr><td>Shop Nord</td><td>Антон</td><td>Оплата</td><td>11ч</td><td class="ok">ок</td></tr>
-    <tr class="late"><td>Кафе «Угол»</td><td>Мария</td><td>Квалификация</td><td class="bad">5д</td><td>пинг #2</td></tr>
-    <tr><td>Studio Mute</td><td>Илья</td><td>Новая</td><td>2ч</td><td class="ok">ок</td></tr>
-    <tr class="late"><td>Юрфирма Лето</td><td>Антон</td><td>Счёт</td><td class="bad">7д</td><td>РОП сегодня 09:00</td></tr>
-    <tr><td>Quiet Rooms</td><td>Мария</td><td>КП</td><td>9ч</td><td class="ok">ок</td></tr>
-    <tr class="late"><td>Pasta Bar</td><td>Илья</td><td>Квалификация</td><td class="bad">3д 2ч</td><td>пинг #1</td></tr>
-    <tr><td>Oak Linen</td><td>Антон</td><td>Новая</td><td>1ч</td><td class="ok">ок</td></tr>
-    <tr class="late"><td>Ramen Club</td><td>Мария</td><td>Счёт</td><td class="bad">8д</td><td>эскалация</td></tr>
+    <tr class="late"><td>Клиника «Север»</td><td class="pii">Антон</td><td>КП отправлено</td><td class="bad">6д 4ч</td><td>пинг #2 → РОП</td></tr>
+    <tr class="late"><td>Онлайн-школа N</td><td class="pii">Мария</td><td>Квалификация</td><td class="bad">3д 11ч</td><td>пинг менеджеру</td></tr>
+    <tr><td>Логистика West</td><td class="pii">Илья</td><td>Переговоры</td><td>18ч</td><td class="ok">ещё в SLA</td></tr>
+    <tr class="late"><td>Доставка «Лапша»</td><td class="pii">Антон</td><td>Счёт</td><td class="bad">9д</td><td>эскалация вчера</td></tr>
+    <tr><td>Agency Pixel</td><td class="pii">Мария</td><td>Новая</td><td>4ч</td><td class="ok">ок</td></tr>
+    <tr class="late"><td>Фитнес Box</td><td class="pii">Илья</td><td>КП</td><td class="bad">4д 2ч</td><td>пинг #1</td></tr>
+    <tr><td>Shop Nord</td><td class="pii">Антон</td><td>Оплата</td><td>11ч</td><td class="ok">ок</td></tr>
+    <tr class="late"><td>Кафе «Угол»</td><td class="pii">Мария</td><td>Квалификация</td><td class="bad">5д</td><td>пинг #2</td></tr>
+    <tr><td>Studio Mute</td><td class="pii">Илья</td><td>Новая</td><td>2ч</td><td class="ok">ок</td></tr>
+    <tr class="late"><td>Юрфирма Лето</td><td class="pii">Антон</td><td>Счёт</td><td class="bad">7д</td><td>РОП сегодня 09:00</td></tr>
+    <tr><td>Quiet Rooms</td><td class="pii">Мария</td><td>КП</td><td>9ч</td><td class="ok">ок</td></tr>
+    <tr class="late"><td>Pasta Bar</td><td class="pii">Илья</td><td>Квалификация</td><td class="bad">3д 2ч</td><td>пинг #1</td></tr>
+    <tr><td>Oak Linen</td><td class="pii">Антон</td><td>Новая</td><td>1ч</td><td class="ok">ок</td></tr>
+    <tr class="late"><td>Ramen Club</td><td class="pii">Мария</td><td>Счёт</td><td class="bad">8д</td><td>эскалация</td></tr>
   </tbody>
 </table>
 <div class="bot">
@@ -64,11 +64,11 @@ td { padding: 8px 12px; border-top: 1px solid #ebe4d4; }
   </div>
   <div class="box log">
     <div style="font-size:11px;letter-spacing:.12em;color:#8a7d64;margin-bottom:8px">ЖУРНАЛ</div>
-    09:01 · пинг Антону · Клиника Север<br/>
+    09:01 · пинг <span class="pii">Антону</span> · Клиника Север<br/>
     09:01 · эскалация РОП · Юрфирма Лето<br/>
-    09:12 · Мария ответила · Кафе Угол<br/>
+    09:12 · <span class="pii">Мария</span> ответила · Кафе Угол<br/>
     10:40 · повтор · Онлайн-школа N<br/>
-    11:02 · Илья двинул Логистика West<br/>
+    11:02 · <span class="pii">Илья</span> двинул Логистика West<br/>
     12:18 · пинг · Фитнес Box
   </div>
 </div>

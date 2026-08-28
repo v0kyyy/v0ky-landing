@@ -102,7 +102,7 @@ export default function ContactChat() {
   return (
     <div
       ref={phoneRef}
-      className="pointer-events-none relative mx-auto w-[280px] shrink-0 select-none sm:w-[300px]"
+      className="pointer-events-none relative mx-auto w-full max-w-[280px] shrink-0 select-none sm:max-w-[300px]"
       aria-hidden
     >
       <div className="relative overflow-hidden rounded-[2.35rem] border border-line-strong bg-[#0c0c0e] shadow-[0_24px_60px_rgba(0,0,0,0.45)]">

@@ -15,7 +15,7 @@ export default function Home() {
         <Hero />
         <div className="relative z-10">
           <WavyEdge />
-          <div className="-mt-px bg-bg">
+          <div className="-mt-px overflow-x-clip bg-bg">
             <About />
             <HelpSection />
             <ReviewsFeed />

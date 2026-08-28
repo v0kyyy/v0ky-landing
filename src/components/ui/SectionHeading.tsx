@@ -53,7 +53,7 @@ export function SectionWatermark({
     <Icon
       aria-hidden
       strokeWidth={0.7}
-      className={`pointer-events-none absolute -right-16 top-8 z-0 size-[clamp(16rem,44vw,30rem)] -rotate-[16deg] text-white/[0.035] md:-right-10 md:top-16 ${className}`}
+      className={`pointer-events-none absolute -right-4 top-8 z-0 size-[min(14rem,72vw)] -rotate-[16deg] text-white/[0.035] md:-right-10 md:top-16 md:size-[clamp(16rem,44vw,30rem)] ${className}`}
     />
   );
 }

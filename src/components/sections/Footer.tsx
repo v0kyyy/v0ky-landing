@@ -10,7 +10,7 @@ export default function Footer() {
   return (
     <footer className="relative z-10 border-t border-line bg-bg">
       <div className="mx-auto flex max-w-6xl items-end justify-between gap-6 px-6 py-14 lg:px-8">
-        <div>
+        <div className="min-w-0">
           <p className="font-mono text-sm text-fg">
             v<span className="text-accent">0</span>ky.dev &copy; {new Date().getFullYear()}
           </p>

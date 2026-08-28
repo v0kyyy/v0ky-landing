@@ -136,10 +136,10 @@ export default function Hero() {
 
       <div
         ref={innerRef}
-        className="relative z-10 mx-auto grid w-full max-w-6xl gap-14 px-6 pb-28 pt-36 md:grid-cols-[1.05fr_0.95fr] md:items-center md:pb-40 lg:px-8"
+        className="relative z-10 mx-auto grid w-full min-w-0 max-w-6xl gap-14 px-6 pb-28 pt-36 md:grid-cols-[1.05fr_0.95fr] md:items-center md:pb-40 lg:px-8"
       >
         {/* ---- Левая колонка ---- */}
-        <div>
+        <div className="min-w-0">
           <p ref={termRef} className="mb-7 font-mono text-sm text-muted">
             <span className="text-accent">$</span> whoami
             <span className="ml-2 inline-block h-4 w-2 translate-y-[2px] animate-blink bg-accent align-baseline" />
@@ -148,13 +148,13 @@ export default function Hero() {
           <h1
             key={locale}
             ref={nameRef}
-            className="font-display text-[clamp(2.25rem,6.4vw,5.2rem)] font-bold leading-[1.02] tracking-tight text-fg"
+            className="font-display text-[clamp(1.7rem,8.6vw,5.2rem)] font-bold leading-[1.02] tracking-tight text-fg"
           >
             <span className="block whitespace-nowrap">{t.hero.firstName}</span>
             <span className="block whitespace-nowrap">{t.hero.lastName}</span>
           </h1>
 
-          <p ref={brandRef} className="mt-4 font-mono text-sm text-dim">
+          <p ref={brandRef} className="mt-4 font-mono text-[11px] leading-relaxed text-dim sm:text-sm">
             <span className="text-accent">{"//"}</span> @v0ky — version 0 → production
           </p>
 

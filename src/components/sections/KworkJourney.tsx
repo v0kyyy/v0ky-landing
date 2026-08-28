@@ -49,7 +49,7 @@ export default function KworkJourney() {
       wrap.querySelectorAll<HTMLElement>("[data-xp-item]").forEach((item) => {
         gsap.fromTo(
           item,
-          { x: 48, autoAlpha: 0 },
+          { x: 16, autoAlpha: 0 },
           {
             x: 0,
             autoAlpha: 1,
@@ -88,7 +88,7 @@ export default function KworkJourney() {
   );
 
   return (
-    <div ref={wrapRef} className="relative mx-auto max-w-6xl px-6 pb-8 pt-2 md:px-8 md:pb-12">
+    <div ref={wrapRef} className="relative mx-auto max-w-6xl overflow-x-clip px-6 pb-8 pt-2 md:px-8 md:pb-12">
       <p className="mb-10 max-w-xl text-sm leading-relaxed text-muted md:mb-12 md:text-base">
         <KworkMention />
       </p>
