@@ -27,7 +27,7 @@ export default function Contact() {
     {
       icon: Send,
       label: "Telegram",
-      value: "@v0ky",
+      value: "@v0kyyy",
       href: site.links.telegram,
       external: true,
     },
@@ -153,8 +153,8 @@ export default function Contact() {
 
           <Magnetic strength={0.3}>
             <a
-              href={site.links.resume}
-              download
+              href={site.links.resume[locale]}
+              download={locale === "ru" ? "Vladimir-Kireev-CV.pdf" : "Vladimir-Chireev-CV.pdf"}
               className="btn-fill mt-6 inline-flex items-center gap-2.5 rounded-full border border-line-strong px-6 py-3 font-mono text-xs uppercase tracking-wider text-fg"
             >
               <Download size={14} />

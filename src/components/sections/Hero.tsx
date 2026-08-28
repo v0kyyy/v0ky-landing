@@ -174,8 +174,8 @@ export default function Hero() {
             <span className="hidden h-5 w-px bg-line-strong sm:block" aria-hidden />
             <Magnetic strength={0.35}>
               <a
-                href={site.links.resume}
-                download
+                href={site.links.resume[locale]}
+                download={locale === "ru" ? "Vladimir-Kireev-CV.pdf" : "Vladimir-Chireev-CV.pdf"}
                 aria-label={t.contact.downloadCv}
                 className="btn-fill flex h-11 items-center gap-2 rounded-full border border-accent/45 bg-accent/10 px-4 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-accent"
               >

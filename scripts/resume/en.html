@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Vladimir Chireev — CV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600&family=JetBrains+Mono:wght@500&family=Unbounded:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="top">
+        <div>
+          <h1>Vladimir Chireev</h1>
+          <p class="role">Fullstack Automation Engineer · @v0ky</p>
+        </div>
+        <p class="contacts">
+          <a href="mailto:hello@v0ky.dev">hello@v0ky.dev</a><br />
+          <a href="https://t.me/v0kyyy">t.me/v0kyyy</a>
+          ·
+          <a href="https://github.com/v0kyyy">github.com/v0kyyy</a><br />
+          <a href="https://v0ky.dev">v0ky.dev</a>
+          ·
+          <a href="https://kwork.com/user/v0kyyy">kwork.com/user/v0kyyy</a>
+        </p>
+      </header>
+
+      <p class="summary">
+        Fullstack engineer focused on automation: I turn repetitive operations into systems that run
+        themselves — bots, scraping, integrations, and dashboards, with monitoring, retries, and
+        logging as standard. More than five years in production, 150+ turnkey projects, 126 orders
+        delivered on Kwork (100% success, 48% repeat). Currently building HelpStat, a
+        marketplace-analytics SaaS for Ozon and Wildberries.
+      </p>
+
+      <h2>Skills</h2>
+      <dl class="skills">
+        <dt>Languages</dt>
+        <dd>Python, TypeScript / JavaScript, SQL, Bash</dd>
+        <dt>Automation</dt>
+        <dd>Playwright, Selenium, aiogram, n8n, Google Apps Script, Celery / cron</dd>
+        <dt>Backend</dt>
+        <dd>FastAPI, Flask, REST / Webhooks, Docker, Redis</dd>
+        <dt>Data &amp; UI</dt>
+        <dd>PostgreSQL, MySQL, Pandas, React / Next.js, Recharts, Tailwind CSS</dd>
+      </dl>
+
+      <h2>Experience</h2>
+
+      <article class="job">
+        <div class="job-head">
+          <div>
+            <h3>Full-stack Engineer</h3>
+            <p class="meta"><a href="https://helpstat.su">HelpStat · helpstat.su</a></p>
+          </div>
+          <p class="when">2024 — Present</p>
+        </div>
+        <ul>
+          <li>
+            Building HelpStat — marketplace-analytics SaaS for Ozon, Wildberries and other platforms.
+            Full cycle: data collection, product UI, billing.
+          </li>
+          <li>
+            Automated parsing of storefronts and seller cabinets so catalogue, rank and sales data
+            refresh themselves and reach the user without manual exports.
+          </li>
+          <li>
+            Shipped dashboards, SKU reports and payment integration — subscriptions and access so
+            the service sells as a product, not an internal spreadsheet.
+          </li>
+        </ul>
+        <p class="stack">Python · Playwright · FastAPI · Next.js · PostgreSQL · Payments</p>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <div>
+            <h3>Independent Engineer</h3>
+            <p class="meta"><a href="https://kwork.com/user/v0kyyy">Kwork · freelance practice</a></p>
+          </div>
+          <p class="when">2018 — Present</p>
+        </div>
+        <ul>
+          <li>
+            126 orders completed, 72 reviews, 100% success, 100% on time, 48% repeat — on Kwork
+            since 21 July 2018.
+          </li>
+          <li>
+            Typical delivery: Telegram / Discord bots, Playwright scraping, CRM and payment
+            integrations, RPA, custom dashboards — with retries, logs and monitoring.
+          </li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <div>
+            <h3>Automation Engineer, operator testing</h3>
+            <p class="meta"><a href="https://synex.ltd">Synex · synex.ltd</a></p>
+          </div>
+          <p class="when">2024 — 2026</p>
+        </div>
+        <ul>
+          <li>
+            At a telecom company that tests mobile operators, turned large-scale SMS-number
+            verification from a manual shift into a fleet of autonomous scripts.
+          </li>
+          <li>
+            Replaced one-off checks with unattended pipelines (logs, recovery) across operators and
+            changing rules.
+          </li>
+          <li>
+            Built test runs that stay alive against real site protection — CAPTCHA, anti-fraud, rate
+            limits — so a bulk pass does not die on the first challenge.
+          </li>
+        </ul>
+        <p class="stack">Python · Playwright · asyncio · Task queues · Proxy rotation</p>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <div>
+            <h3>Automation Engineer</h3>
+            <p class="meta">Travel company</p>
+          </div>
+          <p class="when">2021 — 2023</p>
+        </div>
+        <ul>
+          <li>
+            Audited manual content, posting and reporting work; closed bottlenecks with automation
+            instead of more headcount.
+          </li>
+          <li>
+            Built a content generation and publishing pipeline, plus controlled account warm-up, so
+            channels run on a schedule without click-work.
+          </li>
+          <li>
+            Wrote collection scripts and live dashboards — channel decisions on live numbers, not a
+            weekly spreadsheet dump.
+          </li>
+        </ul>
+        <p class="stack">Python · Playwright · Google Apps Script · Dashboards · Schedulers</p>
+      </article>
+
+      <h2>Selected work</h2>
+      <ul class="picks">
+        <li>
+          <strong>Visa-center slot booking</strong> — books onto preset applicant data in 2–4s after
+          a slot appears; manual refresh never won.
+        </li>
+        <li>
+          <strong>SMS-number sniping</strong> — async buy on listing (price, operator, country).
+          Reaction 50–120ms; catch rate from ~5% by hand to most matching lots.
+        </li>
+        <li>
+          <strong>Envato media pipeline</strong> — parse → classify → ffmpeg. Hundreds of ready
+          units a day without a sorting shift.
+        </li>
+        <li>
+          <strong>Messenger leads into CRM</strong> — Telegram, WhatsApp, Instagram open a deal and
+          assign an owner. Time-to-first-touch from hours to minutes.
+        </li>
+      </ul>
+    </main>
+  </body>
+</html>

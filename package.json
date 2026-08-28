@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "shots": "node scripts/case-shots/capture.mjs"
+    "shots": "node scripts/case-shots/capture.mjs",
+    "resume": "node scripts/resume/render.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

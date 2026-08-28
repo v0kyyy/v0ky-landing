@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Владимир Киреев — резюме</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600&family=JetBrains+Mono:wght@500&family=Unbounded:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="top">
+        <div>
+          <h1>Владимир Киреев</h1>
+          <p class="role">Fullstack Automation Engineer · @v0ky</p>
+        </div>
+        <p class="contacts">
+          <a href="mailto:hello@v0ky.dev">hello@v0ky.dev</a><br />
+          <a href="https://t.me/v0kyyy">t.me/v0kyyy</a>
+          ·
+          <a href="https://github.com/v0kyyy">github.com/v0kyyy</a><br />
+          <a href="https://v0ky.dev">v0ky.dev</a>
+          ·
+          <a href="https://kwork.ru/user/v0kyyy">kwork.ru/user/v0kyyy</a>
+        </p>
+      </header>
+
+      <p class="summary">
+        Fullstack-разработчик со специализацией в автоматизации: превращаю ручную рутину в системы,
+        которые работают сами — боты, парсинг, интеграции и дашборды, с мониторингом, ретраями и
+        логами по умолчанию. Больше пяти лет в продакшене, 150+ проектов под ключ, 126 заказов на
+        Kwork (100% успешно, 48% повторных). Сейчас разрабатываю HelpStat — SaaS-аналитику
+        маркетплейсов для Ozon и Wildberries.
+      </p>
+
+      <h2>Навыки</h2>
+      <dl class="skills">
+        <dt>Языки</dt>
+        <dd>Python, TypeScript / JavaScript, SQL, Bash</dd>
+        <dt>Автоматизация</dt>
+        <dd>Playwright, Selenium, aiogram, n8n, Google Apps Script, Celery / cron</dd>
+        <dt>Backend</dt>
+        <dd>FastAPI, Flask, REST / Webhooks, Docker, Redis</dd>
+        <dt>Данные и UI</dt>
+        <dd>PostgreSQL, MySQL, Pandas, React / Next.js, Recharts, Tailwind CSS</dd>
+      </dl>
+
+      <h2>Опыт</h2>
+
+      <article class="job">
+        <div class="job-head">
+          <div>
+            <h3>Full-stack Engineer</h3>
+            <p class="meta"><a href="https://helpstat.su">HelpStat · helpstat.su</a></p>
+          </div>
+          <p class="when">2024 — настоящее время</p>
+        </div>
+        <ul>
+          <li>
+            Разрабатываю HelpStat — SaaS-платформу аналитики маркетплейсов (Ozon, Wildberries и
+            другие). Полный цикл: сбор данных, продукт, биллинг.
+          </li>
+          <li>
+            Настроил автоматизированный парсинг витрин и кабинетов МП: каталог, позиции и продажи
+            обновляются сами, без ручных выгрузок.
+          </li>
+          <li>
+            Собрал дашборды, отчёты по SKU и платёжную интеграцию — подписка и доступ, чтобы сервис
+            продавался как продукт, а не жил таблицей внутри команды.
+          </li>
+        </ul>
+        <p class="stack">Python · Playwright · FastAPI · Next.js · PostgreSQL · Payments</p>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <div>
+            <h3>Independent Engineer</h3>
+            <p class="meta"><a href="https://kwork.ru/user/v0kyyy">Kwork · независимая практика</a></p>
+          </div>
+          <p class="when">2018 — настоящее время</p>
+        </div>
+        <ul>
+          <li>
+            126 заказов, 72 отзыва, 100% успешно, 100% вовремя, 48% повторных — на Kwork с 21 июля
+            2018.
+          </li>
+          <li>
+            Типовой объём: Telegram / Discord-боты, парсинг на Playwright, интеграции CRM и оплат,
+            RPA, кастомные дашборды — с ретраями, логами и мониторингом.
+          </li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <div>
+            <h3>Automation Engineer, operator testing</h3>
+            <p class="meta"><a href="https://synex.ltd">Synex · synex.ltd</a></p>
+          </div>
+          <p class="when">2024 — 2026</p>
+        </div>
+        <ul>
+          <li>
+            В компании связи, которая тестирует мобильных операторов, перевёл массовую проверку
+            SMS-номеров с ручной смены на флот автономных скриптов.
+          </li>
+          <li>
+            Заменил разовые проверки пайплайнами без человека за клавиатурой — логи, восстановление,
+            разные операторы и смена правил.
+          </li>
+          <li>
+            Собирал прогоны, которые не останавливаются на реальной защите площадок — CAPTCHA,
+            антифрод, лимиты.
+          </li>
+        </ul>
+        <p class="stack">Python · Playwright · asyncio · Task queues · Proxy rotation</p>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <div>
+            <h3>Automation Engineer</h3>
+            <p class="meta">Travel company</p>
+          </div>
+          <p class="when">2021 — 2023</p>
+        </div>
+        <ul>
+          <li>
+            Аудировал ручную работу команды по контенту, постингу и отчётам — закрывал узкие места
+            автоматизацией, а не расширением штата.
+          </li>
+          <li>
+            Собрал конвейер генерации и публикации контента и контролируемый прогрев аккаунтов —
+            каналы идут по расписанию без ручного кликанья.
+          </li>
+          <li>
+            Написал скрипты сбора аналитики и умные дашборды: решения по живым цифрам, а не по
+            выгрузке раз в неделю.
+          </li>
+        </ul>
+        <p class="stack">Python · Playwright · Google Apps Script · Dashboards · Schedulers</p>
+      </article>
+
+      <h2>Избранные проекты</h2>
+      <ul class="picks">
+        <li>
+          <strong>Слоты в визовом центре</strong> — бронь на заранее заданные данные за 2–4 с;
+          ручной мониторинг не успевал ни разу.
+        </li>
+        <li>
+          <strong>Выкуп SMS-номеров</strong> — асинхронная покупка в момент появления (цена,
+          оператор, страна). Реакция 50–120 мс; перехваты с ~5% вручную до большинства лотов.
+        </li>
+        <li>
+          <strong>Пайплайн Envato</strong> — парсинг → классификация → ffmpeg. Сотни готовых единиц
+          контента в сутки без ручной сортировки.
+        </li>
+        <li>
+          <strong>Заявки из мессенджеров в CRM</strong> — Telegram, WhatsApp, Instagram сами
+          открывают сделку. Время до первого касания — с часов до минут.
+        </li>
+      </ul>
+    </main>
+  </body>
+</html>

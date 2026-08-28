@@ -51,13 +51,9 @@ export default function ContactChat() {
       hideThread();
 
       const tl = gsap.timeline({
-        repeat: -1,
-        repeatDelay: 1.6,
         paused: true,
         defaults: { ease: "power2.out" },
       });
-
-      tl.call(hideThread);
 
       bubbles.forEach((bubble, i) => {
         const fromMe = bubble.dataset.from === "me";
@@ -78,14 +74,21 @@ export default function ContactChat() {
         tl.call(scrollBottom);
       });
 
+      const playOnce = () => {
+        if (tl.progress() < 1) tl.play();
+      };
+      const pauseIfRunning = () => {
+        if (tl.progress() < 1) tl.pause();
+      };
+
       const trigger = ScrollTrigger.create({
         trigger: phone,
         start: "top 82%",
         end: "bottom 12%",
-        onEnter: () => tl.play(),
-        onEnterBack: () => tl.play(),
-        onLeave: () => tl.pause(),
-        onLeaveBack: () => tl.pause(),
+        onEnter: playOnce,
+        onEnterBack: playOnce,
+        onLeave: pauseIfRunning,
+        onLeaveBack: pauseIfRunning,
       });
 
       return () => {

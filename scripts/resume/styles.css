@@ -1,0 +1,160 @@
+@page {
+  size: A4;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: #fff;
+}
+
+body {
+  color: #161513;
+  font-family: "Inter Tight", "Inter", "Segoe UI", sans-serif;
+  font-size: 9.45pt;
+  font-weight: 400;
+  line-height: 1.32;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.page {
+  padding: 12mm 14mm 11mm;
+  width: 210mm;
+  min-height: 297mm;
+}
+
+.top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 2px solid #e8332a;
+  padding-bottom: 8px;
+}
+
+h1 {
+  font-family: Unbounded, "Inter Tight", sans-serif;
+  font-size: 20pt;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.role {
+  color: #e8332a;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 8pt;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin-top: 5px;
+}
+
+.contacts {
+  color: #3f3c39;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 7.2pt;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.contacts a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.summary {
+  margin-top: 9px;
+}
+
+h2 {
+  color: #e8332a;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 7.3pt;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  margin: 10px 0 5px;
+  text-transform: uppercase;
+}
+
+.skills {
+  display: grid;
+  gap: 2px 12px;
+  grid-template-columns: 92px 1fr;
+}
+
+.skills dt {
+  color: #6e6b67;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 7.1pt;
+}
+
+.skills dd {
+  font-size: 9.3pt;
+}
+
+.job {
+  margin-top: 7px;
+}
+
+.job-head {
+  align-items: baseline;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.job-head h3 {
+  font-size: 10.2pt;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.job-head .meta {
+  color: #e8332a;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 7.6pt;
+  margin-top: 1px;
+}
+
+.job-head .meta a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.when {
+  color: #6e6b67;
+  flex-shrink: 0;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 7.6pt;
+}
+
+ul {
+  margin: 3px 0 0 1.05em;
+}
+
+li {
+  margin-top: 1.5px;
+  padding-left: 2px;
+}
+
+li::marker {
+  color: #e8332a;
+}
+
+.stack {
+  color: #6e6b67;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 7pt;
+  margin-top: 2px;
+}
+
+.picks strong {
+  font-weight: 600;
+}
