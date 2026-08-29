@@ -17,7 +17,7 @@ type ParallaxScrollTrigger = {
   trigger?: gsap.DOMTarget;
   start?: string;
   end?: string | (() => string);
-  pin?: boolean | ((() => boolean) | string);
+  pin?: boolean | gsap.DOMTarget;
   scrub?: number | boolean;
   invalidateOnRefresh?: boolean;
 };

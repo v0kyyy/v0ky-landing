@@ -221,7 +221,7 @@ export default function Experience() {
       };
 
       const dots = wrap.querySelectorAll<HTMLElement>("[data-xp-dot]");
-      const counters = {
+      const counters: { orders: number; reviews: number } = {
         orders: kworkStats.startOrders,
         reviews: kworkStats.startReviews,
       };
