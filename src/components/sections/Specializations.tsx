@@ -25,6 +25,20 @@ const contentVariants = {
   }),
 };
 
+function SpecCover({ src }: { src: string }) {
+  return (
+    <div className="spec-cover" aria-hidden>
+      <div className="spec-cover-media spec-cover-soft">
+        <Image src={src} alt="" fill sizes="320px" className="object-cover object-[center_12%]" />
+      </div>
+      <div className="spec-cover-media spec-cover-sharp">
+        <Image src={src} alt="" fill sizes="320px" className="object-cover object-[center_12%]" />
+      </div>
+      <div className="spec-cover-fade" />
+    </div>
+  );
+}
+
 function SpecCard({
   spec,
   expanded,
@@ -40,6 +54,7 @@ function SpecCard({
   const cardRef = useRef<HTMLDivElement>(null);
   const tiltRef = useTilt<HTMLDivElement>(3, !expanded);
   const [shot, setShot] = useState<{ src: string; alt: string } | null>(null);
+  const cover = spec.projects.find((project) => project.image)?.image;
 
   useEffect(() => {
     if (!expanded) return;
@@ -95,16 +110,14 @@ function SpecCard({
             aria-expanded={false}
             className="block h-full w-full text-left"
           >
-            <div ref={tiltRef} className="flex h-full flex-col p-7 will-change-transform">
-              <div className="flex items-center justify-between gap-3">
-                <span className="font-mono text-sm text-accent">{spec.num}</span>
-                <spec.icon size={18} strokeWidth={1.75} className="text-accent" aria-hidden />
-              </div>
-              <h3 className="mt-5 font-display text-lg font-semibold leading-snug text-fg">
+            <div ref={tiltRef} className="relative flex h-full min-h-[280px] flex-col p-7 will-change-transform">
+              {cover ? <SpecCover src={cover} /> : null}
+              <span className="relative font-mono text-sm text-accent">{spec.num}</span>
+              <h3 className="relative mt-5 max-w-[16ch] font-display text-lg font-semibold leading-snug text-fg">
                 {spec.title[locale]}
               </h3>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{spec.short[locale]}</p>
-              <span className="mt-6 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-dim transition-colors duration-300 group-hover:text-accent">
+              <p className="relative mt-3 flex-1 text-sm leading-relaxed text-muted">{spec.short[locale]}</p>
+              <span className="relative mt-6 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-dim transition-colors duration-300 group-hover:text-accent">
                 <Plus size={13} /> {t.specs.more}
               </span>
             </div>

@@ -367,6 +367,70 @@ body::after {
   animation-delay: 0.3s;
 }
 
+/* ---------- Обложка кейса: резкий угол → блюр к центру ---------- */
+.spec-cover {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.spec-cover-media {
+  position: absolute;
+  right: -10%;
+  top: -12%;
+  width: 82%;
+  height: 76%;
+  opacity: 0.92;
+  transition: opacity 0.5s ease;
+}
+
+.group:hover .spec-cover-media {
+  opacity: 1;
+}
+
+.spec-cover-sharp {
+  -webkit-mask-image: radial-gradient(
+    ellipse 100% 90% at 100% 0%,
+    #000 0%,
+    #000 16%,
+    rgba(0, 0, 0, 0.45) 36%,
+    transparent 62%
+  );
+  mask-image: radial-gradient(
+    ellipse 100% 90% at 100% 0%,
+    #000 0%,
+    #000 16%,
+    rgba(0, 0, 0, 0.45) 36%,
+    transparent 62%
+  );
+}
+
+.spec-cover-soft {
+  filter: blur(18px);
+  transform: scale(1.08);
+  -webkit-mask-image: radial-gradient(
+    ellipse 115% 105% at 96% 4%,
+    transparent 6%,
+    rgba(0, 0, 0, 0.7) 32%,
+    transparent 68%
+  );
+  mask-image: radial-gradient(
+    ellipse 115% 105% at 96% 4%,
+    transparent 6%,
+    rgba(0, 0, 0, 0.7) 32%,
+    transparent 68%
+  );
+}
+
+.spec-cover-fade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(112deg, var(--color-surface-deep) 26%, transparent 56%),
+    linear-gradient(180deg, transparent 38%, var(--color-surface-deep) 90%);
+}
+
 /* ---------- Слово в заголовке контактов: hover-подсветка ---------- */
 .hover-word {
   transition: color 0.3s ease, text-shadow 0.3s ease;
