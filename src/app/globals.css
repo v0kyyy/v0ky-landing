@@ -377,11 +377,11 @@ body::after {
 
 .spec-cover-media {
   position: absolute;
-  right: -10%;
-  top: -12%;
-  width: 82%;
-  height: 76%;
-  opacity: 0.92;
+  right: -8%;
+  top: -10%;
+  width: 78%;
+  height: 72%;
+  opacity: 0.95;
   transition: opacity 0.5s ease;
 }
 

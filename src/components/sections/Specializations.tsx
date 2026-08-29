@@ -14,6 +14,7 @@ import {
   specializations,
   type Specialization,
 } from "@/data/specializations";
+import { SpecArt } from "@/components/sections/SpecArts";
 import { useI18n } from "@/components/providers/LocaleProvider";
 
 const contentVariants = {
@@ -25,14 +26,14 @@ const contentVariants = {
   }),
 };
 
-function SpecCover({ src }: { src: string }) {
+function SpecCover({ id }: { id: string }) {
   return (
     <div className="spec-cover" aria-hidden>
       <div className="spec-cover-media spec-cover-soft">
-        <Image src={src} alt="" fill sizes="320px" className="object-cover object-[center_12%]" />
+        <SpecArt id={id} />
       </div>
       <div className="spec-cover-media spec-cover-sharp">
-        <Image src={src} alt="" fill sizes="320px" className="object-cover object-[center_12%]" />
+        <SpecArt id={id} />
       </div>
       <div className="spec-cover-fade" />
     </div>
@@ -54,7 +55,6 @@ function SpecCard({
   const cardRef = useRef<HTMLDivElement>(null);
   const tiltRef = useTilt<HTMLDivElement>(3, !expanded);
   const [shot, setShot] = useState<{ src: string; alt: string } | null>(null);
-  const cover = spec.projects.find((project) => project.image)?.image;
 
   useEffect(() => {
     if (!expanded) return;
@@ -111,7 +111,7 @@ function SpecCard({
             className="block h-full w-full text-left"
           >
             <div ref={tiltRef} className="relative flex h-full min-h-[280px] flex-col p-7 will-change-transform">
-              {cover ? <SpecCover src={cover} /> : null}
+              <SpecCover id={spec.id} />
               <span className="relative font-mono text-sm text-accent">{spec.num}</span>
               <h3 className="relative mt-5 max-w-[16ch] font-display text-lg font-semibold leading-snug text-fg">
                 {spec.title[locale]}
