@@ -11,8 +11,7 @@ export const site = {
       en: "https://kwork.com/user/v0kyyy",
       ru: "https://kwork.ru/user/v0kyyy",
     },
-    // [TODO: email — заменить на реальный]
-    email: "mailto:hello@v0ky.dev",
+    email: "mailto:contact@v0ky.dev",
     resume: {
       en: "/resume-en.pdf",
       ru: "/resume-ru.pdf",
